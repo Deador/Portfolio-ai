@@ -310,3 +310,27 @@ The goal is not enterprise complexity.
 
 The goal is to demonstrate how a Product Designer can build a
 production-ready design system using AI-assisted workflows.
+
+
+# Development Environment
+
+Operating System:
+Windows 11
+
+Shell:
+PowerShell 7
+
+Project location:
+C:\Users\mp3ps\Documents\Portfolio-ai
+
+Stack:
+Vite
+React
+TypeScript
+CSS Modules
+
+When using shell commands:
+
+- Always generate PowerShell commands.
+- Never use Linux commands (find, grep, sed, awk, head, tree -L, etc.).
+- Use Get-ChildItem, Select-String and PowerShell equivalents.
