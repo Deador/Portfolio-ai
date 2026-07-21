@@ -4,6 +4,11 @@ AI-first workflow:
 
 **Figma → Design System → React → Storybook → Production**
 
+This document follows:
+
+- docs/ai-philosophy.md
+- docs/architecture.md
+
 ---
 
 # 1. Purpose

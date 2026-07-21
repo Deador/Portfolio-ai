@@ -4,6 +4,10 @@ AI-first workflow:
 
 **Figma → Design System → React → Storybook → Production**
 
+This document follows the principles defined in:
+
+- docs/ai-philosophy.md
+
 ## 1. Project Goal
 
 This project is a personal product design portfolio.
