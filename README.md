@@ -1,3 +1,13 @@
+# AI Context
+
+For AI agents:
+Read this file first, then follow documentation links.
+
+Main rules:
+- AGENTS.md contains agent behavior rules
+- docs/ contains project knowledge
+- Figma is the source of truth for design decisions
+
 # Project Documentation
 
 Before starting any task, always read:

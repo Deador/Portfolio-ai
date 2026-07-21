@@ -25,17 +25,23 @@ Your primary goal is consistency, scalability and maintainability.
 
 # Project Context
 
-Before starting any task, read:
+Before starting any Design System task:
+
+Always read:
 
 1. docs/README.md
-2. docs/ai-philosophy.md
-3. docs/architecture.md
-4. docs/design-system.md
-5. docs/figma-workflow.md
 
-These documents define the project rules and are the source of truth.
+Then identify relevant documents.
 
-Never contradict them.
+Minimum required:
+
+- docs/design-system.md
+- docs/figma-workflow.md
+
+Read architecture.md when:
+- changing project structure
+- changing token architecture
+- creating new patterns
 
 ---
 
@@ -347,3 +353,22 @@ Preferred order:
 Complete one stage before moving to the next.
 
 Every stage should leave the Design System in a working state.
+
+# Figma MCP Rules
+
+When working through Figma MCP:
+
+Before modifying anything:
+
+1. Inspect current state.
+2. Identify affected components.
+3. Explain planned changes.
+4. Wait for approval for destructive operations.
+
+Prefer:
+
+Read → Analyze → Propose → Modify
+
+Never:
+
+Modify → Explain afterwards
