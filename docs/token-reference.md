@@ -91,138 +91,72 @@ All CSS Custom Properties are defined in `src/shared/tokens/tokens.scss` and aut
 
 ## TYPOGRAPHY (15 tokens)
 
-### Font Families
+### Font Families (Primitives)
+Use only for composition. Prefer semantic typography tokens below.
+
 | Variable | Value |
 |----------|-------|
 | `--font-family-onest` | 'Onest', sans-serif |
 | `--font-family-inter` | 'Inter', sans-serif |
 
-### Title Styles (6)
+### Semantic Typography Tokens (CSS `font` Shorthand)
 
-#### Title/H_Result
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h-result-family` | Onest |
-| Size | `--font-title-h-result-size` | 56px |
-| Weight | `--font-title-h-result-weight` | 700 |
-| Line Height | `--font-title-h-result-line-height` | 1.3 |
+Format: `weight size/line-height family`
 
-#### Title/H1_strong
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h1-strong-family` | Onest |
-| Size | `--font-title-h1-strong-size` | 40px |
-| Weight | `--font-title-h1-strong-weight` | 700 |
-| Line Height | `--font-title-h1-strong-line-height` | 1.3 |
+All 15 typography tokens use the CSS `font` shorthand for efficient, clean API:
 
-#### Title/H1
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h1-family` | Onest |
-| Size | `--font-title-h1-size` | 40px |
-| Weight | `--font-title-h1-weight` | 600 |
-| Line Height | `--font-title-h1-line-height` | 1.3 |
+#### Title Styles (6 tokens)
 
-#### Title/H2
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h2-family` | Onest |
-| Size | `--font-title-h2-size` | 32px |
-| Weight | `--font-title-h2-weight` | 600 |
-| Line Height | `--font-title-h2-line-height` | 1.3 |
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--title-h-result` | 700 56px/1.3 Onest | Large display heading |
+| `--title-h1-strong` | 700 40px/1.3 Onest | Bold heading h1 |
+| `--title-h1` | 600 40px/1.3 Onest | Semibold heading h1 |
+| `--title-h2` | 600 32px/1.3 Onest | Heading h2 |
+| `--title-h3` | 500 24px/1.3 Onest | Heading h3 |
+| `--title-h4` | 500 20px/1.4 Onest | Heading h4 |
 
-#### Title/H3
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h3-family` | Onest |
-| Size | `--font-title-h3-size` | 24px |
-| Weight | `--font-title-h3-weight` | 500 |
-| Line Height | `--font-title-h3-line-height` | 1.3 |
+#### Text Styles (7 tokens)
 
-#### Title/H4
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-title-h4-family` | Onest |
-| Size | `--font-title-h4-size` | 20px |
-| Weight | `--font-title-h4-weight` | 500 |
-| Line Height | `--font-title-h4-line-height` | 1.4 |
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--text-l-strong` | 700 20px/1.4 Onest | Large bold text |
+| `--text-l` | 400 20px/1.4 Onest | Large text |
+| `--text-m-strong` | 700 16px/1.4 Onest | Medium bold text |
+| `--text-m` | 400 16px/1.4 Onest | Standard text (default) |
+| `--text-s-medium` | 500 14px/1.4 Onest | Small medium text |
+| `--text-s` | 400 16px/1.5 Onest | Small text |
 
-### Text Styles (7)
+#### Legacy Text Styles (2 tokens)
 
-#### Text/L_strong
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-l-strong-family` | Onest |
-| Size | `--font-text-l-strong-size` | 20px |
-| Weight | `--font-text-l-strong-weight` | 700 |
-| Line Height | `--font-text-l-strong-line-height` | 1.4 |
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `--text-xs` | 400 12px/1.3 Inter | Extra small text (legacy) |
+| `--text-legacy` | 400 18px/1.3 Inter | Legacy text (deprecated) |
 
-#### Text/L
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-l-family` | Onest |
-| Size | `--font-text-l-size` | 20px |
-| Weight | `--font-text-l-weight` | 400 |
-| Line Height | `--font-text-l-line-height` | 1.4 |
+### Typography Example: Simple & Clean
 
-#### Text/M_strong
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-m-strong-family` | Onest |
-| Size | `--font-text-m-strong-size` | 16px |
-| Weight | `--font-text-m-strong-weight` | 700 |
-| Line Height | `--font-text-m-strong-line-height` | 1.4 |
-
-#### Text/M (Standard)
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-m-family` | Onest |
-| Size | `--font-text-m-size` | 16px |
-| Weight | `--font-text-m-weight` | 400 |
-| Line Height | `--font-text-m-line-height` | 1.4 |
-
-#### Text/S_medium
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-s-medium-family` | Onest |
-| Size | `--font-text-s-medium-size` | 14px |
-| Weight | `--font-text-s-medium-weight` | 500 |
-| Line Height | `--font-text-s-medium-line-height` | 1.4 |
-
-#### Text/S
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-s-family` | Onest |
-| Size | `--font-text-s-size` | 16px |
-| Weight | `--font-text-s-weight` | 400 |
-| Line Height | `--font-text-s-line-height` | 1.5 |
-
-### Legacy Text Styles (2)
-
-#### Text/XS
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-xs-family` | Inter |
-| Size | `--font-text-xs-size` | 12px |
-| Weight | `--font-text-xs-weight` | 400 |
-| Line Height | `--font-text-xs-line-height` | 1.3 |
-
-#### Text (legacy)
-| Property | Token | Value |
-|----------|-------|-------|
-| Family | `--font-text-legacy-family` | Inter |
-| Size | `--font-text-legacy-size` | 18px |
-| Weight | `--font-text-legacy-weight` | 400 |
-| Line Height | `--font-text-legacy-line-height` | 1.3 |
-
-### Typography Example
 ```scss
-// Apply all typography properties
-.heading {
+// Before: 5 properties per token
+.title {
   font-family: var(--font-title-h1-family);
   font-size: var(--font-title-h1-size);
   font-weight: var(--font-title-h1-weight);
   line-height: var(--font-title-h1-line-height);
+  letter-spacing: 0; // or var(--font-title-h1-letter-spacing);
+}
+
+// After: 1 property — much cleaner!
+.title {
+  font: var(--title-h1);
+}
+
+.text {
+  font: var(--text-m);
+}
+
+.caption {
+  font: var(--text-xs);
 }
 ```
 
