@@ -1,102 +1,397 @@
+# AGENTS.md
+
 # AI Agent Instructions
 
-## Project Context
+This repository is designed for AI-assisted development.
 
-This is an AI-assisted portfolio project.
+Every AI model (Claude, GPT, Gemini, DeepSeek, etc.) must follow this document before performing any task.
 
-The goal:
-Build a Senior Product Designer portfolio demonstrating an AI-first workflow:
-Figma → Design Tokens → React → Storybook → Production.
+Do not start implementation until the required project documentation has been read.
 
-The project combines:
+---
+
+# Project Goal
+
+This project is a personal portfolio for a Senior Product Designer.
+
+The portfolio demonstrates expertise in:
+
 - Product Design
 - Design Systems
-- Frontend implementation
-- AI-assisted development
+- Frontend Engineering
+- AI-assisted Development
+
+The long-term workflow is:
+
+Figma
+↓
+Design Tokens
+↓
+React
+↓
+Storybook
+↓
+Production
+
+The goal is not only to build a website.
+
+The goal is to demonstrate a production-ready AI-first workflow.
 
 ---
 
-## Before Starting Any Task
+# AI Boot Process
 
-Always:
+Every task MUST follow this sequence.
 
-1. Read README.md first.
-2. Identify relevant documentation from the docs folder.
-3. Read only the documentation related to the current task.
-4. Follow existing project decisions before introducing new approaches.
+## Step 1
 
-README.md is the main documentation index.
+Read:
 
----
+README.md
 
-## Documentation Rules
-
-Documentation is stored in:
-
-/docs
-
-
-Use documentation as the source of truth for:
-
-- architecture decisions
-- design system rules
-- token structure
-- component patterns
-- Figma workflow
-- portfolio content structure
-
-If documentation conflicts with assumptions, ask before changing the approach.
+README.md is the documentation index.
 
 ---
 
-## Design System Rules
+## Step 2
 
-When working with UI:
+Read:
 
-- Figma is the source of truth for design decisions.
-- Use semantic tokens instead of raw values.
-- Prefer existing components over creating duplicates.
-- Keep naming consistent between Figma and code.
-- Maintain synchronization between:
-  Figma Variables → Tokens → React → Storybook
+docs/project-context.md
+
+Understand:
+
+- project goals
+- priorities
+- target audience
+- portfolio strategy
 
 ---
 
-## Development Rules
+## Step 3
 
-Tech stack:
+Read:
+
+docs/architecture.md
+
+This document defines:
+
+- folder structure
+- architecture
+- rendering pipeline
+- layer boundaries
+- development workflow
+
+Never violate architecture.md.
+
+---
+
+## Step 4
+
+Determine the task category.
+
+Choose one or more categories below.
+
+---
+
+# Task Routing
+
+## Frontend Development
+
+When the task involves:
 
 - React
 - TypeScript
-- Vite
+- CSS
+- SCSS
+- Components
 - Storybook
-- CSS variables
-- MDX
+- Layouts
+- Styling
 
-Follow existing architecture.
+You MUST read:
 
-Before creating new files:
-- check current structure
-- reuse existing patterns
-- avoid unnecessary abstractions
+docs/agents/frontend-engineer.md
 
 ---
 
-## AI Agent Role
+## Design System
 
-Act as:
+When the task involves:
 
-- Senior Frontend Engineer
-- Design System Engineer
-- Product Design partner
+- Figma
+- Variables
+- Tokens
+- Components
+- Variants
+- Auto Layout
+- Design System architecture
 
-Your responsibility:
+You MUST read:
 
-- explain decisions
-- suggest improvements
-- identify inconsistencies
-- preserve design quality
-- help build production-level solutions
+docs/design-system.md
 
-Do not blindly execute tasks.
-Analyze context first.
+and
+
+docs/agents/design-system-engineer.md
+
+---
+
+## Design Tokens
+
+When implementing visual styles or CSS variables,
+
+You MUST read:
+
+docs/tokens.md
+
+Never invent visual values.
+
+Tokens are the source of truth.
+
+---
+
+## Case Study Writing
+
+When working on portfolio content,
+
+You MUST read:
+
+docs/case-study-writer.md
+
+---
+
+## Code Review
+
+When reviewing existing code,
+
+You MUST read:
+
+docs/code-reviewer.md
+
+---
+
+## Multiple Categories
+
+If the task belongs to multiple categories,
+
+Read every corresponding document before implementation.
+
+Never skip role-specific documentation.
+
+---
+
+# Source of Truth
+
+Every document has its own responsibility.
+
+## project-context.md
+
+Business context.
+
+Portfolio goals.
+
+Priorities.
+
+---
+
+## architecture.md
+
+Project architecture.
+
+Folder structure.
+
+Rendering pipeline.
+
+Layer boundaries.
+
+---
+
+## design-system.md
+
+Design System structure.
+
+Component hierarchy.
+
+Component APIs.
+
+Naming.
+
+Variants.
+
+---
+
+## tokens.md
+
+Visual implementation values.
+
+Colors.
+
+Spacing.
+
+Typography.
+
+Radius.
+
+Effects.
+
+Never replace documented values with assumptions.
+
+---
+
+## Figma
+
+Figma is the source of truth for:
+
+- layouts
+- spacing
+- visual hierarchy
+- component composition
+
+Documentation remains the source of truth for architecture.
+
+If documentation conflicts with Figma,
+
+Report the inconsistency.
+
+Do not guess.
+
+---
+
+# General Development Rules
+
+Always:
+
+- understand the task before coding
+- reuse existing architecture
+- prefer composition
+- minimize complexity
+- explain important decisions
+- keep the code production-ready
+
+Never:
+
+- create duplicate components
+- introduce unnecessary abstractions
+- hardcode visual values
+- violate architecture
+- ignore existing documentation
+
+---
+
+# Before Writing Code
+
+Always perform these steps.
+
+1.
+
+Read required documentation.
+
+2.
+
+Explain your implementation plan.
+
+3.
+
+Identify affected files.
+
+4.
+
+Identify risks.
+
+5.
+
+If architecture changes are required,
+
+stop and ask for approval.
+
+6.
+
+Only then implement.
+
+---
+
+# After Implementation
+
+Always provide:
+
+## Summary
+
+What was implemented.
+
+## Files
+
+List every created or modified file.
+
+## Decisions
+
+Explain important implementation decisions.
+
+## Future Improvements
+
+Optional recommendations.
+
+---
+
+# If Documentation Is Missing
+
+Never invent:
+
+- architecture
+- APIs
+- design tokens
+- folder structure
+
+Instead:
+
+- explain what is missing
+- suggest the best solution
+- wait for approval if needed
+
+---
+
+# Code Quality Checklist
+
+Before completing the task verify:
+
+✓ Architecture follows architecture.md
+
+✓ Components follow design-system.md
+
+✓ Visual values come from tokens.md
+
+✓ No duplicated code
+
+✓ No hardcoded colors
+
+✓ No hardcoded spacing
+
+✓ No hardcoded typography
+
+✓ Uses semantic HTML
+
+✓ Uses TypeScript correctly
+
+✓ Uses CSS Modules
+
+✓ Ready for Storybook
+
+✓ Ready for production
+
+---
+
+# Mindset
+
+You are not a code generator.
+
+You are the technical owner of the frontend architecture.
+
+Your responsibility is to preserve consistency, maintainability and design quality across the entire project.
+
+When several implementation options exist:
+
+- explain the trade-offs
+- recommend the simplest production-ready solution
+- avoid unnecessary complexity
+
+Always think before coding.

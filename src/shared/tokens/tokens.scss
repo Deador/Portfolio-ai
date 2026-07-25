@@ -1,0 +1,176 @@
+// Design Tokens
+// Source of truth: docs/tokens.md
+// Extracted from Figma: https://www.figma.com/design/i3ANEQ3o83zbqvSqYGSYBC/
+// 42 semantic CSS Custom Properties
+
+:root {
+  // ========================================
+  // COLORS (10 tokens)
+  // ========================================
+
+  // Content colors
+  --color-content-primary: #1e1e1e;
+  --color-content-secondary: #787878;
+  --color-content-tertiary: #adadad;
+  --color-content-white: #f0f0f0;
+
+  // Background colors
+  --color-background-white: #ffffff;
+  --color-background-dark: #1f1f1f;
+  --color-background-secondary: #e2e4e7;
+
+  // Icon colors
+  --color-icon-line: #33363f;
+  --color-icon-fill: #222222;
+  --color-icon-duotone: #7e869e;
+
+  // ========================================
+  // SPACING (12 tokens - 4px scale)
+  // ========================================
+
+  --spacing-x1: 4px;
+  --spacing-x2: 8px;
+  --spacing-x3: 12px;
+  --spacing-x4: 16px;
+  --spacing-x5: 20px;
+  --spacing-x6: 24px;
+  --spacing-x8: 32px;
+  --spacing-x10: 40px;
+  --spacing-x12: 48px;
+  --spacing-x14: 56px;
+  --spacing-x18: 72px;
+  --spacing-x20: 80px;
+
+  // ========================================
+  // RADIUS (4 tokens)
+  // ========================================
+
+  --radius-8: 8px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+
+  // ========================================
+  // TYPOGRAPHY (15 tokens - 4 properties each)
+  // Font families
+  // ========================================
+
+  --font-family-onest: 'Onest', sans-serif;
+  --font-family-inter: 'Inter', sans-serif;
+
+  // ========================================
+  // TYPOGRAPHY: Title Styles (6 tokens)
+  // ========================================
+
+  // Title/H_Result: 56px, Bold, 1.3x line-height
+  --font-title-h-result-family: var(--font-family-onest);
+  --font-title-h-result-size: 56px;
+  --font-title-h-result-weight: 700;
+  --font-title-h-result-line-height: 1.3;
+  --font-title-h-result-letter-spacing: 0;
+
+  // Title/H1_strong: 40px, Bold, 1.3x line-height
+  --font-title-h1-strong-family: var(--font-family-onest);
+  --font-title-h1-strong-size: 40px;
+  --font-title-h1-strong-weight: 700;
+  --font-title-h1-strong-line-height: 1.3;
+  --font-title-h1-strong-letter-spacing: 0;
+
+  // Title/H1: 40px, SemiBold, 1.3x line-height
+  --font-title-h1-family: var(--font-family-onest);
+  --font-title-h1-size: 40px;
+  --font-title-h1-weight: 600;
+  --font-title-h1-line-height: 1.3;
+  --font-title-h1-letter-spacing: 0;
+
+  // Title/H2: 32px, SemiBold, 1.3x line-height
+  --font-title-h2-family: var(--font-family-onest);
+  --font-title-h2-size: 32px;
+  --font-title-h2-weight: 600;
+  --font-title-h2-line-height: 1.3;
+  --font-title-h2-letter-spacing: 0;
+
+  // Title/H3: 24px, Medium, 1.3x line-height
+  --font-title-h3-family: var(--font-family-onest);
+  --font-title-h3-size: 24px;
+  --font-title-h3-weight: 500;
+  --font-title-h3-line-height: 1.3;
+  --font-title-h3-letter-spacing: 0;
+
+  // Title/H4: 20px, Medium, 1.4x line-height
+  --font-title-h4-family: var(--font-family-onest);
+  --font-title-h4-size: 20px;
+  --font-title-h4-weight: 500;
+  --font-title-h4-line-height: 1.4;
+  --font-title-h4-letter-spacing: 0;
+
+  // ========================================
+  // TYPOGRAPHY: Text Styles (7 tokens)
+  // ========================================
+
+  // Text/L_strong: 20px, Bold, 1.4x line-height
+  --font-text-l-strong-family: var(--font-family-onest);
+  --font-text-l-strong-size: 20px;
+  --font-text-l-strong-weight: 700;
+  --font-text-l-strong-line-height: 1.4;
+  --font-text-l-strong-letter-spacing: 0;
+
+  // Text/L: 20px, Regular, 1.4x line-height
+  --font-text-l-family: var(--font-family-onest);
+  --font-text-l-size: 20px;
+  --font-text-l-weight: 400;
+  --font-text-l-line-height: 1.4;
+  --font-text-l-letter-spacing: 0;
+
+  // Text/M_strong: 16px, Bold, 1.4x line-height
+  --font-text-m-strong-family: var(--font-family-onest);
+  --font-text-m-strong-size: 16px;
+  --font-text-m-strong-weight: 700;
+  --font-text-m-strong-line-height: 1.4;
+  --font-text-m-strong-letter-spacing: 0;
+
+  // Text/M: 16px, Regular, 1.4x line-height
+  --font-text-m-family: var(--font-family-onest);
+  --font-text-m-size: 16px;
+  --font-text-m-weight: 400;
+  --font-text-m-line-height: 1.4;
+  --font-text-m-letter-spacing: 0;
+
+  // Text/S_medium: 14px, Medium, 1.4x line-height
+  --font-text-s-medium-family: var(--font-family-onest);
+  --font-text-s-medium-size: 14px;
+  --font-text-s-medium-weight: 500;
+  --font-text-s-medium-line-height: 1.4;
+  --font-text-s-medium-letter-spacing: 0;
+
+  // Text/S: 16px, Regular, 1.5x line-height
+  --font-text-s-family: var(--font-family-onest);
+  --font-text-s-size: 16px;
+  --font-text-s-weight: 400;
+  --font-text-s-line-height: 1.5;
+  --font-text-s-letter-spacing: 0;
+
+  // ========================================
+  // TYPOGRAPHY: Legacy Text Styles (2 tokens)
+  // ========================================
+
+  // Text/XS: 12px, Regular, 1.3x line-height (Inter)
+  --font-text-xs-family: var(--font-family-inter);
+  --font-text-xs-size: 12px;
+  --font-text-xs-weight: 400;
+  --font-text-xs-line-height: 1.3;
+  --font-text-xs-letter-spacing: 0;
+
+  // Text (legacy): 18px, Regular, 1.3x line-height (Inter)
+  --font-text-legacy-family: var(--font-family-inter);
+  --font-text-legacy-size: 18px;
+  --font-text-legacy-weight: 400;
+  --font-text-legacy-line-height: 1.3;
+  --font-text-legacy-letter-spacing: 0;
+
+  // ========================================
+  // EFFECTS (1 token)
+  // ========================================
+
+  --shadow-element: 0 2px 30px rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,8 @@
+// Global Styles Entry Point
+// Import order is critical: reset → tokens → global → utilities
+// This file is imported once in App.tsx to establish global styles
+
+@use '../tokens/tokens';
+@use 'reset';
+@use 'global';
+@use 'utilities';

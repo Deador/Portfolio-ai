@@ -1,0 +1,51 @@
+// Global Document Styles
+// Document-level baseline styles only. No component styling.
+// Components use CSS Modules.
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-onest);
+  color: var(--color-content-primary);
+  background-color: var(--color-background-white);
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+// Link defaults
+a {
+  color: var(--color-content-primary);
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-content-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Form element defaults
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+// Ensure images are responsive
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

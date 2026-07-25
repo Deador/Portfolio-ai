@@ -21,18 +21,18 @@ Depending on the task, also read:
 ## Figma / Design System
 
 - docs/figma-workflow.md
-- docs/design-system-engineer.md
+- docs/agents/design-system-engineer.md
 
 ## Frontend
 
-- docs/frontend-engineer.md
+- docs/agents/frontend-engineer.md
 
 ## Case Studies
 
-- docs/case-study-writer.md
+- docs/agents/case-study-writer.md
 
 ## Code Review
 
-- docs/code-reviewer.md
+- docs/agents/code-reviewer.md
 
 Never start implementation before reading the required documents.
