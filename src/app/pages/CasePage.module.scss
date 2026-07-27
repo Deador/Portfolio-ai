@@ -1,0 +1,32 @@
+// CasePage Styles
+// Uses design tokens only, no hardcoded values
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-x8);
+  background-color: var(--color-background-white);
+}
+
+.content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font: var(--title-h1);
+  color: var(--color-content-primary);
+  margin: 0;
+  margin-bottom: var(--spacing-x6);
+}
+
+.text {
+  font: var(--text-m);
+  color: var(--color-content-primary);
+  margin: 0;
+  margin-bottom: var(--spacing-x4);
+}

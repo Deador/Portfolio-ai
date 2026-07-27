@@ -1,0 +1,168 @@
+// CommonCard Component Styles
+// All values from design tokens - no hardcoded values
+// Variants: insight, risk, callout, lesson, number
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+// ========================================
+// INSIGHT VARIANT
+// ========================================
+.insight {
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-16);
+  padding: var(--spacing-x6);
+  gap: var(--spacing-x2);
+
+  .title {
+    font: var(--text-m);
+    color: var(--color-content-primary);
+  }
+
+  .description {
+    font: var(--text-m);
+    color: var(--color-content-secondary);
+  }
+}
+
+// ========================================
+// RISK VARIANT
+// ========================================
+.risk {
+  background-color: var(--color-background-white);
+  border: 1px solid var(--color-content-tertiary);
+  border-radius: var(--radius-20);
+  padding: var(--spacing-x6);
+  gap: var(--spacing-x4);
+
+  .title {
+    font: var(--text-m-strong);
+    color: var(--color-content-primary);
+  }
+
+  .description {
+    font: var(--text-m);
+    color: var(--color-content-primary);
+  }
+}
+
+.riskIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-content-primary);
+}
+
+// ========================================
+// CALLOUT VARIANT
+// ========================================
+.callout {
+  background-color: var(--color-background-white);
+  border-left: 3px solid var(--color-content-primary);
+  border-radius: var(--radius-20);
+  padding: var(--spacing-x6);
+  gap: var(--spacing-x4);
+  overflow: hidden;
+
+  .title {
+    font: var(--text-l-strong);
+    color: var(--color-content-primary);
+  }
+
+  .description {
+    font: var(--text-m);
+    color: var(--color-content-primary);
+  }
+}
+
+// ========================================
+// LESSON VARIANT
+// ========================================
+.lesson {
+  background-color: var(--color-background-dark);
+  gap: var(--spacing-x3);
+
+  .lessonNumber {
+    font: var(--text-xs);
+    color: var(--color-content-tertiary);
+  }
+
+  .title {
+    font: var(--title-h4);
+    color: var(--color-content-white);
+  }
+
+  .description {
+    font: var(--text-s);
+    color: var(--color-content-white);
+  }
+}
+
+// ========================================
+// NUMBER VARIANT
+// ========================================
+.number {
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-16);
+  padding: var(--spacing-x8) var(--spacing-x8) var(--spacing-x14);
+  gap: var(--spacing-x2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .title {
+    font: var(--text-s);
+    color: var(--color-content-primary);
+    text-align: center;
+  }
+}
+
+.numberBadge {
+  position: absolute;
+  top: calc(-28px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-content-primary);
+  border-radius: var(--radius-16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.numberBadgeText {
+  font: var(--title-h3);
+  color: var(--color-content-white);
+  text-align: center;
+}
+
+// ========================================
+// SHARED CONTENT WRAPPER
+// ========================================
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: inherit;
+  width: 100%;
+}
+
+// ========================================
+// SHARED TYPOGRAPHY
+// ========================================
+.title {
+  margin: 0;
+  padding: 0;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+}

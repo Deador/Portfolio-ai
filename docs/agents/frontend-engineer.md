@@ -313,3 +313,27 @@ Never generate placeholder architecture.
 Never generate fake implementation.
 
 Ask for clarification only when the missing information blocks a correct implementation.
+
+## Figma Fidelity
+
+When implementing UI components:
+
+Figma is the single source of truth.
+
+Never:
+
+- invent layouts;
+- invent responsive behavior;
+- invent variants;
+- invent component states;
+- invent props;
+- simplify or redesign spacing;
+- merge variants.
+
+If the design is incomplete:
+
+Stop implementation and ask.
+
+The implementation must reproduce Figma exactly.
+
+
