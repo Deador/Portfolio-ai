@@ -1,0 +1,19 @@
+// RootLayout Styles
+// Main layout wrapper for all pages
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-x5) var(--spacing-x8);
+}
+
+.mainContent {
+  flex: 1 0 auto;
+  width: 100%;
+}

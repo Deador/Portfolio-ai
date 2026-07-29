@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './HomePage.module.scss';
 import { CommonCard } from '../../shared/ui/molecules/CommonCard/CommonCard';
 
@@ -14,6 +15,13 @@ const HomePage: React.FC = () => {
         <p className={styles.subtitle}>
           Senior Product Designer | Design Systems | Frontend Engineering
         </p>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Case Studies</h2>
+          <p className={styles.text}>
+            <Link to="/case/acquiring">Система обработки заявок на эквайринг</Link>
+          </p>
+        </section>
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Component Demo</h2>

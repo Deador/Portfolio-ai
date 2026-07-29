@@ -1,0 +1,65 @@
+// PersonaCard Component Styles
+// Card for displaying user personas or team members
+
+.personaCard {
+  width: 600px;
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-20);
+  padding: var(--spacing-x8);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--spacing-x5);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  background-color: #ecedee;
+  border-radius: 999px;
+  flex-shrink: 0;
+  overflow: clip;
+}
+
+.placeholderIcon {
+  width: 56px;
+  height: 56px;
+  background-color: #d9dade;
+  border-radius: var(--radius-8);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x3);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m-strong);
+  color: var(--color-content-primary);
+  width: 400px;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-primary);
+  line-height: 24px;
+  width: 400px;
+}

@@ -1,0 +1,15 @@
+// Tag Component Styles
+// Dark badge for categorization and labeling
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-x1) var(--spacing-x2);
+  background-color: var(--color-background-dark);
+  border-radius: var(--radius-8);
+  font: var(--text-s-medium);
+  color: var(--color-content-white);
+  white-space: nowrap;
+  flex-shrink: 0;
+}

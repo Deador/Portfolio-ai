@@ -1,0 +1,25 @@
+// ContextSectionRow Component Styles
+// Single row for Context Section with title and description
+
+.contextRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x3);
+  align-items: flex-start;
+  width: 620px;
+  height: 68px;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font: var(--title-h3);
+  color: var(--color-content-primary);
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-primary);
+}

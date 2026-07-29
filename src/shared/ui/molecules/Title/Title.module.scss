@@ -1,0 +1,25 @@
+// Title Component Styles
+// Main title/heading with two size variants
+
+.title {
+  margin: 0;
+  padding: 0;
+  color: var(--color-content-primary);
+  text-align: center;
+}
+
+// ========================================
+// SIZE L (800px, large)
+// ========================================
+.L {
+  font: var(--title-h1);
+  width: 800px;
+}
+
+// ========================================
+// SIZE M (720px, medium)
+// ========================================
+.M {
+  font: var(--title-h2);
+  width: 720px;
+}

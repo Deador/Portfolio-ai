@@ -1,15 +1,25 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import styles from './CasePage.module.scss';
+import CaseStudyAcquiring from './CaseStudyAcquiring';
 
 /**
  * CasePage
- * Individual case study page
- * Placeholder for future case study implementation
+ * Router wrapper for case study pages
+ * 
+ * Routes case slugs to specific case study components:
+ * - /case/acquiring → CaseStudyAcquiring
+ * - /case/* → 404 or placeholder
  */
 const CasePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
 
+  // Route to specific case study component based on slug
+  if (slug === 'acquiring') {
+    return <CaseStudyAcquiring />;
+  }
+
+  // Unknown case - show placeholder
   return (
     <main className={styles.container}>
       <div className={styles.content}>
@@ -18,7 +28,7 @@ const CasePage: React.FC = () => {
           Case: <strong>{slug}</strong>
         </p>
         <p className={styles.text}>
-          This page is a placeholder for future case study implementation.
+          This case study is not yet available.
         </p>
       </div>
     </main>

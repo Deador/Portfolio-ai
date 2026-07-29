@@ -1,0 +1,91 @@
+// MetricCard Component Styles
+// Displays metrics with numbered badge in two variants
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-x4);
+  padding: var(--spacing-x6);
+  position: relative;
+  overflow: clip;
+}
+
+// ========================================
+// SHORT VARIANT (394.67px × 340px)
+// ========================================
+.short {
+  width: 394.667px;
+  height: 340px;
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-20);
+
+  .title {
+    font: var(--text-m-strong);
+    color: var(--color-content-primary);
+  }
+
+  .description {
+    font: var(--text-m);
+    color: var(--color-content-primary);
+  }
+}
+
+// ========================================
+// LONG VARIANT (600px × auto)
+// ========================================
+.long {
+  width: 600px;
+  background-color: var(--color-background-secondary);
+  border-radius: var(--radius-20);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-x4);
+    width: 100%;
+  }
+
+  .title {
+    font: var(--text-m-strong);
+    color: #000000;
+  }
+
+  .description {
+    font: var(--text-m);
+    color: #000000;
+  }
+}
+
+// ========================================
+// BADGE (Numbered icon)
+// ========================================
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #3e4041;
+  border-radius: var(--radius-8);
+  flex-shrink: 0;
+}
+
+.badgeText {
+  font: var(--text-m);
+  color: #eee;
+  text-align: center;
+}
+
+// ========================================
+// SHARED TYPOGRAPHY
+// ========================================
+.title {
+  margin: 0;
+  padding: 0;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+}

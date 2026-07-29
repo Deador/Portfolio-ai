@@ -1,0 +1,36 @@
+// Quote Element Component Styles
+// Semantic quote block with author attribution
+
+.quoteElement {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x4);
+  margin: 0;
+  padding: 0;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x2);
+  align-items: flex-start;
+}
+
+.name {
+  font: var(--title-h4);
+  color: var(--color-content-white);
+  white-space: nowrap;
+}
+
+.quoteBox {
+  background-color: var(--color-background-dark);
+  padding: var(--spacing-x4);
+  border-radius: var(--spacing-x2);
+}
+
+.quoteText {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-white);
+}

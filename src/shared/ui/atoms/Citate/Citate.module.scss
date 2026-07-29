@@ -1,0 +1,25 @@
+// Citate Component Styles
+// Semantic citation block for attributed quotes
+
+.citate {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x3);
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+.citateText {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-primary);
+}
+
+.citateSource {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-secondary);
+}

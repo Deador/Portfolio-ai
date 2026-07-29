@@ -1,0 +1,21 @@
+.decisionSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1216px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x10);
+  align-items: center;
+  width: 100%;
+}
+
+.quotesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x6);
+  width: 100%;
+}

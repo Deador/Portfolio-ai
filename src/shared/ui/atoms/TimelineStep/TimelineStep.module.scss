@@ -1,0 +1,59 @@
+// Timeline Step Component Styles
+// Single step in a timeline or process flow
+
+.timelineStep {
+  display: flex;
+  gap: var(--spacing-x4);
+  align-items: flex-start;
+  padding: var(--spacing-x4);
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-background-secondary);
+  border-radius: var(--radius-8);
+  flex-shrink: 0;
+}
+
+.numberText {
+  font: var(--text-m-strong);
+  color: var(--color-content-primary);
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x2);
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m-strong);
+  color: var(--color-content-primary);
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-secondary);
+}
+
+// Active state
+.active {
+  .stepNumber {
+    background-color: var(--color-content-primary);
+  }
+
+  .numberText {
+    color: var(--color-content-white);
+  }
+}
