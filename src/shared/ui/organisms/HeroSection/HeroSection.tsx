@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 import styles from './HeroSection.module.scss';
 import { Title, TitleProps } from '../../molecules/Title/Title';
-import { RowInfoProject, RowInfoProjectProps } from '../../molecules/RowInfoProject/RowInfoProject';
+import { RowInfoProject } from '../../molecules/RowInfoProject/RowInfoProject';
 
 interface HeroSectionProps {
   /**
    * Title props for the section
    */
-  titleProps?: Partial<TitleProps>;
+  titleProps?: TitleProps;
 
   /**
    * Image or content element (1216px × 794px with radius 16px)
@@ -57,10 +57,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     <section className={`${styles.heroSection} ${className || ''}`.trim()}>
       <div className={styles.container}>
         {/* Title */}
-        <Title
-          size={titleProps.size as 'M' | 'L'}
-          {...titleProps}
-        />
+        <Title {...titleProps} />
 
         {/* Image Slot */}
         <div className={styles.imageSlot}>

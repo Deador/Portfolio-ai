@@ -18,6 +18,10 @@ const meta = {
       control: 'text',
       description: 'Title text content',
     },
+    description: {
+      control: 'text',
+      description: 'Optional description text below the title',
+    },
     as: {
       control: 'select',
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -66,5 +70,14 @@ export const LongText: Story = {
     size: 'L',
     children: 'A Very Long Title That Spans Multiple Lines to Show Text Wrapping Behavior',
     as: 'h1',
+  },
+};
+
+export const WithDescription: Story = {
+  args: {
+    size: 'M',
+    children: 'Section Heading',
+    description: 'Supporting description that explains the context of the section below the title.',
+    as: 'h2',
   },
 };

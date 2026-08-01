@@ -7,14 +7,14 @@
   gap: var(--spacing-x3);
   align-items: flex-start;
   width: 768px;
-  font: var(--text-l);
+  font: var(--text-m-lg);
   color: var(--color-content-secondary);
 }
 
 .header {
   margin: 0;
   padding: 0;
-  font: var(--text-l);
+  font: var(--text-m-lg);
   color: var(--color-content-secondary);
   width: 100%;
 }
@@ -30,7 +30,7 @@
   display: inline;
   flex-shrink: 0;
   white-space: nowrap;
-  font: var(--text-l);
+  font: var(--text-m-lg);
   color: var(--color-content-secondary);
 }
 
@@ -38,6 +38,6 @@
   display: inline;
   flex: 1 0 0;
   min-width: 0;
-  font: var(--text-l);
+  font: var(--text-m-lg);
   color: var(--color-content-secondary);
 }

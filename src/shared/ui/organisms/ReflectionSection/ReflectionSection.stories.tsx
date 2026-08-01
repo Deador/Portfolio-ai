@@ -13,6 +13,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    title: 'Main Conclusion',
+    paragraph: 'The most expensive problems were not in the interface but in the process.',
     header: 'My Role and Responsibilities',
     items: [
       'Responsibility one',

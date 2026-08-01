@@ -21,6 +21,6 @@ export const Default: Story = {
       { title: 'Context 3', description: 'Details' },
       { title: 'Context 4', description: 'Details' },
     ],
-    card: { variant: 'insight', title: 'Key Insight', description: 'Important finding' },
+    card: { variant: 'risk', label: 'System approach', title: 'Key Insight', description: 'Important finding' },
   },
 };

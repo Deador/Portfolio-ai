@@ -15,9 +15,9 @@ export const Default: Story = {
   args: {
     titleProps: { size: 'M', children: 'What We Learned' },
     cards: [
-      { variant: 'insight', title: 'Learning 1', description: 'Key insight' },
-      { variant: 'insight', title: 'Learning 2', description: 'Key insight' },
-      { variant: 'insight', title: 'Learning 3', description: 'Key insight' },
+      { variant: 'lesson', number: 1, title: 'Learning 1', description: 'Key insight' },
+      { variant: 'lesson', number: 2, title: 'Learning 2', description: 'Key insight' },
+      { variant: 'lesson', number: 3, title: 'Learning 3', description: 'Key insight' },
     ],
   },
 };

@@ -32,6 +32,10 @@ const meta: Meta<typeof CommonCard> = {
       control: 'text',
       description: 'Badge number for number variant',
     },
+    label: {
+      control: 'text',
+      description: 'Eyebrow label rendered above the title (risk/callout variants)',
+    },
     className: {
       control: 'text',
       description: 'Additional CSS classes for override',
@@ -78,6 +82,7 @@ export const InsightWithLongContent: Story = {
 export const Risk: Story = {
   args: {
     variant: 'risk',
+    label: 'System approach',
     title: 'Risk identified',
     description: 'Potential issue requiring mitigation strategy',
   },
@@ -86,6 +91,7 @@ export const Risk: Story = {
 export const RiskWithLongContent: Story = {
   args: {
     variant: 'risk',
+    label: 'System approach',
     title: 'Performance risk',
     description:
       'Current implementation may cause performance degradation on mobile devices with poor connectivity. Consider implementing progressive loading strategy.',

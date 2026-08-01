@@ -12,10 +12,10 @@
 }
 
 // ========================================
-// SHORT VARIANT (394.67px × 340px)
+// SHORT VARIANT (292px × 340px)
 // ========================================
 .short {
-  width: 394.667px;
+  width: 292px;
   height: 340px;
   background-color: var(--color-background-white);
   border-radius: var(--radius-20);
@@ -48,12 +48,12 @@
 
   .title {
     font: var(--text-m-strong);
-    color: #000000;
+    color: var(--color-content-primary);
   }
 
   .description {
     font: var(--text-m);
-    color: #000000;
+    color: var(--color-content-primary);
   }
 }
 
@@ -66,14 +66,14 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: #3e4041;
-  border-radius: var(--radius-8);
+  background-color: var(--color-badge-background);
+  border-radius: var(--radius-12);
   flex-shrink: 0;
 }
 
 .badgeText {
   font: var(--text-m);
-  color: #eee;
+  color: var(--color-badge-text);
   text-align: center;
 }
 

@@ -5,10 +5,10 @@ import { ContextSectionRow, ContextSectionRowProps } from '../../molecules/Conte
 import { CommonCard, CommonCardProps } from '../../molecules/CommonCard/CommonCard';
 
 interface ContextSectionProps {
-  titleProps?: Partial<TitleProps>;
+  titleProps?: TitleProps;
   image?: ReactNode;
   rows?: Array<Pick<ContextSectionRowProps, 'title' | 'description'>>;
-  card?: Pick<CommonCardProps, 'variant' | 'title' | 'description'>;
+  card?: Pick<CommonCardProps, 'variant' | 'label' | 'title' | 'description'>;
   className?: string;
 }
 
@@ -27,7 +27,7 @@ export const ContextSection: React.FC<ContextSectionProps> = ({
   return (
     <section className={`${styles.contextSection} ${className || ''}`.trim()}>
       <div className={styles.container}>
-        <Title size={titleProps.size as 'M' | 'L'} {...titleProps} />
+        <Title {...titleProps} />
         <div className={styles.contentRow}>
           <div className={styles.imageSlot}>{image}</div>
           <div className={styles.infoBlock}>
@@ -36,7 +36,9 @@ export const ContextSection: React.FC<ContextSectionProps> = ({
                 <ContextSectionRow key={i} title={r.title} description={r.description} />
               ))}
             </div>
-            <CommonCard variant={card.variant as any} title={card.title} description={card.description} />
+            <div className={styles.cardSlot}>
+              <CommonCard variant={card.variant} label={card.label} title={card.title} description={card.description} />
+            </div>
           </div>
         </div>
       </div>

@@ -15,6 +15,11 @@ interface TitleProps {
   children: string | ReactNode;
 
   /**
+   * Optional description/subtitle rendered below the heading
+   */
+  description?: string | ReactNode;
+
+  /**
    * HTML heading level (for semantics)
    */
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -34,15 +39,21 @@ interface TitleProps {
 export const Title: React.FC<TitleProps> = ({
   size = 'L',
   children,
+  description,
   as: HeadingTag = 'h2',
   className,
 }) => {
   const titleClasses = `${styles.title} ${styles[size]} ${className || ''}`.trim();
 
   return (
-    <HeadingTag className={titleClasses}>
-      {children}
-    </HeadingTag>
+    <div className={styles.wrapper}>
+      <HeadingTag className={titleClasses}>
+        {children}
+      </HeadingTag>
+      {description && (
+        <p className={styles.description}>{description}</p>
+      )}
+    </div>
   );
 };
 

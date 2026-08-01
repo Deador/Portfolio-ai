@@ -31,25 +31,30 @@
 
 ## COMPLETE TYPOGRAPHY TOKENS
 
-### Title Styles (6 tokens)
+### Title Styles (8 tokens)
 
 ```scss
 .result { font: var(--title-h-result); }      // 56px Bold
 .h1-strong { font: var(--title-h1-strong); }  // 40px Bold
 .h1 { font: var(--title-h1); }                // 40px Semibold
 .h2 { font: var(--title-h2); }                // 32px Semibold
+.h3-strong { font: var(--title-h3-strong); }  // 24px Semibold
 .h3 { font: var(--title-h3); }                // 24px Medium
+.h4-strong { font: var(--title-h4-strong); }  // 20px Semibold
 .h4 { font: var(--title-h4); }                // 20px Medium
 ```
 
-### Text Styles (7 tokens)
+### Text Styles (10 tokens)
 
 ```scss
+.xl { font: var(--text-xl); }                 // 24px Regular
 .l-strong { font: var(--text-l-strong); }  // 20px Bold
 .l { font: var(--text-l); }                 // 20px Regular
 .m-strong { font: var(--text-m-strong); }  // 16px Bold
 .m { font: var(--text-m); }                 // 16px Regular (default)
+.m-lg { font: var(--text-m-lg); }           // 18px Regular
 .s-medium { font: var(--text-s-medium); }  // 14px Medium
+.s-xs { font: var(--text-s-xs); }           // 14px Regular
 .s { font: var(--text-s); }                 // 16px Regular (taller)
 .xs { font: var(--text-xs); }               // 12px Regular (legacy)
 ```
@@ -66,18 +71,23 @@
 | `--title-h1-strong` | 700 | 40px | 1.3 | Onest |
 | `--title-h1` | 600 | 40px | 1.3 | Onest |
 | `--title-h2` | 600 | 32px | 1.3 | Onest |
+| `--title-h3-strong` | 600 | 24px | 1.4 | Onest |
 | `--title-h3` | 500 | 24px | 1.3 | Onest |
+| `--title-h4-strong` | 600 | 20px | 1.4 | Onest |
 | `--title-h4` | 500 | 20px | 1.4 | Onest |
 
 ### Text
 
 | Token | Weight | Size | Line Height | Font Family |
 |-------|--------|------|-------------|-------------|
+| `--text-xl` | 400 | 24px | 1.4 | Onest |
 | `--text-l-strong` | 700 | 20px | 1.4 | Onest |
 | `--text-l` | 400 | 20px | 1.4 | Onest |
 | `--text-m-strong` | 700 | 16px | 1.4 | Onest |
 | `--text-m` | 400 | 16px | 1.4 | Onest |
+| `--text-m-lg` | 400 | 18px | 1.4 | Onest |
 | `--text-s-medium` | 500 | 14px | 1.4 | Onest |
+| `--text-s-xs` | 400 | 14px | 16px | Onest |
 | `--text-s` | 400 | 16px | 1.5 | Onest |
 | `--text-xs` | 400 | 12px | 1.3 | Inter |
 

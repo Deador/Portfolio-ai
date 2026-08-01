@@ -11,6 +11,11 @@ interface CommonCardProps {
   variant: CommonCardVariant;
 
   /**
+   * Eyebrow label rendered above the title (risk/callout variants)
+   */
+  label?: string | ReactNode;
+
+  /**
    * Main content - accepts string or ReactNode for rich formatting
    */
   title: string | ReactNode;
@@ -45,6 +50,7 @@ interface CommonCardProps {
  */
 export const CommonCard: React.FC<CommonCardProps> = ({
   variant,
+  label,
   title,
   description,
   number,
@@ -55,8 +61,11 @@ export const CommonCard: React.FC<CommonCardProps> = ({
   return (
     <article className={cardClasses}>
       {variant === 'risk' && (
-        <div className={styles.riskIcon}>
-          <WarningIcon />
+        <div className={styles.eyebrow}>
+          <div className={styles.riskIcon}>
+            <WarningIcon />
+          </div>
+          {label && <span className={styles.eyebrowText}>{label}</span>}
         </div>
       )}
 
@@ -77,10 +86,6 @@ export const CommonCard: React.FC<CommonCardProps> = ({
 
         {description && (
           <p className={styles.description}>{description}</p>
-        )}
-
-        {variant === 'callout' && (
-          <p className={styles.description}>Text</p>
         )}
       </div>
     </article>

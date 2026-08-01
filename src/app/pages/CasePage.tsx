@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './CasePage.module.scss';
 import CaseStudyAcquiring from './CaseStudyAcquiring';
 

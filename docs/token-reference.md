@@ -105,7 +105,7 @@ Format: `weight size/line-height family`
 
 All 15 typography tokens use the CSS `font` shorthand for efficient, clean API:
 
-#### Title Styles (6 tokens)
+#### Title Styles (8 tokens)
 
 | Token | Value | Use Case |
 |-------|-------|----------|
@@ -113,18 +113,23 @@ All 15 typography tokens use the CSS `font` shorthand for efficient, clean API:
 | `--title-h1-strong` | 700 40px/1.3 Onest | Bold heading h1 |
 | `--title-h1` | 600 40px/1.3 Onest | Semibold heading h1 |
 | `--title-h2` | 600 32px/1.3 Onest | Heading h2 |
+| `--title-h3-strong` | 600 24px/1.4 Onest | Semibold heading h3 (context rows) |
 | `--title-h3` | 500 24px/1.3 Onest | Heading h3 |
+| `--title-h4-strong` | 600 20px/1.4 Onest | Semibold heading h4 (eyebrow labels) |
 | `--title-h4` | 500 20px/1.4 Onest | Heading h4 |
 
-#### Text Styles (7 tokens)
+#### Text Styles (10 tokens)
 
 | Token | Value | Use Case |
 |-------|-------|----------|
+| `--text-xl` | 400 24px/1.4 Onest | Extra large text |
 | `--text-l-strong` | 700 20px/1.4 Onest | Large bold text |
 | `--text-l` | 400 20px/1.4 Onest | Large text |
 | `--text-m-strong` | 700 16px/1.4 Onest | Medium bold text |
 | `--text-m` | 400 16px/1.4 Onest | Standard text (default) |
+| `--text-m-lg` | 400 18px/1.4 Onest | Medium-large text |
 | `--text-s-medium` | 500 14px/1.4 Onest | Small medium text |
+| `--text-s-xs` | 400 14px/16px Onest | Small extra-small text (card numbers) |
 | `--text-s` | 400 16px/1.5 Onest | Small text |
 
 #### Legacy Text Styles (2 tokens)

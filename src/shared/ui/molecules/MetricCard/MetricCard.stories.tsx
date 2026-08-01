@@ -14,6 +14,10 @@ const meta = {
       options: ['short', 'long'],
       description: 'Card layout variant',
     },
+    number: {
+      control: 'number',
+      description: 'Order number displayed as badge',
+    },
     title: {
       control: 'text',
       description: 'Main title or metric value',
@@ -31,6 +35,7 @@ type Story = StoryObj<typeof meta>;
 export const Short: Story = {
   args: {
     type: 'short',
+    number: 1,
     title: 'Title',
     description: 'Description',
   },
@@ -39,6 +44,7 @@ export const Short: Story = {
 export const ShortExample: Story = {
   args: {
     type: 'short',
+    number: 2,
     title: 'Performance',
     description: 'Improved by 40% through optimization',
   },

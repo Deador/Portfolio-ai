@@ -32,3 +32,6 @@ export type { ResultsSectionProps } from './ResultsSection/ResultsSection';
 
 export { ReflectionSection } from './ReflectionSection/ReflectionSection';
 export type { ReflectionSectionProps } from './ReflectionSection/ReflectionSection';
+
+export { GrowthSection } from './GrowthSection/GrowthSection';
+export type { GrowthSectionProps } from './GrowthSection/GrowthSection';

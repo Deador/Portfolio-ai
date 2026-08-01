@@ -10,21 +10,65 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-x10);
+  gap: var(--spacing-x18);
   align-items: center;
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x8);
   width: 100%;
 }
 
 .contentRow {
   display: flex;
-  gap: var(--spacing-x6);
+  gap: var(--spacing-x18);
   align-items: flex-start;
   width: 100%;
 }
 
-.cardsRow {
+.paragraphBlock {
   display: flex;
+  flex-direction: column;
   gap: var(--spacing-x6);
   align-items: flex-start;
+  width: 560px;
+  flex-shrink: 0;
+}
+
+.paragraphTitle {
+  margin: 0;
+  padding: 0;
+  font: var(--title-h4);
+  color: var(--color-content-primary);
+  text-align: left;
+}
+
+.paragraphText {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-secondary);
+  text-align: left;
+  white-space: pre-line;
+}
+
+.citateSlot {
+  width: 460px;
+  flex-shrink: 0;
+}
+
+.cardsRow {
+  display: flex;
+  gap: var(--spacing-x4);
+  align-items: flex-start;
   width: 100%;
+}
+
+.problemCard {
+  text-align: center;
+  flex: 1 1 0;
+  min-width: 0;
 }

@@ -1,6 +1,14 @@
 // Title Component Styles
 // Main title/heading with two size variants
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x8);
+  width: 100%;
+}
+
 .title {
   margin: 0;
   padding: 0;
@@ -9,11 +17,11 @@
 }
 
 // ========================================
-// SIZE L (800px, large)
+// SIZE L (large)
 // ========================================
 .L {
   font: var(--title-h1);
-  width: 800px;
+  width: 720px;
 }
 
 // ========================================
@@ -21,5 +29,17 @@
 // ========================================
 .M {
   font: var(--title-h2);
+  width: 720px;
+}
+
+// ========================================
+// DESCRIPTION (subtitle below heading)
+// ========================================
+.description {
+  margin: 0;
+  padding: 0;
+  font: var(--text-m);
+  color: var(--color-content-primary);
+  text-align: center;
   width: 720px;
 }

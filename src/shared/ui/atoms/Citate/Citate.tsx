@@ -13,6 +13,11 @@ interface CitateProps {
   source?: string;
 
   /**
+   * Avatar shown above the citation card
+   */
+  avatar?: ReactNode;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -27,12 +32,14 @@ interface CitateProps {
 export const Citate: React.FC<CitateProps> = ({
   text = 'Text',
   source,
+  avatar,
   className,
 }) => {
   return (
     <cite className={`${styles.citate} ${className || ''}`.trim()}>
+      {avatar && <div className={styles.avatar}>{avatar}</div>}
+      {source && <p className={styles.name}>{source}</p>}
       <p className={styles.citateText}>{text}</p>
-      {source && <p className={styles.citateSource}>— {source}</p>}
     </cite>
   );
 };

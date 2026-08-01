@@ -2,12 +2,31 @@
 // Semantic citation block for attributed quotes
 
 .citate {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-x3);
+  gap: var(--spacing-x2);
+  margin: 0;
+  padding: var(--spacing-x10) var(--spacing-x8) var(--spacing-x8);
+  background-color: var(--color-avatar-background);
+  border-radius: var(--radius-12);
+}
+
+.avatar {
+  position: absolute;
+  top: calc(-28px);
+  left: var(--spacing-x8);
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  overflow: clip;
+}
+
+.name {
   margin: 0;
   padding: 0;
-  font-style: italic;
+  font: var(--text-m);
+  color: var(--color-content-secondary);
 }
 
 .citateText {
@@ -15,11 +34,4 @@
   padding: 0;
   font: var(--text-m);
   color: var(--color-content-primary);
-}
-
-.citateSource {
-  margin: 0;
-  padding: 0;
-  font: var(--text-m);
-  color: var(--color-content-secondary);
 }

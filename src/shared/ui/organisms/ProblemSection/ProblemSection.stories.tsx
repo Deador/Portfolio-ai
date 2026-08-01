@@ -19,6 +19,7 @@ export const Default: Story = {
       size: 'M',
       children: 'Problem Statement',
     },
+    paragraphTitle: 'Users face challenges with current workflows',
     paragraph: 'Users face challenges with current workflows',
     cite: {
       text: 'This is the core problem we need to solve',

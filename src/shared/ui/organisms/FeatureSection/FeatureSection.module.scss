@@ -16,7 +16,7 @@
 .imageSlot {
   width: 1216px;
   height: 761px;
-  border-radius: 0 0 var(--radius-16) 0;
+  border-radius: var(--radius-16);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -30,7 +30,7 @@
 
 .metricsRow {
   display: flex;
-  gap: var(--spacing-x6);
+  gap: var(--spacing-x4);
   align-items: flex-start;
   width: 100%;
 }

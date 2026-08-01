@@ -4,7 +4,7 @@ import { Title, TitleProps } from '../../molecules/Title/Title';
 import { PersonaCard, PersonaCardProps } from '../../molecules/PersonaCard/PersonaCard';
 
 interface PersonaSectionProps {
-  titleProps?: Partial<TitleProps>;
+  titleProps?: TitleProps;
   personas?: Array<Omit<PersonaCardProps, 'className'>>;
   className?: string;
 }
@@ -20,7 +20,7 @@ export const PersonaSection: React.FC<PersonaSectionProps> = ({
   return (
     <section className={`${styles.personaSection} ${className || ''}`.trim()}>
       <div className={styles.container}>
-        <Title size={titleProps.size as 'M' | 'L'} {...titleProps} />
+        <Title {...titleProps} />
         <div className={styles.cardsRow}>
           {personas.map((p, i) => (
             <PersonaCard key={i} {...p} />

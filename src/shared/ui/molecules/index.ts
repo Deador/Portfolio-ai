@@ -26,3 +26,6 @@ export type { ContextSectionRowProps } from './ContextSectionRow/ContextSectionR
 
 export { ReflectionRows } from './ReflectionRows/ReflectionRows';
 export type { ReflectionRowsProps } from './ReflectionRows/ReflectionRows';
+
+export { RolesTable } from './RolesTable/RolesTable';
+export type { RolesTableProps } from './RolesTable/RolesTable';

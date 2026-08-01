@@ -4,7 +4,7 @@ import { Title, TitleProps } from '../../molecules/Title/Title';
 import { Results, ResultsProps } from '../../molecules/Results/Results';
 
 interface ResultsSectionProps {
-  titleProps?: Partial<TitleProps>;
+  titleProps?: TitleProps;
   results?: Array<Pick<ResultsProps, 'size' | 'title' | 'description'>>;
   className?: string;
 }
@@ -23,10 +23,10 @@ export const ResultsSection: React.FC<ResultsSectionProps> = ({
   return (
     <section className={`${styles.resultsSection} ${className || ''}`.trim()}>
       <div className={styles.container}>
-        <Title size={titleProps.size as 'M' | 'L'} {...titleProps} />
+        <Title {...titleProps} />
         <div className={styles.resultsBlock}>
           {results.map((r, i) => (
-            <Results key={i} size={r.size as any} title={r.title} description={r.description} />
+            <Results key={i} size={r.size} title={r.title} description={r.description} />
           ))}
         </div>
       </div>

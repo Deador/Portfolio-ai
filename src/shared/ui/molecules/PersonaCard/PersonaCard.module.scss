@@ -2,7 +2,8 @@
 // Card for displaying user personas or team members
 
 .personaCard {
-  width: 600px;
+  flex: 1 1 0;
+  min-width: 0;
   background-color: var(--color-background-white);
   border-radius: var(--radius-20);
   padding: var(--spacing-x8);
@@ -26,7 +27,7 @@
   justify-content: center;
   width: 72px;
   height: 72px;
-  background-color: #ecedee;
+  background-color: var(--color-avatar-background);
   border-radius: 999px;
   flex-shrink: 0;
   overflow: clip;
@@ -35,7 +36,7 @@
 .placeholderIcon {
   width: 56px;
   height: 56px;
-  background-color: #d9dade;
+  background-color: var(--color-avatar-placeholder);
   border-radius: var(--radius-8);
 }
 
@@ -52,7 +53,7 @@
   padding: 0;
   font: var(--text-m-strong);
   color: var(--color-content-primary);
-  width: 400px;
+  width: 100%;
 }
 
 .description {
@@ -61,5 +62,6 @@
   font: var(--text-m);
   color: var(--color-content-primary);
   line-height: 24px;
-  width: 400px;
+  width: 100%;
+  white-space: pre-line;
 }

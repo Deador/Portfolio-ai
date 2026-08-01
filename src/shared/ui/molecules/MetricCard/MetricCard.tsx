@@ -10,6 +10,11 @@ interface MetricCardProps {
   type?: MetricCardType;
 
   /**
+   * Badge number shown in the numbered icon
+   */
+  number?: string | number;
+
+  /**
    * Main title/metric value
    */
   title?: string | ReactNode;
@@ -29,13 +34,14 @@ interface MetricCardProps {
  * MetricCard Component
  *
  * Displays key metrics or statistics with two layout variants:
- * - short: Compact card with numbered icon (394.67px × 340px)
+ * - short: Compact card with numbered icon (292px × 340px)
  * - long: Expanded card with gray background (600px × auto)
  *
  * All styling uses design tokens exclusively.
  */
 export const MetricCard: React.FC<MetricCardProps> = ({
   type = 'short',
+  number = 1,
   title = 'Title',
   description = 'Description',
   className,
@@ -48,7 +54,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   return (
     <div className={cardClasses}>
       <div className={styles.badge}>
-        <span className={styles.badgeText}>1</span>
+        <span className={styles.badgeText}>{number}</span>
       </div>
 
       {isShort && (

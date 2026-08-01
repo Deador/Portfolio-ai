@@ -14,10 +14,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     titleProps: { size: 'M', children: 'Decisions' },
-    quotes: [
-      { leftName: 'Person 1', leftQuote: 'Decision 1', rightName: 'Person 2', rightQuote: 'Decision 2' },
-      { leftName: 'Person 3', leftQuote: 'Decision 3', rightName: 'Person 4', rightQuote: 'Decision 4' },
-      { leftName: 'Person 5', leftQuote: 'Decision 5', rightName: 'Person 6', rightQuote: 'Decision 6' },
-    ],
+    paragraph: 'Early validation helped find problems before development.',
+    tag: '19 corridor tests',
+    image: <div style={{ width: 1216, height: 768, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ecedee', borderRadius: 16 }}>Image</div>,
+    noteTitle: 'What this gave the team',
+    noteText: 'Feedback was received before development started.',
   },
 };

@@ -23,8 +23,29 @@ Extracted: 2026-07-25
 | Name | Collection | Value (Hex) | Description |
 |------|-----------|------------|-------------|
 | background/white | background | #ffffff | White background |
+| background/primary | background | #f6f7f8 | Page background |
 | background/dark | background | #1f1f1f | Dark background |
 | background/secondary | background | #e2e4e7 | Secondary background (light gray) |
+
+## Badge (MetricCard)
+
+| Name | Collection | Value (Hex) | Description |
+|------|-----------|------------|-------------|
+| badge/background | badge | #3e4041 | Badge background |
+| badge/text | badge | #eeeeee | Badge text color |
+
+## Avatar (PersonaCard icon, Citate)
+
+| Name | Collection | Value (Hex) | Description |
+|------|-----------|------------|-------------|
+| avatar/background | avatar | #ecedee | Avatar container background |
+| avatar/placeholder | avatar | #d9dade | Avatar placeholder fill |
+
+## Quote Card
+
+| Name | Collection | Value (Hex) | Description |
+|------|-----------|------------|-------------|
+| quote-card/background | quote-card | #010101 | QuoteCard dark panel background |
 
 ## Icons
 
@@ -34,7 +55,7 @@ Extracted: 2026-07-25
 | fill_icon | icons | #222222 | Filled icon color |
 | Duotone | icons | #7E869E | Duotone icon color |
 
-**Total Colors: 10**
+**Total Colors: 16**
 
 ---
 
@@ -56,8 +77,9 @@ All spacing tokens follow a 4px scale base.
 | padding/x14 | 56 | 14x | |
 | padding/x18 | 72 | 18x | |
 | padding/x20 | 80 | 20x | |
+| padding/x40 | 160 | 40x | Section gap (assembled case-study page) |
 
-**Total Spacing tokens: 12**
+**Total Spacing tokens: 13**
 
 **Missing tokens (gaps in scale):**
 - padding/x7 (28px) — not found in variables
@@ -76,14 +98,16 @@ All spacing tokens follow a 4px scale base.
 | Token | Value (px) | Description |
 |-------|-----------|-------------|
 | radius/radius-8 | 8 | Small radius |
+| radius/radius-12 | 12 | Badge radius |
 | radius/radius-16 | 16 | Medium radius |
 | radius/radius-20 | 20 | Large radius |
 | radius/radius-24 | 24 | Extra large radius |
 
-**Total Radius tokens: 4**
+**Total Radius tokens: 5**
 
 **Missing tokens:**
 - radius/radius-4 — not found in variables
+- radius/radius-12 — **added to code manually** (Metric Card badge, Citate); not yet in Figma Variables — needs to be added
 - radius/radius-32 — not found in variables
 
 ---
@@ -98,18 +122,23 @@ All spacing tokens follow a 4px scale base.
 | Title/H1_strong | Onest | 40px | Bold | 700 | 1.3x | 52px | 0 |
 | Title/H1 | Onest | 40px | SemiBold | 600 | 1.3x | 52px | 0 |
 | Title/H2 | Onest | 32px | SemiBold | 600 | 1.3x | 41.6px | 0 |
+| Title/H3_strong | Onest | 24px | SemiBold | 600 | 1.4x | 33.6px | 0 |
 | Title/H3 | Onest | 24px | Medium | 500 | 1.3x | 31.2px | 0 |
+| Title/H4_strong | Onest | 20px | SemiBold | 600 | 1.4x | 28px | 0 |
 | Title/H4 | Onest | 20px | Medium | 500 | 1.4x | 28px | 0 |
 
 ## Text Styles (Onest)
 
 | Name | Font Family | Size | Weight | Weight Value | Line Height (ratio) | Line Height (px) | Letter Spacing |
 |------|------------|------|--------|--------------|-------------------|------------------|-----------------|
+| Text/XL | Onest | 24px | Regular | 400 | 1.4x | 33.6px | 0 |
 | Text/L_strong | Onest | 20px | Bold | 700 | 1.4x | 28px | 0 |
 | Text/L | Onest | 20px | Regular | 400 | 1.4x | 28px | 0 |
 | Text/M_strong | Onest | 16px | Bold | 700 | 1.4x | 22.4px | 0 |
 | Text/M | Onest | 16px | Regular | 400 | 1.4x | 22.4px | 0 |
+| Text/M_lg | Onest | 18px | Regular | 400 | 1.4x | 25.2px | 0 |
 | Text/S_medium | Onest | 14px | Medium | 500 | 1.4x | 19.6px | 0 |
+| Text/S_xs | Onest | 14px | Regular | 400 | 16px | 16px | 0 |
 | Text/S | Onest | 16px | Regular | 400 | 1.5x | 24px | 0 |
 
 ## Text Styles (Legacy/Other)
@@ -119,7 +148,7 @@ All spacing tokens follow a 4px scale base.
 | Text/XS | Inter | 12px | Regular | 400 | 1.3x | 15.6px | 0 |
 | Text | Inter | 18px | Regular | 400 | 1.3x | 23.4px | 0 |
 
-**Total Typography tokens: 15**
+**Total Typography tokens: 20**
 
 **Notes:**
 - Most typography uses "Onest" font family
@@ -146,31 +175,34 @@ The following values are **NOT** found in extracted Figma Variables:
 
 ## Colors
 - `content/accent` — Mentioned in docs/design-system.md, **NOT in Figma**
-- `background/primary` — Mentioned in docs/design-system.md, **NOT in Figma**
+- `background/primary`, `badge/*`, `avatar/*`, `quote-card/*` — **added to code manually** (page background, MetricCard badge, PersonaCard/Citate avatar, QuoteCard panel); not yet in Figma Variables — need to be added
 
 ## Spacing
 - padding/x7 (28px), padding/x9 (36px), and 6 other gaps — mentioned in design-system.md but NOT in Figma
 
 ## Radius
 - radius/radius-4, radius/radius-32 — mentioned in docs/design-system.md, **NOT in Figma**
+- radius/radius-12 — **added to code manually** (Metric Card badge, Citate); not yet in Figma Variables — needs to be added
 
 ---
 
 # Summary
 
 **Total tokens extracted from Figma:**
-- Colors: 10
-- Spacing: 12
-- Radius: 4
-- Typography: 15
+- Colors: 16
+- Spacing: 13
+- Radius: 5
+- Typography: 20
 - Effects: 1
-- **TOTAL: 42 tokens**
+- **TOTAL: 55 tokens**
 
 **Inconsistencies with docs/design-system.md:**
-1. Missing color tokens: content/accent, background/primary
+1. Missing color tokens: content/accent
 2. Spacing scale has gaps (missing x7, x9, x11, x13, x15, x16, x17, x19)
-3. Radius scale has gaps (missing x4, x32)
+3. Radius scale has gaps (missing x4, x32) — radius-12 is used in code but not yet added to Figma Variables
 4. Typography: Some use "Inter", some use "Onest" (inconsistent font family)
+
+**Note:** Tokens `background/primary`, `badge/*`, `avatar/*`, `quote-card/*`, `radius/radius-12` are implemented in code and documented here, but are NOT yet present in Figma Variables. Add them to the Design System before the next export.
 
 **Data extraction method:**
 - figma_get_variable_defs with nodeId=1727:15731 (canvas level)

@@ -1,7 +1,6 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styles from './ProblemSection.module.scss';
 import { Title, TitleProps } from '../../molecules/Title/Title';
-import { Paragraph } from '../../atoms/Paragraph/Paragraph';
 import { Citate } from '../../atoms/Citate/Citate';
 import { CommonCard, CommonCardProps } from '../../molecules/CommonCard/CommonCard';
 
@@ -9,12 +8,17 @@ interface ProblemSectionProps {
   /**
    * Section title props
    */
-  titleProps?: Partial<TitleProps>;
+  titleProps?: TitleProps;
 
   /**
-   * Paragraph/problem description
+   * Paragraph title (semibold line)
    */
-  paragraph?: string | ReactNode;
+  paragraphTitle?: string;
+
+  /**
+   * Paragraph/body text
+   */
+  paragraph?: string;
 
   /**
    * Citation/quote
@@ -36,17 +40,16 @@ interface ProblemSectionProps {
  * ProblemSection Component
  *
  * Problem section with:
- * - Title (Size S, 42px)
+ * - Title
  * - Paragraph + Citate side by side
  * - 3 CommonCard components
- *
- * Total dimensions: 1216px × 378px
  */
 export const ProblemSection: React.FC<ProblemSectionProps> = ({
   titleProps = {
     size: 'M',
     children: 'Problem',
   },
+  paragraphTitle = 'Paragraph title',
   paragraph = 'Description',
   cite = { text: 'Citation text', source: 'Source' },
   cards = [
@@ -60,27 +63,31 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({
     <section className={`${styles.problemSection} ${className || ''}`.trim()}>
       <div className={styles.container}>
         {/* Title */}
-        <Title
-          size={titleProps.size as 'M' | 'L'}
-          {...titleProps}
-        />
+        <Title {...titleProps} />
 
-        {/* Content Row (Paragraph + Citate) */}
-        <div className={styles.contentRow}>
-          <Paragraph>{paragraph}</Paragraph>
-          <Citate text={cite.text} source={cite.source} />
-        </div>
+        {/* Body (Paragraph + Citate, then Cards) */}
+        <div className={styles.body}>
+          <div className={styles.contentRow}>
+            <div className={styles.paragraphBlock}>
+              <h3 className={styles.paragraphTitle}>{paragraphTitle}</h3>
+              <p className={styles.paragraphText}>{paragraph}</p>
+            </div>
+            <div className={styles.citateSlot}>
+              <Citate text={cite.text} source={cite.source} />
+            </div>
+          </div>
 
-        {/* Cards Row */}
-        <div className={styles.cardsRow}>
-          {cards.map((card, index) => (
-            <CommonCard
-              key={index}
-              variant={card.variant as any}
-              title={card.title}
-              description={card.description}
-            />
-          ))}
+          <div className={styles.cardsRow}>
+            {cards.map((card, index) => (
+              <CommonCard
+                key={index}
+                className={styles.problemCard}
+                variant={card.variant}
+                title={card.title}
+                description={card.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

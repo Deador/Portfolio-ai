@@ -2,34 +2,31 @@
 // Component for displaying key results or outcomes
 
 .results {
-  width: 1216px;
-  background-color: var(--color-background-white);
-  border-radius: var(--radius-20);
-  padding: var(--spacing-x6);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: var(--spacing-x4);
 }
 
 // ========================================
-// SIZE L (1216px × 117px)
+// SIZE L (large result metric)
 // ========================================
 .L {
   height: 117px;
 
   .title {
-    font: var(--title-h2);
+    font: var(--title-h-result);
   }
 
   .description {
-    font: var(--text-m);
+    font: var(--text-l);
   }
 }
 
 // ========================================
-// SIZE M (1216px × 96px)
+// SIZE M (medium result metric)
 // ========================================
 .M {
   height: 96px;
@@ -47,6 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-x3);
+  align-items: center;
   width: 100%;
 }
 
@@ -54,10 +52,12 @@
   margin: 0;
   padding: 0;
   color: var(--color-content-primary);
+  text-align: center;
 }
 
 .description {
   margin: 0;
   padding: 0;
-  color: var(--color-content-secondary);
+  color: var(--color-content-primary);
+  text-align: center;
 }
