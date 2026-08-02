@@ -8,19 +8,14 @@ interface ContextSectionProps {
   titleProps?: TitleProps;
   image?: ReactNode;
   rows?: Array<Pick<ContextSectionRowProps, 'title' | 'description'>>;
-  card?: Pick<CommonCardProps, 'variant' | 'label' | 'title' | 'description'>;
+  card?: Pick<CommonCardProps, 'variant' | 'title' | 'description'>;
   className?: string;
 }
 
 export const ContextSection: React.FC<ContextSectionProps> = ({
   titleProps = { size: 'M', children: 'Context' },
   image,
-  rows = [
-    { title: 'Row 1', description: 'Description' },
-    { title: 'Row 2', description: 'Description' },
-    { title: 'Row 3', description: 'Description' },
-    { title: 'Row 4', description: 'Description' },
-  ],
+  rows = [],
   card = { variant: 'insight', title: 'Insight', description: 'Details' },
   className,
 }) => {
@@ -31,13 +26,15 @@ export const ContextSection: React.FC<ContextSectionProps> = ({
         <div className={styles.contentRow}>
           <div className={styles.imageSlot}>{image}</div>
           <div className={styles.infoBlock}>
-            <div className={styles.rowsList}>
-              {rows.map((r, i) => (
-                <ContextSectionRow key={i} title={r.title} description={r.description} />
-              ))}
-            </div>
+            {rows.length > 0 && (
+              <div className={styles.rowsList}>
+                {rows.map((r, i) => (
+                  <ContextSectionRow key={i} title={r.title} description={r.description} />
+                ))}
+              </div>
+            )}
             <div className={styles.cardSlot}>
-              <CommonCard variant={card.variant} label={card.label} title={card.title} description={card.description} />
+              <CommonCard variant={card.variant} title={card.title} description={card.description} />
             </div>
           </div>
         </div>

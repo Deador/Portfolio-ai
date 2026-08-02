@@ -16,7 +16,7 @@
 .cardsRow {
   display: flex;
   gap: var(--spacing-x4);
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
   flex-wrap: wrap;
 }

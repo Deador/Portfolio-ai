@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import styles from './DecisionSection.module.scss';
 import { Title, TitleProps } from '../../molecules/Title/Title';
+import { Tag } from '../../atoms/Tag/Tag';
+import { CommonCard } from '../../molecules/CommonCard/CommonCard';
 
 interface DecisionSectionProps {
   /**
@@ -60,14 +62,13 @@ export const DecisionSection: React.FC<DecisionSectionProps> = ({
         <div className={styles.header}>
           <Title {...titleProps} />
           <p className={styles.paragraph}>{paragraph}</p>
-          <span className={styles.tag}>{tag}</span>
+          <Tag text={tag} />
         </div>
 
         <div className={styles.imageSlot}>{image}</div>
 
         <div className={styles.noteBlock}>
-          <p className={styles.noteTitle}>{noteTitle}</p>
-          <p className={styles.noteText}>{noteText}</p>
+          <CommonCard variant="callout" title={noteTitle} description={noteText} />
         </div>
       </div>
     </section>

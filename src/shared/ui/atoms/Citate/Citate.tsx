@@ -37,7 +37,9 @@ export const Citate: React.FC<CitateProps> = ({
 }) => {
   return (
     <cite className={`${styles.citate} ${className || ''}`.trim()}>
-      {avatar && <div className={styles.avatar}>{avatar}</div>}
+      <div className={styles.avatar}>
+        {avatar ?? <span className={styles.avatarPlaceholder} aria-hidden="true" />}
+      </div>
       {source && <p className={styles.name}>{source}</p>}
       <p className={styles.citateText}>{text}</p>
     </cite>

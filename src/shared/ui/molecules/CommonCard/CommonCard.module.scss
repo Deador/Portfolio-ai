@@ -16,15 +16,19 @@
   border-radius: var(--radius-16);
   padding: var(--spacing-x6);
   gap: var(--spacing-x2);
+  align-items: stretch;
+  justify-content: center;
 
   .title {
-    font: var(--text-m);
+    font: var(--text-s);
     color: var(--color-content-primary);
+    text-align: center;
   }
 
   .description {
-    font: var(--text-m);
+    font: var(--text-s);
     color: var(--color-content-secondary);
+    text-align: center;
   }
 }
 
@@ -38,6 +42,10 @@
   padding: var(--spacing-x6);
   gap: var(--spacing-x4);
 
+  .content {
+    gap: var(--spacing-x3);
+  }
+
   .title {
     font: var(--text-m-strong);
     color: var(--color-content-primary);
@@ -47,18 +55,6 @@
     font: var(--text-m);
     color: var(--color-content-primary);
   }
-}
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-x3);
-  width: 100%;
-}
-
-.eyebrowText {
-  font: var(--title-h4-strong);
-  color: var(--color-content-primary);
 }
 
 .riskIcon {
@@ -127,6 +123,7 @@
   position: relative;
   flex: 1 1 0;
   min-width: 0;
+  height: var(--spacing-x40);
 
   .title {
     font: var(--text-s);

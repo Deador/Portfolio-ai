@@ -1,3 +1,19 @@
+Before answering ANY request:
+
+Always read:
+
+README.md
+
+AGENTS.md
+
+docs/project-context.md
+
+docs/design-system.md
+
+docs/frontend-engineer.md
+
+Never start coding before reading them.
+
 # Frontend Engineer
 
 ## Role
@@ -337,3 +353,33 @@ Stop implementation and ask.
 The implementation must reproduce Figma exactly.
 
 
+Workflow
+
+Step 1
+
+Read documentation.
+
+Step 2
+
+Summarize.
+
+Step 3
+
+Review existing components.
+
+Step 4
+
+Review Figma.
+
+Step 5
+
+Identify reusable components.
+
+Step 6
+
+Only after that generate code.
+
+
+If a visual decision is not explicitly present in Figma, DO NOT invent it. Report the ambiguity and wait for clarification.
+
+Never "improve" the design. Your job is implementation fidelity, not redesign.

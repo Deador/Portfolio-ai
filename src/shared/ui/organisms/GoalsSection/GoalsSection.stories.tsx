@@ -15,9 +15,9 @@ export const Default: Story = {
   args: {
     titleProps: { size: 'M', children: 'Project Goals' },
     cards: [
-      { variant: 'insight', title: 'Goal 1', description: 'Improve user engagement' },
-      { variant: 'insight', title: 'Goal 2', description: 'Reduce friction' },
-      { variant: 'insight', title: 'Goal 3', description: 'Increase retention' },
+      { variant: 'number', number: 1, title: '18 days to onboard' },
+      { variant: 'number', number: 2, title: '5 systems used' },
+      { variant: 'number', number: 3, title: '3 departments involved' },
     ],
   },
 };

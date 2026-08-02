@@ -2,18 +2,21 @@
 // Main layout wrapper for all pages
 
 .root {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   min-height: 100vh;
 }
 
 .headerWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   padding: var(--spacing-x5) var(--spacing-x8);
+  z-index: 100;
 }
 
 .mainContent {
-  flex: 1 0 auto;
   width: 100%;
 }

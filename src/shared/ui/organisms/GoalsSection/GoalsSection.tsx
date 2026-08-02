@@ -24,7 +24,7 @@ export const GoalsSection: React.FC<GoalsSectionProps> = ({
         <Title {...titleProps} />
         <div className={styles.cardsRow}>
           {cards.map((card, i) => (
-            <CommonCard key={i} variant={card.variant} title={card.title} description={card.description} />
+            <CommonCard key={i} variant={card.variant} title={card.title} description={card.description} number={card.number} />
           ))}
         </div>
       </div>
