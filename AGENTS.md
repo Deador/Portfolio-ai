@@ -395,3 +395,37 @@ When several implementation options exist:
 - avoid unnecessary complexity
 
 Always think before coding.
+
+
+
+## End of Session
+
+Before finishing ANY work session the agent MUST update:
+
+docs/session/session-summary.md
+
+The file must always contain:
+
+# Session Summary
+
+## What was completed
+- ...
+
+## Files changed
+- ...
+
+## Components created
+- ...
+
+## Remaining issues
+- ...
+
+## Next recommended task
+- ...
+
+## Suggested prompt for the next session
+
+```text
+...
+
+Never finish the session without updating this file.

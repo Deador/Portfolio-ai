@@ -1,3 +1,15 @@
+For every new conversation:
+
+1. Read README.md.
+2. Read project-status.md.
+3. Read session-summary.md.
+4. Read AGENTS.md.
+5. Read only the documentation required for the current task.
+6. Produce a short context report.
+7. Wait for user confirmation.
+
+Never start implementation immediately.
+
 # AI Context
 
 For AI agents:
@@ -36,3 +48,23 @@ Depending on the task, also read:
 - docs/agents/code-reviewer.md
 
 Never start implementation before reading the required documents.
+
+
+
+
+<!-- Start session:
+
+Начинаем новую сессию.
+
+Перед тем как что-либо делать:
+
+1. Прочитай README.md.
+2. Затем AGENTS.md.
+3. После этого самостоятельно изучи всю документацию, которая относится к текущей задаче.
+4. После изучения составь краткий отчёт:
+   - что уже реализовано;
+   - что ещё не реализовано;
+   - какой следующий логичный шаг.
+5. Не приступай к изменениям, пока не покажешь отчёт и я его не подтвержу.
+
+После подтверждения работай только небольшими итерациями. -->
