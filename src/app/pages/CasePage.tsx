@@ -2,6 +2,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './CasePage.module.scss';
 import CaseStudyAcquiring from './CaseStudyAcquiring';
+import { CaseRenderer } from '../../entities/case/CaseRenderer';
+import acquiringCase from '../../content/cases/acquiring/case.json';
+
+const USE_JSON_RENDERER = true;
 
 /**
  * CasePage
@@ -16,6 +20,9 @@ const CasePage: React.FC = () => {
 
   // Route to specific case study component based on slug
   if (slug === 'acquiring') {
+    if (USE_JSON_RENDERER) {
+      return <CaseRenderer caseData={acquiringCase} />;
+    }
     return <CaseStudyAcquiring />;
   }
 

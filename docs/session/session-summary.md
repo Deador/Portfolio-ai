@@ -2,83 +2,68 @@
 
 ## What was completed
 
-- Спроектирована JSON-driven Case Study архитектура и оформлен отчёт `docs/json-case-study-architecture.md` (без написания кода):
-  - Инспекция всех 11 organisms и их пропсов (Hero/Problem/Goals/Context/Persona/Feature/Decision/Retrospective/Results/Reflection/Growth), QuoteCard, TimelineStep.
-  - Схема: `site → slug → meta → sections[]`, секция = `{type, key?, content}`; `content` маппится 1:1 на пропсы существующих организмов.
-  - Введён `AssetResolver` для `ReactNode`-пропсов (`image`/`icon`) через ссылку `{type:'image', src}`.
-  - Выявлено: Timeline не имеет организма (только атом `TimelineStep`), QuoteCard — молекула, рендерит `<section>`.
-  - Описаны риски и план миграции (CaseRenderer → case.json → AssetResolver → CasePage → верификация → удаление хардкод-страницы).
-- Прочитана документация согласно boot-процессу (README.md, AGENTS.md, docs/ai-philosophy.md, docs/architecture.md, docs/design-system.md, docs/agents/frontend-engineer.md, docs/tokens.md, docs/project-context.md, docs/report/ui-implementation-audit.md, docs/report/figma-sections-review.md).
-- Секции кейса «Эквайринг» приведены к макету Figma:
-  - `CommonCard` (insight): контент отцентрован (`align-items: stretch` + `justify-content: center`, `text-align: center`), шрифт `--text-s`.
-  - `Citate`: контейнер аватара рендерится всегда, при отсутствии пропа — круг-заглушка (`--color-avatar-placeholder`), шрифт `--text-s`.
-  - `ContextSection`: `rows` по умолчанию `[]`, список рендерится только при наличии строк; у `ContextSectionRow` убрана фиксированная `height: 68px` (в Figma — hug).
-  - `PersonaSection`: `cardsRow` → `align-items: stretch` (равная высота карточек); `PersonaCard` description → `--text-s`.
-  - `DecisionSection`: тег выведен через атом `Tag`, блок «note» через `CommonCard variant="callout"`; удалены кастомные `.tag`/`.noteTitle`/`.noteText`.
-  - Risk Card: из API `CommonCard` удалён проп `label` (в Figma нет); иконка WarningIcon 24×24 — отдельной строкой; «Системный подход» стал `title`.
-  - `GoalsSection.stories` переведены на `number`-карточки.
-- Шапка теперь поверх страницы: в `RootLayout` header `position: absolute` (top 0, z-index 100), фон страницы кейса (`--color-background-primary`) виден под прозрачной шапкой — белая полоса убрана. Верхний отступ контента кейса = 108px (`--spacing-x5` 20px + высота шапки 48px + `--spacing-x10` 40px), положение Hero сохранено. Отступ шапки сверху 20px / по бокам 32px — по макету (y=20, x=32).
-- Git remote обновлён на новый адрес https://github.com/Deador/Portfolio-ai.git.
-- Изменения закоммичены и запушены в `main` (коммит `649aaf2`).
-- Проверки: `type-check` — ок, `lint` — 0 ошибок (1 pre-existing warning в `router/index.tsx`), production `build` — ок (только Sass deprecation warnings).
-- Выполнено ревью 6 замечаний к архитектуре JSON-driven Case Study v2 (проверено по фактическому коду `src/shared/ui/**` и `src/content/cases/acquiring/case.json`). Вердикты: (1) `blocks[]` — принято, уточнить «композитный component = фрейм, не Figma-компонент»; (2) имена изображений — принято с уточнением «имя файла = идентификатор слота, не описание»; (3) `type: "image"` — оставить как дискриминатор (PersonaCard.icon будет вторым видом ассета); (4) неоднозначные `rows` — оставить, форма определяется `component` (1:1 на пропсы); (5) `number` — унифицировать в JSON на число (Goals `"1"`→`1`); (6) `schemaVersion` — добавить в корень (`2`).
-- Папка `docs/report/` перенесена в корень проекта (`report/`).
-- Создан отчёт `report/json-case-study-architecture-review.md` с вердиктами ревью, сводной таблицей и списком ожидаемых правок (основной документ по контенту — `docs/json-case-study-architecture.md`).
-- Внесены одобренные правки в архитектуру v2 и `case.json` (React-код не изменялся):
-  - `case.json`: добавлен `"schemaVersion": 2` в корень; `number` унифицирован на числовой тип (Goals `"1"`…`"4"` → `1`…`4`).
-  - `docs/json-case-study-architecture.md`: `schemaVersion` в схеме §3 и правиле §2 (п.7); правило `rows` в §3.1 (ключ всегда `rows`, форма определяется компонентом, 1:1 на пропсы, без переименований); правило `number` только числовой (§3.1); `type` как дискриминатор ассетов (`icon`/`video`/`svg`) в §3.3; уточнение §4.2 «имя файла = идентификатор слота, не описание содержимого; описание в `alt`»; новая секция §8 «Возможные улучшения в будущих версиях» (валидация, `key`/`figmaNode` заглушки, дубли `figmaNode` в acquiring, дискриминированные ассеты, `paragraphs[]`, `site` поле); §8→§9, §9→§10 перенумерация.
-- Проведён архитектурный аудит пункта 6 (`component` у композита): анализ и рекомендация вынесены в итоговый отчёт (требует решения владельца), схема `blocks` не менялась.
-- Установлено правило изображений (владелец): **формат всегда `.png`**, **имя файла = имя узла в Figma**, никакой самодеятельности/переименований. Обновлены §3.3, §4.1, §4.2, §4.3 документа архитектуры (убрана конвенция `<section>-<N>` и webp), `case.json` — все `src` переведены `.webp` → `.png`. Экспорт изображений из Figma проверен и работает (тест hero-картинки, права есть).
-- Проведено ревью изображений кейса «Эквайринг» по канвасу кейса `1799:8278` (не библиотека «Sections»). Найдено и выгружено 10 реальных image-узлов (внутри слотов): `hero-main` (33236:6340), `ava` (1799:7134), `metrics` (33236:6326), `task` (33236:6273), `process` (33236:6255), `flows` (1829:5469, crop `25fca5`), `feature01/02/03` (1834:6393/6412/6421, crop `104f8e`/`878d3d`), `image 759` (1801:6024, сирота 120×120 внизу страницы). Экспорт выполнен в тестовую папку `temp-img-test\`.
-- Ключевое открытие сессии: **реальная картинка лежит внутри слота** (вложенный RECTANGLE/ELLIPSE с заливкой `type: IMAGE` + `imageRef`), а не в самом слоте `[SLOT]`. Слоты в библиотеке «Sections» (`1799:6225`) содержат демо-заглушки — контент надо брать с канваса кейса.
-- Выявлена проблема устаревания `imageRef`: при обновлении изображения в Figma imageRef меняется (hero-main `56c21a6a…` → `184a2729…`). Правило: перезапрашивать узел перед каждым экспортом, не кэшировать imageRef.
-- Разработано и зафиксировано правило выгрузки изображений (7 правил) в `docs/figma-workflow.md` (§ «Image Export (Case Study Assets)»): поиск по IMAGE-заливке, канвас кейса как источник истины, свежесть imageRef, `figmaNode` указывает на image-узел (не слот), кроп (cropTransform + filenameSuffix), именование по узлу/`.png`, верификация без выгрузки заглушек.
+- Кейс «Эквайринг» переведён на JSON-driven рендеринг (архитектура `docs/json-case-study-architecture.md`, шаги 1–5 миграции).
+- Выгружены 9 реальных изображений кейса в `src/content/cases/acquiring/images/` (правило из `docs/figma-workflow.md`, имена = имя узла Figma + `.png`, у кропнутых — `filenameSuffix`): `hero-main.png` (3648×2382), `metrics.png` (1668×1746), `task.png` (3648×2283), `process.png` (2432×1364), `flows-25fca5.png` (2145×2254, кроп), `feature01.png` (4080×2160), `feature02-104f8e.png` (4086×3988, кроп), `feature03-878d3d.png` (4084×2358, кроп), `ava.png` (1024×1024). Временная папка `temp-img-test/` удалена.
+- Исправлена кодировка `case.json` (двойная кодировка UTF-8→CP1251) — теперь чистый UTF-8 без BOM, JSON валиден, 13 секций.
+- `case.json` полностью приведён к схеме v2: все `src` → имена узлов (`hero-main.png`, `metrics.png`…), все `figmaNode` секций → instance-id канваса кейса `1799:8278`, `figmaNode` изображений → image-узлы, заполнены все TBD:
+  - Hero `1799:8780`, Problem `1799:8882`, Goals `1799:8906`, Context-role `1806:5773`, Persona `1806:7456`, Feature `1807:7811`, Decision `1823:5192` (фрейм), MVP growth `1816:6288` (под-блоки: PersonaSection `1816:6289`, RolesTable `1816:6290`, CommonCard `1816:6331`), Context-warehouse `1829:5400`, Growth `1834:6346`, Retrospective `1817:6202`, Results `1817:6113`, Reflection `1834:8269`.
+  - Изображения: hero-main `33236:6340`, metrics `33236:6326`, task `33236:6273`, process `33236:6255`, flows `1829:5469`, feature01/02/03 `1834:6393/6412/6421`, аватар `I1799:8882;1799:7226;1799:7134` (в JSON не используется — cite без avatar по схеме).
+  - Актуальные `imageRef` перезапрошены перед экспортом (не кэшировались).
+- Создан `src/lib/content-parser/AssetResolver.tsx` + `assetTypes.ts` + `resolveContent.ts` + `.module.scss`:
+  - `ImageAsset` (дискриминатор `type: 'image'`), `isImageAsset`, `resolveImageSrc`.
+  - Карта изображений через `import.meta.glob('/src/content/cases/*/images/*.png', { eager, query: '?url', import: 'default' })` — работает и в Vite build, и в Storybook (изображения попадают в бандл).
+  - `AssetResolver` рендерит `<img>` или плейсхолдер (dev-warning при отсутствии файла).
+  - `resolveContentAssets` рекурсивно заменяет ассеты в content на ReactNode.
+- Создан `src/entities/case/CaseRenderer.tsx` + `.module.scss` + `types.ts` + `CaseRenderer.stories.tsx`:
+  - Реестр `component → React.FC`, `ContentMap`-каст через `Record<string, unknown>`; неизвестный `component` → dev-warning; проверка `schemaVersion` (2).
+  - Рекурсивная обработка `content` и `blocks[]`; композит оборачивается, блоки передаются children.
+  - Обёртка секций (`.section`), страница (`caseStudyPage` + `pageContainer` с токенами) — перенесены из `CaseStudyAcquiring.module.scss`.
+- Создан `src/entities/case/MVPGrowthSection.tsx` + `.module.scss` — layout композита (`.mvpSection` / `.gapMapBlock` / `.gapCardSlot`) по §3.2, раскладывает 3 блока (PersonaSection / RolesTable / CommonCard в слоте 520px).
+- `sectionLeft` (Reflection) перенесён в компонент по рекомендации §9.2: `ReflectionSection.module.scss` получил `margin-right: auto` (auto-margin пересиливает `justify-content: center` обёртки) — JSON остался чистым.
+- Подключён аватар в цитату ProblemSection: схема `cite` расширена до `{text, source?, avatar?}` (§3.1), `ProblemSection` передаёт `cite.avatar` в `Citate` (ReactNode-проп `avatar` уже был), в `case.json` добавлен ассет `avatar: {type:'image', src:'images/ava.png', figmaNode:'I1799:8882;1799:7226;1799:7134'}` (узел ELLIPSE "ava" в Citate, подтверждён через Figma MCP, imageRef `c20807a8…` совпадает с выгруженным файлом). `resolveContentAssets` превращает ассет в `<img>`, AssetResolver-класс (100%/100%, object-fit: cover) заполняет круг 56px.
+- `CasePage` переключён: для slug `acquiring` рендерит `<CaseRenderer caseData={acquiringCase} />` за флагом `USE_JSON_RENDERER = true`; `CaseStudyAcquiring.tsx` остаётся за флагом до подтверждения паритета.
+- Storybook-стори `CaseRenderer` с `case.json` (валидация JSON на рендере + визуальный диф).
+- Проверки: `type-check` — ок; `vite build` — ок (9 изображений в бандле, только Sass legacy-js-api deprecation warnings); `build-storybook` — ок.
 
 ## Files changed
 
-- `src/content/cases/acquiring/case.json` — `schemaVersion: 2`, Goals `number` строки → числа, `src` изображений `.webp` → `.png`.
-- `docs/json-case-study-architecture.md` — одобренные правки (§2 п.7, §3, §3.1, §3.3, §4.2), новая секция §8 «Возможные улучшения в будущих версиях», перенумерация §9/§10; правило изображений `.png` + имя как в Figma (§3.3, §4.1, §4.2, §4.3); композит переименован в `MVPGrowthSection` (§3.2, §9).
-- `report/json-case-study-architecture-review.md` — создан отчёт по ревью 6 замечаний к архитектуре v2 (вердикты, сводка, ожидаемые правки).
-- `report/` — `figma-sections-review.md`, `json-case-study-architecture-review.md`, `project-audit-report.md`, `ui-implementation-audit.md` (основной документ по контенту перенесён в `docs/`).
-
-- `src/app/layouts/RootLayout.module.scss` — overlay-шапка (absolute).
-- `src/app/pages/CaseStudyAcquiring.module.scss` — верхний паддинг кейса 108px.
-- `src/app/pages/CaseStudyAcquiring.tsx` — убраны лишние строки Context #1, `label` у risk-карточек, «Системный подход» → title.
-- `src/shared/ui/atoms/Citate/Citate.tsx` + `.module.scss` — placeholder аватара, `--text-s`.
-- `src/shared/ui/molecules/CommonCard/CommonCard.tsx` + `.module.scss` + `.stories.tsx` — центрирование insight, убран `label`, иконка отдельной строкой.
-- `src/shared/ui/molecules/ContextSectionRow/ContextSectionRow.module.scss` — убрана `height: 68px`.
-- `src/shared/ui/molecules/PersonaCard/PersonaCard.module.scss` — description `--text-s`.
-- `src/shared/ui/organisms/ContextSection/ContextSection.tsx` + `.module.scss` + `.stories.tsx` — динамические rows, убран `label`.
-- `src/shared/ui/organisms/DecisionSection/DecisionSection.tsx` + `.module.scss` — Tag + CommonCard callout.
-- `src/shared/ui/organisms/GoalsSection/GoalsSection.tsx` + `.stories.tsx` — `number`-карточки.
-- `src/shared/ui/organisms/PersonaSection/PersonaSection.module.scss` — `align-items: stretch`.
-- `src/shared/ui/organisms/ProblemSection/ProblemSection.module.scss` — убран `text-align: center` у problemCard.
-- `docs/agents/frontend-engineer.md` — добавлен workflow.
-- `docs/figma-workflow.md` — добавлена секция «Image Export (Case Study Assets)»: 7 правил выгрузки реальных изображений из Figma (не слотов).
-- `temp-img-test/` — тестовый экспорт 10 изображений канваса кейса «Эквайринг» (hero-main, ava, metrics, task, process, flows, feature01-03, image-759). Временная папка, не часть репозитория.
+- `src/content/cases/acquiring/case.json` — схема v2: `src` → имена узлов, `figmaNode` → image-узлы + instance-id канваса, заполнены TBD, `cite` без avatar.
+- `src/content/cases/acquiring/images/` — 9 выгруженных изображений (новая папка).
+- `src/lib/content-parser/assetTypes.ts` — `ImageAsset`, `isImageAsset`, `resolveImageSrc`, glob-карта изображений.
+- `src/lib/content-parser/AssetResolver.tsx` + `AssetResolver.module.scss` — резолвер ассетов `<img>` / плейсхолдер.
+- `src/lib/content-parser/resolveContent.ts` — рекурсивная подмена ассетов в content.
+- `src/entities/case/types.ts` — `CaseDocument`, `CaseSection`.
+- `src/entities/case/CaseRenderer.tsx` + `CaseRenderer.module.scss` — реестр, рекурсивный рендер, обёртки.
+- `src/entities/case/MVPGrowthSection.tsx` + `MVPGrowthSection.module.scss` — layout композита MVP growth.
+- `src/entities/case/CaseRenderer.stories.tsx` — Storybook-стори.
+- `src/app/pages/CasePage.tsx` — JSON-рендеринг для `acquiring` за флагом `USE_JSON_RENDERER`.
+- `src/shared/ui/organisms/ReflectionSection/ReflectionSection.module.scss` — `margin-right: auto` (перенос `sectionLeft` в компонент).
+- `src/shared/ui/organisms/ProblemSection/ProblemSection.tsx` — `cite.avatar` → `Citate`.
+- `docs/json-case-study-architecture.md` — §3.1: `cite{text, source?, avatar?}`.
+- `docs/session/session-summary.md` — этот файл.
 
 ## Components created
 
-- Новых компонентов не создано. Уточнены существующие (CommonCard, Citate, ContextSection, ContextSectionRow, PersonaSection, PersonaCard, DecisionSection, GoalsSection, ProblemSection) и RootLayout.
+- `AssetResolver` (src/lib/content-parser) — резолвит `{type:'image'}` → `<img>`, fallback-плейсхолдер.
+- `CaseRenderer` (src/entities/case) — реестр component→React.FC, рекурсивные `blocks`, dev-warning, проверка `schemaVersion`.
+- `MVPGrowthSection` (src/entities/case) — application-level layout композита MVP growth (не в design-system: специфичный композит).
 
 ## Remaining issues
 
-- Плейсхолдеры изображений: pie chart (Context #1), аватары в цитатах, hero-изображение 1216×794.
-- Главная страница — плейсхолдер; фоновая переменная для неё ещё не выбрана (пользователь: «на главной будет другая переменная, пока не знаю какая»).
-- Footer не реализован.
-- Мобильная адаптация не начата.
-- Паддинг кейса 108px привязан к высоте шапки (48px) — желательно вынести в CSS-переменную.
-- Storybook docs для обновлённых компонентов.
+- Паритет JSON-рендера и хардкод-страницы не подтверждён визуально (нужно сравнить `CaseRenderer`-стори с `CaseStudyAcquiring` в Storybook и с Figma по `figmaNode`).
+- Удаление хардкод-страницы `CaseStudyAcquiring.tsx` + `.stories.tsx` + `.module.scss` — только после подтверждения визуального паритета (шаг 7 миграции).
+- `image-759` (сирота 120×120) на канвасе кейса не выгружен (не нужен).
+- Синхронизация API `CommonCard` в `docs/design-system.md` — не выполнена.
+- Главная страница — плейсхолдер; footer не реализован; мобильная адаптация не начата.
 - Sass `legacy-js-api` deprecation warnings при сборке.
-- Решение по пункту 6 ПРИНЯТО: композитный `component` сохраняется и переименован `MVPGrowthBlock` → `MVPGrowthSection` (в `case.json` и документе §3.2). Имя фрейма стабильное, не удаляется; станет точным Figma/React-именем при создании реального организма.
-- Синхронизация API CommonCard (`variant` + `number`) в `docs/design-system.md` — не выполнена (вне списка правок).
+- Паддинг кейса 108px привязан к высоте шапки (48px) — желательно вынести в CSS-переменную.
 
 ## Next recommended task
 
-Дождаться решения владельца по пункту 6 (композитный `component`), затем реализовать `CaseRenderer` + `AssetResolver` по плану миграции (§6 документа архитектуры) и переключить `CasePage` на JSON. Попутно: заполнить TBD-`figmaNode` (GrowthSection, MVPGrowthSection, DecisionSection.image) из Figma.
+Подтвердить визуальный паритет JSON-рендера и хардкод-страницы в Storybook (`Case/CaseRenderer/Acquiring` vs `Pages/CaseStudyAcquiring`), сверить секции с Figma по `figmaNode`, затем удалить хардкод-страницу (шаг 7 миграции). Опционально: сделать `validate`-утилиту для JSON (§8).
 
 ## Suggested prompt for the next session
 
 ```text
-Реализуй JSON-driven рендеринг кейсов по docs/json-case-study-architecture.md: CaseRenderer (src/entities/case/, реестр + ContentMap + рекурсивные blocks, dev-warning на unknown component, проверка schemaVersion), AssetResolver (src/lib/content-parser/, дискриминатор type), подключение case.json кейса «Эквайринг» через CasePage, Storybook-стори CaseRenderer. До этого заполни TBD-figmaNode из Figma MCP. Реши вопрос с композитным component по рекомендации из итогового отчёта.
+Проверь визуальный паритет JSON-рендера кейса «Эквайринг»: сравни стори Case/CaseRenderer/Acquiring с Pages/CaseStudyAcquiring в Storybook, сверь каждую секцию с Figma по figmaNode (канвас кейса 1799:8278, file i3ANEQ3o83zbqvSqYGSYBC). После подтверждения удали хардкод-страницу CaseStudyAcquiring.tsx (+ stories, module.scss) и флаг USE_JSON_RENDERER.
 ```

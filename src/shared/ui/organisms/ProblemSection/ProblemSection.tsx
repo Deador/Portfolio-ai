@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './ProblemSection.module.scss';
 import { Title, TitleProps } from '../../molecules/Title/Title';
 import { Citate } from '../../atoms/Citate/Citate';
@@ -23,7 +23,7 @@ interface ProblemSectionProps {
   /**
    * Citation/quote
    */
-  cite?: { text: string; source?: string };
+  cite?: { text: string; source?: string; avatar?: ReactNode };
 
   /**
    * 3 Common Card items
@@ -73,7 +73,7 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({
               <p className={styles.paragraphText}>{paragraph}</p>
             </div>
             <div className={styles.citateSlot}>
-              <Citate text={cite.text} source={cite.source} />
+              <Citate text={cite.text} source={cite.source} avatar={cite.avatar} />
             </div>
           </div>
 

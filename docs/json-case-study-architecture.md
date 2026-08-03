@@ -117,7 +117,7 @@ UI Components (atoms — без изменений)
 | `component` | Допустимые ключи `content` |
 |---|---|
 | `HeroSection` | `titleProps`, `image`, `rows[]` |
-| `ProblemSection` | `titleProps`, `paragraphTitle`, `paragraph`, `cite{text,source?}`, `cards[]` |
+| `ProblemSection` | `titleProps`, `paragraphTitle`, `paragraph`, `cite{text,source?,avatar?}`, `cards[]` |
 | `GoalsSection` | `titleProps`, `cards[]` |
 | `ContextSection` | `titleProps`, `image`, `rows[]{title,description}`, `card{variant,title,description}` |
 | `PersonaSection` | `titleProps`, `personas[]` |

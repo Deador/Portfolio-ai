@@ -1,0 +1,26 @@
+.mvpSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x10);
+  width: 100%;
+}
+
+.gapMapBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x6);
+  width: 100%;
+}
+
+.gapCardSlot {
+  width: 100%;
+  padding-top: var(--spacing-x4);
+  display: flex;
+  justify-content: flex-start;
+
+  > * {
+    width: 520px;
+  }
+}
