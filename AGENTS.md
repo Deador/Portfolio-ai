@@ -86,6 +86,26 @@ Never violate architecture.md.
 
 ---
 
+## Step 3.1
+
+Read:
+
+docs/json-case-study-architecture.md
+
+This is the main content document.
+
+It defines:
+
+- case.json schema
+- section/component mapping
+- figmaNode rules
+- image conventions
+- content architecture
+
+Always read it before working on case content (case.json or images).
+
+---
+
 ## Step 4
 
 Determine the task category.
@@ -134,6 +154,10 @@ docs/design-system.md
 and
 
 docs/agents/design-system-engineer.md
+
+and
+
+docs/figma-workflow.md
 
 ---
 

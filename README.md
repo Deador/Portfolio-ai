@@ -27,6 +27,7 @@ Before starting any task, always read:
 1. docs/ai-philosophy.md
 2. docs/architecture.md
 3. docs/design-system.md
+4. docs/json-case-study-architecture.md (case.json schema and content architecture)
 
 Depending on the task, also read:
 
