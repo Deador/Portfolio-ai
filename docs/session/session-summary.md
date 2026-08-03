@@ -7,7 +7,7 @@
 - Исправлена кодировка `case.json` (двойная кодировка UTF-8→CP1251) — теперь чистый UTF-8 без BOM, JSON валиден, 13 секций.
 - `case.json` полностью приведён к схеме v2: все `src` → имена узлов (`hero-main.png`, `metrics.png`…), все `figmaNode` секций → instance-id канваса кейса `1799:8278`, `figmaNode` изображений → image-узлы, заполнены все TBD:
   - Hero `1799:8780`, Problem `1799:8882`, Goals `1799:8906`, Context-role `1806:5773`, Persona `1806:7456`, Feature `1807:7811`, Decision `1823:5192` (фрейм), MVP growth `1816:6288` (под-блоки: PersonaSection `1816:6289`, RolesTable `1816:6290`, CommonCard `1816:6331`), Context-warehouse `1829:5400`, Growth `1834:6346`, Retrospective `1817:6202`, Results `1817:6113`, Reflection `1834:8269`.
-  - Изображения: hero-main `33236:6340`, metrics `33236:6326`, task `33236:6273`, process `33236:6255`, flows `1829:5469`, feature01/02/03 `1834:6393/6412/6421`, аватар `I1799:8882;1799:7226;1799:7134` (в JSON не используется — cite без avatar по схеме).
+  - Изображения: hero-main `33236:6340`, metrics `33236:6326`, task `33236:6273`, process `33236:6255`, flows `1829:5469`, feature01/02/03 `1834:6393/6412/6421`, аватар `I1799:8882;1799:7226;1799:7134` (подключён через `cite.avatar`, см. ниже).
   - Актуальные `imageRef` перезапрошены перед экспортом (не кэшировались).
 - Создан `src/lib/content-parser/AssetResolver.tsx` + `assetTypes.ts` + `resolveContent.ts` + `.module.scss`:
   - `ImageAsset` (дискриминатор `type: 'image'`), `isImageAsset`, `resolveImageSrc`.
@@ -27,7 +27,7 @@
 
 ## Files changed
 
-- `src/content/cases/acquiring/case.json` — схема v2: `src` → имена узлов, `figmaNode` → image-узлы + instance-id канваса, заполнены TBD, `cite` без avatar.
+- `src/content/cases/acquiring/case.json` — схема v2: `src` → имена узлов, `figmaNode` → image-узлы + instance-id канваса, заполнены TBD, `cite.avatar` → `images/ava.png`.
 - `src/content/cases/acquiring/images/` — 9 выгруженных изображений (новая папка).
 - `src/lib/content-parser/assetTypes.ts` — `ImageAsset`, `isImageAsset`, `resolveImageSrc`, glob-карта изображений.
 - `src/lib/content-parser/AssetResolver.tsx` + `AssetResolver.module.scss` — резолвер ассетов `<img>` / плейсхолдер.
