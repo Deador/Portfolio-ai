@@ -58,7 +58,7 @@ interface HeaderProps {
  * Header Component
  *
  * Global header with logo, navigation links, and CTA button.
- * Dimensions: 1168px × 48px (fixed)
+ * Dimensions: 1216px × 48px (fixed)
  *
  * Structure:
  * - Logo container (left side, flexible)

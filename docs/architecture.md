@@ -104,6 +104,7 @@ src/
 │   │   ├── atoms/
 │   │   ├── molecules/
 │   │   └── organisms/
+│   ├── assets/
 │   ├── tokens/
 │   ├── hooks/
 │   └── utils/

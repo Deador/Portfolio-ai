@@ -324,7 +324,7 @@ Always export that inner node — never the slot.
 
 The real image = a descendant of the slot whose `fills` contain `type: IMAGE` with a non-empty `imageRef`.
 
-- Ignore `IMAGE-SVG` nodes — they carry a `componentId` and are vector icons, not raster assets.
+- Ignore `IMAGE-SVG` nodes — they carry a `componentId` and are vector icons, not raster assets. If the requested asset is an icon, follow the Icon Export section below.
 - Ignore placeholders — hex fills like `#EAECEE`, `#D9D9D9` without an `imageRef`.
 - If a slot contains several images, export each one and match it by its node name.
 
@@ -371,6 +371,103 @@ If no image exists, record it in the report as "no image" — never export a pla
 3. Use the fresh `imageRef` and crop parameters from the same request.
 4. Download the node into the target folder, named after the node.
 5. Reconcile with `case.json`: update `figmaNode` to the image node id.
+
+---
+
+# Icon Export (Case Study Content Icons)
+
+This section defines how AI agents export content icons from the **case canvas** for JSON-driven case studies.
+
+It mirrors the Image Export rules, with one key difference: icons are **vector** assets (`componentId`), images are **raster** assets (`imageRef`).
+
+## Content icons vs DS-chrome
+
+- **Content icons** (selected for content: e.g. persona icons `Folder`, `User_alt_duotone_line`) are **case-specific** assets and live in `src/content/cases/<slug>/icons/*.svg`.
+- **DS-chrome icons** (e.g. `Warning` on risk cards, header logo) are **never serialized into JSON** — they stay React components in the Design System.
+
+## Core rule
+
+A content icon = an `IMAGE-SVG` / INSTANCE node with a `componentId`, placed inside a slot (e.g. the PersonaCard `left-icon` instance swap).
+
+Always export that vector node — never the slot, never a wrapping group.
+
+## The 7 rules
+
+### 1. Find by componentId (vector), not by imageRef
+
+Icons carry a `componentId` and **no** raster `imageRef` (the opposite of images — see Image Export, rule 1).
+
+- Search the case canvas for `IMAGE-SVG` / INSTANCE nodes inside slots.
+- Ignore raster-filled descendants — those are images, not icons.
+- If a slot swaps several icons, export each one and match it by its node name.
+
+### 2. Canvas is the source of truth
+
+Always export icons from the **case canvas** (e.g. `1799:8278`), where icons are actually placed into persona / feature slots.
+
+Do not export icons from the library `icons` page or from the Design System library sections — those contain demo swaps, and DS-chrome is a React component, not a content asset.
+
+### 3. Freshness
+
+Re-fetch the node immediately before every export.
+
+Icons are swapped via instance swap, so never cache a node id or name between sessions or between exports.
+
+### 4. `figmaNode` points at the icon node
+
+In `case.json`, the `figmaNode` of an icon reference must be the id of the **icon instance node on the case canvas** — not the id of the slot or a wrapping group.
+
+### 5. No cropping
+
+Icons are exported as full vector nodes. There is no `cropTransform` / `filenameSuffix` for SVG.
+
+### 6. File naming
+
+File name = the Figma node name (e.g. `User_alt_duotone_line.svg`, `Folder.svg`).
+
+- Sanitize only invalid filename characters (spaces, `/` → `-`).
+- Format is always `.svg`.
+- Semantics belong in `alt`, never in the file name.
+
+### 7. Verification
+
+After finding the node, verify it is really a vector icon: it has a `componentId` and its fill is not a raster `IMAGE` with `imageRef`.
+
+If the slot is empty or the node is DS-chrome, do not export it as content — record it in the report instead.
+
+## JSON model
+
+`type: 'icon'` extends the asset discriminated union (§3.3 of the case study architecture). `schemaVersion` stays **2** — the change is additive.
+
+```json
+{
+  "type": "icon",
+  "src": "icons/User_alt_duotone_line.svg",
+  "figmaNode": "I1816:6289;1799:7386;1798:4262",
+  "alt": "Менеджер"
+}
+```
+
+- `figmaNode` is **required** for icons.
+- `alt` defaults to `""` — icons are decorative and stay unavailable to screen readers. Set `alt` explicitly in JSON **only** if the icon carries meaning. Never use `src` as an `alt` fallback (unlike images).
+
+## Rendering contract
+
+- Icons render through the existing asset slot with `object-fit: contain` (for PersonaCard: container 72×72, icon 56×56).
+- Do **not** bake padding into the SVG — slot geometry is controlled by React/CSS (the `AssetResolver` class), not by the file content.
+
+## Export formula
+
+1. Request the case canvas node.
+2. For each slot, locate the `IMAGE-SVG` / INSTANCE child with `componentId`.
+3. Download the node into `src/content/cases/<slug>/icons/`, named after the node.
+4. Reconcile with `case.json`: add `{ "type": "icon", "src": "icons/<Name>.svg", "figmaNode": "<instance id>" }`; `alt` only when meaningful.
+
+## Deduplication across cases
+
+Icons are **case-specific** for now: the same Figma node name may appear in several cases, and each case keeps its own copy in `icons/`.
+
+When a second case reuses an identical icon (same deterministic node name), promote the file to a shared location — a separate decision, not for the current case.
 
 ---
 

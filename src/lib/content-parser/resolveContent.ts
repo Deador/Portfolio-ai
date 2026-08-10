@@ -1,10 +1,21 @@
 import { createElement } from 'react';
 import { AssetResolver } from './AssetResolver';
-import { isImageAsset } from './assetTypes';
+import { isAssetRef, isIconAsset, isImageAsset } from './assetTypes';
 
 export function resolveContentAssets(value: unknown, slug: string): unknown {
   if (isImageAsset(value)) {
     return createElement(AssetResolver, { asset: value, slug });
+  }
+
+  if (isIconAsset(value)) {
+    return createElement(AssetResolver, { asset: value, slug });
+  }
+
+  if (isAssetRef(value)) {
+    if (import.meta.env.DEV) {
+      console.warn(`[resolveContent] Unknown asset type "${value.type}" (case "${slug}")`);
+    }
+    return null;
   }
 
   if (Array.isArray(value)) {
