@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CaseRenderer } from './CaseRenderer';
 import acquiringCase from '../../content/cases/acquiring/case.json';
+import chatCase from '../../content/cases/chat/case.json';
 
 const meta = {
   title: 'Case/CaseRenderer',
@@ -20,5 +21,11 @@ type Story = StoryObj<typeof meta>;
 export const Acquiring: Story = {
   args: {
     caseData: acquiringCase,
+  },
+};
+
+export const Chat: Story = {
+  args: {
+    caseData: chatCase,
   },
 };

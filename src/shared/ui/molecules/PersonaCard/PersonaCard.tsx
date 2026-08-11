@@ -33,8 +33,8 @@ interface PersonaCardProps {
  * PersonaCard Component
  *
  * Card component for displaying user personas or team members.
- * Features an icon/avatar, title, description, and tag.
- * Dimensions: 600px (fixed)
+ * When `icon` is provided it renders an icon/avatar circle with a tag;
+ * without `icon` the header shows only the tag (Figma `left-icon: false`).
  *
  * All styling uses design tokens exclusively.
  */
@@ -48,9 +48,7 @@ export const PersonaCard: React.FC<PersonaCardProps> = ({
   return (
     <article className={`${styles.personaCard} ${className || ''}`.trim()}>
       <div className={styles.header}>
-        <div className={styles.iconWrapper}>
-          {icon || <div className={styles.placeholderIcon} />}
-        </div>
+        {icon != null && <div className={styles.iconWrapper}>{icon}</div>}
         <Tag text={tagText} />
       </div>
 

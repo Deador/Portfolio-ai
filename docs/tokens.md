@@ -17,6 +17,7 @@ Extracted: 2026-07-25
 | content/secondary | content | #787878 | Secondary text color |
 | content/tertiary | content | #adadad | Tertiary text color |
 | content/white | content | #f0f0f0 | White text color |
+| content/accent | content | #276ef1 | Brand/action accent color (blue) |
 
 ## Background
 
@@ -55,7 +56,7 @@ Extracted: 2026-07-25
 | fill_icon | icons | #222222 | Filled icon color |
 | Duotone | icons | #7E869E | Duotone icon color |
 
-**Total Colors: 16**
+**Total Colors: 17**
 
 ---
 
@@ -75,6 +76,7 @@ All spacing tokens follow a 4px scale base.
 | padding/x10 | 40 | 10x | |
 | padding/x12 | 48 | 12x | |
 | padding/x14 | 56 | 14x | |
+| padding/x15 | 60 | 15x | GrowthSection: title → rows (Figma 60px, добавлен вручную) |
 | padding/x18 | 72 | 18x | |
 | padding/x20 | 80 | 20x | |
 | padding/x40 | 160 | 40x | Section gap (assembled case-study page) |
@@ -174,8 +176,8 @@ All spacing tokens follow a 4px scale base.
 The following values are **NOT** found in extracted Figma Variables:
 
 ## Colors
-- `content/accent` — Mentioned in docs/design-system.md, **NOT in Figma**
 - `background/primary`, `badge/*`, `avatar/*`, `quote-card/*` — **added to code manually** (page background, MetricCard badge, PersonaCard/Citate avatar, QuoteCard panel); not yet in Figma Variables — need to be added
+- `content/accent` (#276ef1) — extracted from Figma (variable `accent_f043fd95`, used in Citate quote accent, TimelineStep status icons, RolesTable status) and added to code
 
 ## Spacing
 - padding/x7 (28px), padding/x9 (36px), and 6 other gaps — mentioned in design-system.md but NOT in Figma
@@ -189,18 +191,17 @@ The following values are **NOT** found in extracted Figma Variables:
 # Summary
 
 **Total tokens extracted from Figma:**
-- Colors: 16
+- Colors: 17
 - Spacing: 13
 - Radius: 5
 - Typography: 20
 - Effects: 1
-- **TOTAL: 55 tokens**
+- **TOTAL: 56 tokens**
 
 **Inconsistencies with docs/design-system.md:**
-1. Missing color tokens: content/accent
-2. Spacing scale has gaps (missing x7, x9, x11, x13, x15, x16, x17, x19)
-3. Radius scale has gaps (missing x4, x32) — radius-12 is used in code but not yet added to Figma Variables
-4. Typography: Some use "Inter", some use "Onest" (inconsistent font family)
+1. Spacing scale has gaps (missing x7, x9, x11, x13, x15, x16, x17, x19)
+2. Radius scale has gaps (missing x4, x32) — radius-12 is used in code but not yet added to Figma Variables
+3. Typography: Some use "Inter", some use "Onest" (inconsistent font family)
 
 **Note:** Tokens `background/primary`, `badge/*`, `avatar/*`, `quote-card/*`, `radius/radius-12` are implemented in code and documented here, but are NOT yet present in Figma Variables. Add them to the Design System before the next export.
 

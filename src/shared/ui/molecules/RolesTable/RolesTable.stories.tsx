@@ -30,18 +30,51 @@ export const Default: Story = {
     rows: [
       {
         role: 'Managers',
-        version: 'Version 1.0',
+        label: 'Version 1.0',
         tasks: '• Checking requests\n• Selecting equipment\n• Client support',
       },
       {
         role: 'Security',
-        version: 'Version 2.0',
+        label: 'Version 2.0',
         tasks: '• Checking legal data\n• Approval decisions',
       },
       {
         role: 'Engineers',
-        version: 'Version 2.0',
+        label: 'Version 2.0',
         tasks: '• Installation\n• Terminal fleet management',
+      },
+    ],
+  },
+};
+
+export const WithSharedRoles: Story = {
+  args: {
+    title: 'Платформа поддерживала роли для обоих подразделений',
+    description: 'Разные подразделения работали в одном продукте, поэтому роли и возможности пришлось адаптировать под разные сценарии работы.',
+    headRole: 'Подразделение',
+    headTasks: 'Возможности',
+    rows: [
+      {
+        role: 'Брокеры',
+        label: 'Оператор',
+        tasks: '• Отображение статуса клиента рядом с чатом\n• Сквозная история обращений',
+      },
+      {
+        role: 'Контакт-центр',
+        label: 'Оператор',
+        tasks: '• Минималистичный интерфейс под высокую нагрузку\n• Настройка очередей',
+      },
+      {
+        role: 'Супервизор',
+        label: 'Оба подразделения',
+        shared: true,
+        tasks: '• Дашборд с метриками отдела\n• Ручное распределение обращений',
+      },
+      {
+        role: 'Админ',
+        label: 'Оба подразделения',
+        shared: true,
+        tasks: '• Настройка таймеров, тем, прав доступа',
       },
     ],
   },
@@ -55,18 +88,18 @@ export const WithLongContent: Story = {
     rows: [
       {
         role: 'Managers',
-        version: 'Version 1.0',
+        label: 'Version 1.0',
         tasks:
           '• Checking requests\n• Selecting equipment\n• Client support\n• Tracking request progress',
       },
       {
         role: 'Security',
-        version: 'Version 2.0',
+        label: 'Version 2.0',
         tasks: '• Checking legal data\n• Approval decisions',
       },
       {
         role: 'Engineers',
-        version: 'Version 2.0',
+        label: 'Version 2.0',
         tasks: '• Installation\n• Client support\n• Terminal fleet management',
       },
     ],

@@ -18,7 +18,9 @@
 
 ✅ JSON-driven рендеринг кейсов: `CaseRenderer` (src/entities/case) + `AssetResolver` (src/lib/content-parser), рекурсивные `blocks[]`, dev-warning на unknown component, проверка `schemaVersion`
 
-✅ Кейс «Эквайринг» рендерится из `case.json` через `CasePage` (флаг `USE_JSON_RENDERER`); хардкод-страница остаётся до подтверждения паритета
+✅ Кейс «Эквайринг» рендерится из `case.json` через `CasePage`; хардкод-страница `CaseStudyAcquiring.tsx` удалена (шаг 7 миграции завершён, флаг `USE_JSON_RENDERER` убран)
+
+✅ Кейс «Единая платформа коммуникации» (chat) рендерится из `src/content/cases/chat/case.json` (17 контент-единиц) — новый кейс как чистый контент, без изменения кода
 
 ✅ 9 изображений кейса выгружены из Figma по правилу экспорта (имя = имя узла, `.png`): hero-main, metrics, task, process, flows, feature01-03, ava — все `figmaNode`/`imageRef` актуальны
 
@@ -30,7 +32,7 @@
 
 ## In progress
 
-- Подтверждение визуального паритета JSON-рендера (`Case/CaseRenderer/Acquiring`) и хардкод-страницы (`Pages/CaseStudyAcquiring`) в Storybook, сверка секций с Figma по `figmaNode`
+- Сверка секций с Figma по `figmaNode` в Storybook (`Case/CaseRenderer/Acquiring` и `Chat`)
 - Главная страница — пока плейсхолдер (фоновая переменная не выбрана)
 
 ---
@@ -38,7 +40,7 @@
 ## Not started
 
 - Footer
-- Остальные кейсы (Chat Platform, Mobile Banking)
+- Кейсы Mobile Banking и остальные
 - Мобильная адаптация
 - `validate`-утилита для case.json (§8 json-case-study-architecture.md)
 
@@ -55,4 +57,4 @@
 
 ## Current priority
 
-Подтвердить визуальный паритет JSON-рендера кейса «Эквайринг», удалить хардкод-страницу, затем выбрать фоновую переменную для главной страницы и собрать её по макету.
+Сверка секций кейсов с Figma по `figmaNode` в Storybook (`Case/CaseRenderer/Acquiring` и `Chat`), затем выбрать фоновую переменную для главной страницы и собрать её по макету.

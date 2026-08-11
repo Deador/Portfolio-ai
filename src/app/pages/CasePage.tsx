@@ -1,29 +1,31 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './CasePage.module.scss';
-import CaseStudyAcquiring from './CaseStudyAcquiring';
 import { CaseRenderer } from '../../entities/case/CaseRenderer';
 import acquiringCase from '../../content/cases/acquiring/case.json';
+import chatCase from '../../content/cases/chat/case.json';
 
-const USE_JSON_RENDERER = true;
+const caseDocuments: Record<string, unknown> = {
+  acquiring: acquiringCase,
+  chat: chatCase,
+};
 
 /**
  * CasePage
  * Router wrapper for case study pages
- * 
+ *
  * Routes case slugs to specific case study components:
- * - /case/acquiring → CaseStudyAcquiring
+ * - /case/acquiring → CaseRenderer (JSON-driven)
+ * - /case/chat → CaseRenderer (JSON-driven)
  * - /case/* → 404 or placeholder
  */
 const CasePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // Route to specific case study component based on slug
-  if (slug === 'acquiring') {
-    if (USE_JSON_RENDERER) {
-      return <CaseRenderer caseData={acquiringCase} />;
-    }
-    return <CaseStudyAcquiring />;
+  const caseData = caseDocuments[slug ?? ''];
+
+  if (caseData) {
+    return <CaseRenderer caseData={caseData as Parameters<typeof CaseRenderer>[0]['caseData']} />;
   }
 
   // Unknown case - show placeholder

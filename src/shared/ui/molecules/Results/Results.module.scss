@@ -11,11 +11,9 @@
 }
 
 // ========================================
-// SIZE L (large result metric)
+// SIZE L (large result metric — 56px Bold)
 // ========================================
 .L {
-  height: 117px;
-
   .title {
     font: var(--title-h-result);
   }
@@ -26,24 +24,22 @@
 }
 
 // ========================================
-// SIZE M (medium result metric)
+// SIZE M (medium result metric — 40px Bold)
 // ========================================
 .M {
-  height: 96px;
-
   .title {
-    font: var(--title-h3);
+    font: var(--title-h1-strong);
   }
 
   .description {
-    font: var(--text-m);
+    font: var(--text-l);
   }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-x3);
+  gap: var(--spacing-x4);
   align-items: center;
   width: 100%;
 }

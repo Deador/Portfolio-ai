@@ -59,3 +59,12 @@ export const ProductManager: Story = {
     tagText: 'Product',
   },
 };
+
+export const WithIcon: Story = {
+  args: {
+    title: 'Sarah Chen',
+    description: 'Persona with an icon circle in the header (left-icon variant).',
+    tagText: 'Design',
+    icon: <div style={{ width: 32, height: 32, borderRadius: 999, backgroundColor: '#d9dade' }} aria-hidden="true" />,
+  },
+};

@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 import styles from './QuoteCard.module.scss';
+import { MessageQuestionIcon } from './icons/MessageQuestionIcon';
+import { QuoteElement } from '../../atoms/QuoteElement/QuoteElement';
 
 interface QuoteCardProps {
   /**
@@ -37,45 +39,14 @@ export const QuoteCard: React.FC<QuoteCardProps> = ({
   return (
     <section className={`${styles.quoteCard} ${className || ''}`.trim()}>
       <div className={styles.quoteGrid}>
-        {/* Left Quote */}
-        <div className={styles.quoteBlock}>
-          <div className={styles.author}>
-            <span className={styles.authorName}>{leftName}</span>
-          </div>
-          <div className={styles.quoteBox}>
-            <p className={styles.quoteText}>{leftQuote}</p>
-          </div>
-        </div>
+        <QuoteElement name={leftName} quote={leftQuote} align="start" />
 
         {/* Center Icon */}
         <div className={styles.centerIcon}>
-          <svg
-            width="56"
-            height="56"
-            viewBox="0 0 56 56"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="28" cy="28" r="28" fill="white" fillOpacity="0.1" />
-            <path
-              d="M28 14C20.268 14 14 20.268 14 28s6.268 14 14 14 14-6.268 14-14-6.268-14-14-14z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              fill="none"
-            />
-            <path d="M28 24v8M24 28h8" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
+          <MessageQuestionIcon />
         </div>
 
-        {/* Right Quote */}
-        <div className={styles.quoteBlock}>
-          <div className={styles.author}>
-            <span className={styles.authorName}>{rightName}</span>
-          </div>
-          <div className={styles.quoteBox}>
-            <p className={styles.quoteText}>{rightQuote}</p>
-          </div>
-        </div>
+        <QuoteElement name={rightName} quote={rightQuote} align="end" />
       </div>
     </section>
   );

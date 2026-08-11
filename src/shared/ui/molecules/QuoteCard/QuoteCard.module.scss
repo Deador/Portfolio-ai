@@ -3,7 +3,7 @@
 
 .quoteCard {
   width: 1216px;
-  height: 284px;
+  min-height: 284px;
   background-color: var(--quote-card-background);
   border-radius: var(--radius-24);
   padding: var(--spacing-x14) var(--spacing-x10);
@@ -21,41 +21,6 @@
   height: 100%;
 }
 
-.quoteBlock {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-x4);
-  align-items: flex-start;
-  width: 472px;
-}
-
-.author {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-x2);
-  align-items: flex-start;
-}
-
-.authorName {
-  font: var(--title-h4);
-  color: var(--color-content-white);
-  white-space: nowrap;
-}
-
-.quoteBox {
-  background-color: var(--color-background-dark);
-  padding: var(--spacing-x4);
-  border-radius: var(--spacing-x2);
-  width: 100%;
-}
-
-.quoteText {
-  margin: 0;
-  padding: 0;
-  font: var(--text-m);
-  color: var(--color-content-white);
-}
-
 .centerIcon {
   display: flex;
   align-items: center;
@@ -63,5 +28,5 @@
   width: 56px;
   height: 56px;
   flex-shrink: 0;
-  color: var(--color-content-white);
+  color: var(--color-content-tertiary);
 }

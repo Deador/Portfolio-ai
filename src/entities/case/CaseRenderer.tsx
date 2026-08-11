@@ -11,9 +11,13 @@ import { RetrospectiveSection } from '../../shared/ui/organisms/RetrospectiveSec
 import { ResultsSection } from '../../shared/ui/organisms/ResultsSection/ResultsSection';
 import { ReflectionSection } from '../../shared/ui/organisms/ReflectionSection/ReflectionSection';
 import { GrowthSection } from '../../shared/ui/organisms/GrowthSection/GrowthSection';
+import { TextImageSection } from '../../shared/ui/organisms/TextImageSection/TextImageSection';
+import { ChipsSection } from '../../shared/ui/organisms/ChipsSection/ChipsSection';
+import { QuoteSection } from '../../shared/ui/organisms/QuoteSection/QuoteSection';
 import { RolesTable } from '../../shared/ui/molecules/RolesTable/RolesTable';
 import { CommonCard } from '../../shared/ui/molecules/CommonCard/CommonCard';
 import { MVPGrowthSection } from './MVPGrowthSection';
+import { PersonaRolesSection } from './PersonaRolesSection/PersonaRolesSection';
 import { resolveContentAssets } from '../../lib/content-parser/resolveContent';
 import { CaseDocument, CaseSection } from './types';
 
@@ -31,9 +35,13 @@ const sectionComponents: Record<string, React.ComponentType<SectionProps>> = {
   ResultsSection: ResultsSection as React.ComponentType<SectionProps>,
   ReflectionSection: ReflectionSection as React.ComponentType<SectionProps>,
   GrowthSection: GrowthSection as React.ComponentType<SectionProps>,
+  TextImageSection: TextImageSection as React.ComponentType<SectionProps>,
+  ChipsSection: ChipsSection as React.ComponentType<SectionProps>,
+  QuoteSection: QuoteSection as React.ComponentType<SectionProps>,
   RolesTable: RolesTable as React.ComponentType<SectionProps>,
   CommonCard: CommonCard as unknown as React.ComponentType<SectionProps>,
   MVPGrowthSection: MVPGrowthSection as React.ComponentType<SectionProps>,
+  PersonaRolesSection: PersonaRolesSection as React.ComponentType<SectionProps>,
 };
 
 const SUPPORTED_SCHEMA_VERSION = 2;

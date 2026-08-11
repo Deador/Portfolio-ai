@@ -21,6 +21,9 @@ const HomePage: React.FC = () => {
           <p className={styles.text}>
             <Link to="/case/acquiring">Система обработки заявок на эквайринг</Link>
           </p>
+          <p className={styles.text}>
+            <Link to="/case/chat">Единая платформа коммуникации</Link>
+          </p>
         </section>
 
         <section className={styles.section}>

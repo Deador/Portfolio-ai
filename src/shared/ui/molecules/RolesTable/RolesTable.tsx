@@ -8,9 +8,14 @@ interface RolesTableRow {
   role?: string;
 
   /**
-   * Version label below the role
+   * Secondary caption below the role: "Версия 1.0" | "Оператор" | "Оба подразделения"
    */
-  version?: string;
+  label?: string;
+
+  /**
+   * Shared role: renders the label in accent color + "Shared role" chip
+   */
+  shared?: boolean;
 
   /**
    * Bullet list of tasks
@@ -28,6 +33,16 @@ interface RolesTableProps {
    * Block description (centered)
    */
   description?: string;
+
+  /**
+   * First column header text
+   */
+  headRole?: string;
+
+  /**
+   * Second column header text
+   */
+  headTasks?: string;
 
   /**
    * Table rows
@@ -49,6 +64,8 @@ interface RolesTableProps {
 export const RolesTable: React.FC<RolesTableProps> = ({
   title = 'Roles',
   description = 'Description',
+  headRole = 'Роль',
+  headTasks = 'Основные задачи',
   rows = [],
   className,
 }) => {
@@ -59,15 +76,20 @@ export const RolesTable: React.FC<RolesTableProps> = ({
 
       <div className={styles.table}>
         <div className={`${styles.tableRow} ${styles.tableHead}`}>
-          <span className={styles.headRole}>Роль</span>
-          <span className={styles.headTasks}>Основные задачи</span>
+          <span className={styles.headRole}>{headRole}</span>
+          <span className={styles.headTasks}>{headTasks}</span>
         </div>
 
         {rows.map((row, i) => (
           <div key={i} className={styles.tableRow}>
             <div className={styles.roleCell}>
               <span className={styles.rolePill}>{row.role}</span>
-              <span className={styles.version}>{row.version}</span>
+              {row.label && (
+                <span className={`${styles.label} ${row.shared ? styles.labelShared : ''}`}>
+                  {row.label}
+                </span>
+              )}
+              {row.shared && <span className={styles.sharedRole}>Shared role</span>}
             </div>
             <p className={styles.tasks}>{row.tasks}</p>
           </div>

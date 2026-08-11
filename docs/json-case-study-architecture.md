@@ -261,7 +261,7 @@ Production
 4. **`CasePage`** — для slug `acquiring` рендерит JSON через `CaseRenderer`; `CaseStudyAcquiring.tsx` остаётся за флагом до подтверждения паритета.
 5. **Storybook** — стори `CaseRenderer` с `case.json` (визуальный диф и валидация JSON на старте).
 6. **Верификация против Figma** по `figmaNode` (порядок, копирайт, варианты); устранение расхождений.
-7. **Удаление** хардкод-страницы после визуального паритета.
+7. **Удаление** хардкод-страницы после визуального паритета. ✅ **Выполнено:** `CaseStudyAcquiring.tsx` + `.stories.tsx` + `.module.scss` удалены, флаг `USE_JSON_RENDERER` убран; `CasePage` рендерит все кейсы из `case.json` через `CaseRenderer`.
 
 ---
 

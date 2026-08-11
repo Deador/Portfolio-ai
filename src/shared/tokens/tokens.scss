@@ -1,11 +1,11 @@
 // Design Tokens
 // Source of truth: docs/tokens.md
 // Extracted from Figma: https://www.figma.com/design/i3ANEQ3o83zbqvSqYGSYBC/
-// 49 semantic CSS Custom Properties
+// 50 semantic CSS Custom Properties
 
 :root {
   // ========================================
-  // COLORS (16 tokens)
+  // COLORS (17 tokens)
   // ========================================
 
   // Content colors
@@ -13,6 +13,9 @@
   --color-content-secondary: #787878;
   --color-content-tertiary: #adadad;
   --color-content-white: #f0f0f0;
+
+  // Accent color (Citate quote, TimelineStep status, RolesTable status)
+  --color-content-accent: #276ef1;
 
   // Background colors
   --color-background-white: #ffffff;
@@ -51,6 +54,7 @@
   --spacing-x10: 40px;
   --spacing-x12: 48px;
   --spacing-x14: 56px;
+  --spacing-x15: 60px;
   --spacing-x18: 72px;
   --spacing-x20: 80px;
   --spacing-x40: 160px;
@@ -98,10 +102,6 @@
   --text-xl: 400 24px/1.4 var(--font-family-onest);
   --text-m-lg: 400 18px/1.4 var(--font-family-onest);
   --text-s-xs: 400 14px/16px var(--font-family-onest);
-
-  // Legacy Text Styles (2 tokens)
-  --text-xs: 400 12px/1.3 var(--font-family-inter);
-  --text-legacy: 400 18px/1.3 var(--font-family-inter);
 
   // ========================================
   // EFFECTS (1 token)

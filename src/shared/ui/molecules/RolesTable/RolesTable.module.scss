@@ -87,9 +87,24 @@
   white-space: nowrap;
 }
 
-.version {
+.label {
   font: var(--text-s-medium);
   color: var(--color-content-secondary);
+}
+
+.labelShared {
+  font: var(--text-m-strong);
+  color: var(--color-content-accent);
+}
+
+.sharedRole {
+  align-self: flex-start;
+  padding: var(--spacing-x1) var(--spacing-x2);
+  border: 1px solid var(--color-content-accent);
+  border-radius: 999px;
+  font: var(--text-s-medium);
+  color: var(--color-content-accent);
+  white-space: nowrap;
 }
 
 .tasks {

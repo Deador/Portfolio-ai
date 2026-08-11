@@ -29,7 +29,9 @@ interface ResultsProps {
  * Results Component
  *
  * Component for displaying key results or outcomes.
- * Two size variants: L (1216px × 117px) and M (1216px × 96px)
+ * Two size variants:
+ * - L: title uses `--title-h-result` (56px Bold), description `--text-l` (20px)
+ * - M: title uses `--title-h1-strong` (40px Bold), description `--text-l` (20px)
  */
 export const Results: React.FC<ResultsProps> = ({
   size = 'L',
