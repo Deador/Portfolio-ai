@@ -2,6 +2,8 @@
 // All values from design tokens - no hardcoded values
 // Variants: insight, risk, callout, lesson, number
 
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .card {
   display: flex;
   flex-direction: column;
@@ -123,7 +125,7 @@
   position: relative;
   flex: 1 1 0;
   min-width: 0;
-  height: var(--spacing-x40);
+  min-height: var(--spacing-x40);
 
   .title {
     font: var(--text-s);

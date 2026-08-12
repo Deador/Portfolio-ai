@@ -91,7 +91,10 @@ export const RolesTable: React.FC<RolesTableProps> = ({
               )}
               {row.shared && <span className={styles.sharedRole}>Shared role</span>}
             </div>
-            <p className={styles.tasks}>{row.tasks}</p>
+            <p className={styles.tasks}>
+              {row.tasks && <span className={styles.tasksCaption}>{headTasks}</span>}
+              {row.tasks}
+            </p>
           </div>
         ))}
       </div>

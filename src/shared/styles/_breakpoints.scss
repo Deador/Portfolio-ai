@@ -1,0 +1,28 @@
+// Responsive Breakpoints
+// Source of truth: docs/tokens.md (Layout / Breakpoints)
+//
+// CSS media queries cannot consume CSS custom properties, so the breakpoints
+// live in this shared Sass partial and are consumed via `@use` in SCSS modules.
+// Never hardcode breakpoint values in component styles.
+
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+
+// Desktop-first: base styles = desktop. Apply overrides with max-width queries.
+@mixin up-to($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $bp-mobile) {
+    @content;
+  }
+}

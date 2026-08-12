@@ -6,7 +6,8 @@
   flex-direction: column;
   gap: var(--spacing-x3);
   align-items: flex-start;
-  width: 620px;
+  width: 100%;
+  max-width: 620px;
 }
 
 .title {

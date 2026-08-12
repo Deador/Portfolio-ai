@@ -1,8 +1,11 @@
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .retrospectiveSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1216px;
+  width: 100%;
+  max-width: var(--layout-content-max);
 }
 
 .container {
@@ -21,4 +24,8 @@
   padding: var(--spacing-x10) var(--spacing-x6);
   border-radius: var(--radius-24);
   background-color: var(--quote-card-background);
+
+  @include bp.mobile {
+    padding: var(--spacing-x6) var(--spacing-x4);
+  }
 }

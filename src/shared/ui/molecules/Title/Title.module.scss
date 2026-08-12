@@ -1,6 +1,8 @@
 // Title Component Styles
 // Main title/heading with two size variants
 
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -21,7 +23,8 @@
 // ========================================
 .L {
   font: var(--title-h1);
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
 }
 
 // ========================================
@@ -29,7 +32,8 @@
 // ========================================
 .M {
   font: var(--title-h2);
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
 }
 
 // ========================================
@@ -41,5 +45,6 @@
   font: var(--text-m);
   color: var(--color-content-primary);
   text-align: center;
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
 }

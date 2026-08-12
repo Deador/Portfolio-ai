@@ -6,7 +6,8 @@
   flex-direction: column;
   gap: var(--spacing-x3);
   align-items: flex-start;
-  width: 768px;
+  width: 100%;
+  max-width: 768px;
   font: var(--text-m-lg);
   color: var(--color-content-secondary);
 }

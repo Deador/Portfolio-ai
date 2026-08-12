@@ -1,7 +1,13 @@
+@use '../../../shared/styles/breakpoints' as bp;
+
 .personaRolesSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-x12);
   width: 100%;
+
+  @include bp.mobile {
+    gap: var(--spacing-x8);
+  }
 }

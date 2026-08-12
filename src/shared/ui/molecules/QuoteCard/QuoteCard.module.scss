@@ -1,8 +1,11 @@
 // QuoteCard Component Styles
 // Dark card displaying two featured quotes side by side
 
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .quoteCard {
-  width: 1216px;
+  width: 100%;
+  max-width: var(--layout-content-max);
   min-height: 284px;
   background-color: var(--quote-card-background);
   border-radius: var(--radius-24);
@@ -10,6 +13,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include bp.mobile {
+    padding: var(--spacing-x6) var(--spacing-x4);
+  }
 }
 
 .quoteGrid {
@@ -19,6 +26,15 @@
   gap: var(--spacing-x4);
   width: 100%;
   height: 100%;
+
+  @include bp.tablet {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  @include bp.mobile {
+    gap: var(--spacing-x4);
+  }
 }
 
 .centerIcon {
@@ -29,4 +45,8 @@
   height: 56px;
   flex-shrink: 0;
   color: var(--color-content-tertiary);
+
+  @include bp.tablet {
+    display: none;
+  }
 }

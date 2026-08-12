@@ -1,10 +1,13 @@
 // ProblemSection Component Styles
 
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .problemSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1216px;
+  width: 100%;
+  max-width: var(--layout-content-max);
 }
 
 .container {
@@ -27,6 +30,11 @@
   gap: var(--spacing-x18);
   align-items: flex-start;
   width: 100%;
+
+  @include bp.tablet {
+    flex-direction: column;
+    gap: var(--spacing-x8);
+  }
 }
 
 .paragraphBlock {
@@ -36,6 +44,10 @@
   align-items: flex-start;
   width: 560px;
   flex-shrink: 0;
+
+  @include bp.tablet {
+    width: 100%;
+  }
 }
 
 .paragraphTitle {
@@ -58,6 +70,10 @@
 .citateSlot {
   width: 460px;
   flex-shrink: 0;
+
+  @include bp.tablet {
+    width: 100%;
+  }
 }
 
 .cardsRow {
@@ -65,6 +81,10 @@
   gap: var(--spacing-x4);
   align-items: flex-start;
   width: 100%;
+
+  @include bp.mobile {
+    flex-direction: column;
+  }
 }
 
 .problemCard {

@@ -171,6 +171,34 @@ All spacing tokens follow a 4px scale base.
 
 ---
 
+# Layout
+
+Semantic layout tokens. Extracted from the existing implementation (declared in `src/shared/tokens/tokens.scss`), not Figma Variables.
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| layout/content-max | 1216px | Максимальная ширина контента секций CaseRenderer |
+| layout/page-max | 1280px | Максимальная ширина контейнера страницы |
+
+**Note (content limit):** `ReflectionSection` / `ReflectionRows` используют `max-width: 768px` (строки Reflection модуля) — это осознанный контентный лимит строк, **не** breakpoint и **не** CSS-токен. По аналогии `DecisionSection.noteBlock` и `TextImageSection.highlightCard` используют 800px.
+
+**Total Layout tokens: 2**
+
+---
+
+# Breakpoints
+
+CSS media queries cannot consume CSS custom properties, so breakpoints are defined
+as Sass values in `src/shared/styles/_breakpoints.scss` (shared partial, consumed
+via `@use`). Desktop-first: base styles = desktop, overrides via `max-width`.
+
+| Name | Value | Used for |
+|------|-------|----------|
+| tablet  | 1024px | container gutter 32→24; stacking of rows that do not fit (Problem, Context, Growth, QuoteCard) |
+| mobile  | 768px  | container gutter 32→16; section gap 160→80; single-column layouts; fluid images via aspect-ratio |
+
+---
+
 # Missing Data
 
 The following values are **NOT** found in extracted Figma Variables:

@@ -1,6 +1,8 @@
 // MetricCard Component Styles
 // Displays metrics with numbered badge in two variants
 
+@use '../../../../shared/styles/breakpoints' as bp;
+
 .card {
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@
 // ========================================
 .short {
   width: 292px;
-  height: 340px;
+  min-height: 340px;
   background-color: var(--color-background-white);
   border-radius: var(--radius-20);
 
@@ -54,6 +56,19 @@
   .description {
     font: var(--text-m);
     color: var(--color-content-primary);
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.mobile {
+  .short {
+    width: 100%;
+  }
+
+  .long {
+    width: 100%;
   }
 }
 

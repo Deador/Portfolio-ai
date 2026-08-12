@@ -1,6 +1,8 @@
 // RootLayout Styles
 // Main layout wrapper for all pages
 
+@use '../../shared/styles/breakpoints' as bp;
+
 .root {
   position: relative;
   min-height: 100vh;
@@ -15,6 +17,10 @@
   justify-content: center;
   padding: var(--spacing-x5) var(--spacing-x8);
   z-index: 100;
+
+  @include bp.mobile {
+    padding: var(--spacing-x2) var(--spacing-x4);
+  }
 }
 
 .mainContent {

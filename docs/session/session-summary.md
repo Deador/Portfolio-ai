@@ -69,6 +69,36 @@
 - Добавлена ссылка «Единая платформа коммуникации» → `/case/chat` на главную (`HomePage.tsx`).
 - Проверки: `type-check`, `lint` (0 errors; один pre-existing warning `react-refresh/only-export-components` в `src/app/router/index.tsx`), `vite build`, `build-storybook` — ок; оба `case.json` валидны; все ассеты резолвятся в сборке.
 
+### Реализация адаптивной модели CaseRenderer (audit → CSS-only)
+
+- Проведён аудит (`report/responsive-case-renderer-audit.md`) и реализована единая адаптивная модель для обоих кейсов («Эквайринг», «Единая платформа коммуникации»).
+- **Архитектура:** desktop-first, CSS-only; `case.json` и `CaseRenderer` не изменялись; viewport-логики в TSX нет.
+- **Breakpoints:** новый shared partial `src/shared/styles/_breakpoints.scss` — `$bp-tablet: 1024px`, `$bp-mobile: 768px` + миксины `up-to`/`tablet`/`mobile` (`@use` во всех SCSS-модулях). Никаких hardcoded `@media` значений вне partial.
+- **Layout tokens:** в `tokens.scss`/`tokens.md` добавлены `--layout-content-max: 1216px`, `--layout-page-max: 1280px`.
+- **Container** (`CaseRenderer.module.scss`): gutter desktop 32 → tablet 24 → mobile 16; section gap desktop 160 → mobile 80 (`--spacing-x20`).
+- **Секции:** фикс. `width: 1216px` заменён на `width: 100%; max-width: var(--layout-content-max)` во всех организмах; Reflection `max-width: 768px`, Decision noteBlock / TextImage highlight `max-width: 800px`.
+- **Image slots:** фикс. высоты заменены на `aspect-ratio` (Hero 1216/794, Feature 1216/761, Decision 1216/768, Context 556/582); Growth imageSlot 782px → fluid на ≤1024.
+- **Multi-column rows → column:** на ≤768 — Problem cards, Goals, Persona, Feature metrics, Chips, TextImage cards; на ≤1024 (физически не помещаются, нужны ≥1040px) — Problem/Context contentRow, Growth row (`align-items: stretch`).
+- **Карточки:** MetricCard.short 292×340/600 → width 100%, height auto на mobile; CommonCard.number 160px → auto; RowInfoProject 286×46 → 100%×auto.
+- **RolesTable** (единственное TSX-изменение): mobile-caption «Возможности»/«Основные задачи» (`<span className={styles.tasksCaption}>`, desktop `display: none`, на ≤768 `display: block`); на mobile `tableHead` скрыт, строки stacked (role+label → tasks).
+- **QuoteCard:** на ≤1024 колонка, центроиконка скрыта (декоративный DS-chrome); QuoteElement 472px → fluid (`max-width: 472px`), на mobile full width; правый автор выравнивается `flex-start`.
+- **Header/RootLayout:** на mobile header `flex-wrap` + `height: auto`, `headerWrapper` padding 8/16; `max-width: 1216px` → токен.
+- **Storybook** (`.storybook/preview.ts`): кастомные viewports 320/375/430/768/1024/1280, `defaultViewport: 'desktop'`.
+- **Финальный аудит:** нет оставшихся `1216px/1280px` вне токенов; фикс. высоты перекрыты mobile-правилами; единственный `@media` — в `_breakpoints.scss`; `matchMedia`/viewport-JS в TSX нет; JSON без viewport-полей.
+- Проверки: `type-check`, `lint` (0 errors; pre-existing warning в router), `vite build`, `build-storybook` (EXIT=0) — все ок.
+
+### Доработки адаптива по ревью (`report/responsive-review.md`)
+
+- Проведено ревью модели, отчёт: `report/responsive-review.md`. Рекомендации реализованы (CSS-only):
+- **Фикс. высоты → `min-height`** (анти-обрезка/«выпирающий» бейдж на tablet 769–1024): `MetricCard.short` `height: 340px` → `min-height: 340px`; `CommonCard.number` `height: 160px` → `min-height: var(--spacing-x40)`; убраны redundant mobile-оверрайды `height: auto`.
+- **Multi-card ряды на tablet:** первоначально — `flex-wrap` + `flex-basis: 240px` (2+2/2+1), но по отзыву владельца (рваная ширина карточек на ≤1024) подход переработан: все multi-card ряды на `@include bp.tablet` переведены в колонку с **`width: 100%` карточек** (Feature `min-width: 100%`; Goals/Persona `width: 100%` + `flex: none`); текст внутри MetricCard на ≤1024 центрируется (`.title`/`.description` `text-align: center`, карточка `align-items: center`). Goals `CommonCard.number` уже центрирован.
+- **Header:** `max-width: 1216px` → `var(--layout-content-max)` (последний остаток хардкода 1216); JSDoc в `Header.tsx` обновлён.
+- **QuoteElement.name:** `white-space: nowrap` → `overflow-wrap: break-word` (безопасный перенос длинных имён на 320px).
+- **RolesTable:** `.tasks`/`.roleCell` получили `min-width: 0` + `overflow-wrap: break-word` (защита от overflow на tablet, где таблица остаётся 2-колоночной).
+- **Шапка-оверлей на ≤768:** верхний отступ контейнера увеличен на `--spacing-x8` (108 → 140px) композицией токенов — страховка от наезда на wrap-шапку.
+- **docs/tokens.md:** задокументирован контентный лимит `Reflection 768px` (не breakpoint/не токен).
+- Проверки: `type-check`, `lint` (0 errors; pre-existing warning в router), `vite build`, `build-storybook` — ок.
+
 ## Files changed
 
 - `src/content/cases/chat/case.json` + `images/` (9 PNG) + `icons/` (2 SVG) — новые.
@@ -89,6 +119,13 @@
 - `src/shared/ui/organisms/FeatureSection/FeatureSection.module.scss` — растяжение MetricCard на полную ширину ряда (flex), `align-items: center`.
 - `src/shared/ui/molecules/Results/Results.module.scss` — size M → `--title-h1-strong` (40px Bold) + `--text-l` (20px), gap 16, убраны фикс. высоты.
 - `src/shared/ui/molecules/Results/Results.tsx` — JSDoc обновлён.
+- Доработка адаптива (по ревью): `MetricCard.module.scss`, `CommonCard.module.scss`, `FeatureSection.module.scss`, `GoalsSection.module.scss`, `PersonaSection.module.scss`, `Header.module.scss`+`Header.tsx` (JSDoc), `QuoteElement.module.scss`, `RolesTable.module.scss`, `CaseRenderer.module.scss` (верхний отступ), `docs/tokens.md`, `report/responsive-review.md` (новый).
+- `src/shared/styles/_breakpoints.scss` — новый shared partial (`$bp-tablet`, `$bp-mobile`, миксины `up-to`/`tablet`/`mobile`).
+- `src/shared/tokens/tokens.scss`, `docs/tokens.md` — добавлены `--layout-content-max: 1216px`, `--layout-page-max: 1280px`, разделы Layout/Breakpoints.
+- Адаптивные правила (SCSS) в 28 компонентах: все организмы (Hero, Problem, Goals, Persona, Feature, Context, Decision, Retrospective, Results, Reflection, Quote, Chips, TextImage, Growth, Header), молекулы (Title, MetricCard, CommonCard, RowInfoProject, QuoteElement, QuoteCard, RolesTable, ContextSectionRow, ReflectionRows), entities (CaseRenderer, MVPGrowthSection, PersonaRolesSection), RootLayout.
+- `src/shared/ui/molecules/RolesTable/RolesTable.tsx` — mobile-caption `headTasks` (единственное TSX-изменение).
+- `.storybook/preview.ts` — viewports 320/375/430/768/1024/1280, `defaultViewport: 'desktop'`.
+- `report/responsive-case-renderer-audit.md` — аудит и принятые решения (новый).
 - `docs/session/session-summary.md` — обновлён.
 
 ## Components created
@@ -102,16 +139,18 @@
 - Аватар user в `UserIcon.tsx` использует жёсткие цвета из экспорта Figma (`#1F1F1F`, `#C7C7C7`, `#A9A9A9`) — нет соответствующих токенов в tokens.md; DS может заменить их переменными `avatar/*`.
 - `docs/figma-workflow.md` имеет дубли/плейсхолдеры «...»; правила экспорта композитов зафиксированы draft-строки 14–19 (Q4). Нужна чистка файла.
 - Синхронизация API `CommonCard` в `docs/design-system.md` не выполнена.
-- Главная страница — плейсхолдер; footer не реализован; мобильная адаптация не начата.
+- Главная страница — плейсхолдер; footer не реализован.
+- Адаптив реализован CSS-only и проверен на build/сторис, но не проверен визуально вручную на реальных устройствах/эмуляторах; финальная мобильная типографика не введена (в токенах отсутствует).
+- Composite PNG в обоих кейсах (flows-in-out, operator-context, pause-flow, substatuses, hero-main, task, process, metrics, feature01-03) содержат мелкий текст — на 320–430px нечитаемы; нужны mobile-ассеты или пересборка.
 - Sass `legacy-js-api` deprecation warnings при сборке.
 - Отсутствуют `docs/agents/case-study-writer.md` и `docs/agents/code-reviewer.md` (битые ссылки в AGENTS.md).
 
 ## Next recommended task
 
-Визуально сверить стори `Case/CaseRenderer/Chat` (и `Acquiring`) с Figma по `figmaNode`: layout TextImageSection cards (3×fill, gap 16), чип «Shared role», высота QuoteCard при длинных цитатах. Хардкод-страница уже удалена — следующий кейс (Mobile Banking) добавить как чистый контент (папка + JSON + изображения).
+Визуально сверить стори `Case/CaseRenderer/Chat` (и `Acquiring`) с Figma по `figmaNode`: layout TextImageSection cards (3×fill, gap 16), чип «Shared role», высота QuoteCard при длинных цитатах. Параллельно проверить адаптивную модель (viewport 320–1280 в Storybook) — особенно RolesTable stacked, QuoteCard column, image-slots aspect-ratio, gap 160→80. Хардкод-страница уже удалена — следующий кейс (Mobile Banking) добавить как чистый контент (папка + JSON + изображения).
 
 ## Suggested prompt for the next session
 
 ```text
-Проверь визуальный паритет кейсов «Эквайринг» и «Единая платформа коммуникации» в Storybook (стори Case/CaseRenderer/Acquiring и Chat) с Figma (канвас 1799:8278 и 32153:7885, file i3ANEQ3o83zbqvSqYGSYBC): сверь TextImageSection cards, чип «Shared role», высоту QuoteCard, все изображения по figmaNode. Затем почисти дубли/плейсхолдеры «...» в docs/figma-workflow.md.
+Проверь визуальный паритет кейсов «Эквайринг» и «Единая платформа коммуникации» в Storybook (стори Case/CaseRenderer/Acquiring и Chat) с Figma (канвас 1799:8278 и 32153:7885, file i3ANEQ3o83zbqvSqYGSYBC): сверь TextImageSection cards, чип «Shared role», высоту QuoteCard, все изображения по figmaNode, а также адаптивную модель (viewports 320/375/430/768/1024/1280): RolesTable stacked, QuoteCard column, image-slots aspect-ratio, section gap 160→80, gutter 32/24/16. Затем почисти дубли/плейсхолдеры «...» в docs/figma-workflow.md.
 ```
