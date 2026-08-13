@@ -1,0 +1,73 @@
+// HomeCaseCard Component Styles
+// Карточка кейса на главной
+
+@use '../../../../../shared/styles/breakpoints' as bp;
+
+.card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-x8);
+  padding: var(--spacing-x16) var(--spacing-x6) var(--spacing-x6);
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-24);
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-element);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-x2);
+}
+
+.title {
+  margin: 0;
+  font: var(--title-h3);
+  color: var(--color-content-primary);
+}
+
+.subtitle {
+  margin: 0;
+  font: var(--text-m);
+  color: var(--color-content-primary);
+}
+
+.imageSlot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 464 / 384; // Figma: композит превью кейса (тинт + девайс)
+  border-radius: var(--radius-16);
+  overflow: hidden;
+  background-color: var(--color-background-secondary);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; // композит целиком, без кропа
+  display: block;
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.tablet {
+  .card {
+    width: 100%;
+  }
+}
+
+@include bp.mobile {
+  .card {
+    padding-top: var(--spacing-x6);
+  }
+}

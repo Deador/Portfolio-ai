@@ -19,6 +19,14 @@
   }
 }
 
+// ========================================
+// INVERTED THEME (over dark hero)
+// Makes the logo (currentColor) inherit a light color
+// ========================================
+.inverted {
+  color: var(--color-content-white);
+}
+
 .logoContainer {
   display: flex;
   flex: 1 0 0;

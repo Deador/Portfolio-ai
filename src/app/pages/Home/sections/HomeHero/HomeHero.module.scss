@@ -1,0 +1,209 @@
+// HomeHero Component Styles
+// Тёмный hero главной страницы (--color-background-hero)
+
+@use '../../../../../shared/styles/breakpoints' as bp;
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // Figma: шапка 88px (высота 48px + отступы 2×20px) + 132px до гифки
+  padding-top: calc(48px + var(--spacing-x5) * 2 + 132px);
+  padding-bottom: var(--spacing-x30); // hero → следующий контент
+  background-color: var(--color-background-hero);
+  color: var(--color-content-white);
+  overflow: hidden;
+}
+
+// ========================================
+// Текст-полоса (бегущая строка, заменяет GIF «text 3»)
+// Два дубля в треке + translateX(-50%) = бесшовный цикл.
+// ========================================
+.marquee {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 132px; // Figma: полоса 1440×132 (y218)
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  // Медленная прокрутка: ~120px/s (полоса должна быть читаемой).
+  animation: marquee 120s linear infinite;
+}
+
+.marqueeGroup {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.marqueeItem {
+  font: var(--title-marquee);
+  color: var(--color-content-white);
+}
+
+.marqueeSeparator {
+  white-space: pre;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+// ========================================
+// Контент (showreel + scroll + текст + CTA)
+// ========================================
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-x10) var(--spacing-x8);
+}
+
+.showreel {
+  position: relative;
+  width: 577px;
+  max-width: 100%;
+  aspect-ratio: 577 / 400;
+}
+
+.showreelFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+// ========================================
+// Scroll-индикатор (Figma y798, между showreel и текстом)
+// ========================================
+.scrollIndicator {
+  margin-top: 10px; // Figma: showreel → scroll ≈10px
+}
+
+.scrollLine {
+  fill: var(--color-avatar-placeholder);
+}
+
+.scrollMouse {
+  stroke: var(--color-avatar-placeholder);
+}
+
+.scrollDot {
+  fill: var(--color-badge-text);
+  transform-origin: 10px 88px;
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x8);
+  max-width: 540px;
+  margin-top: var(--spacing-x16); // Figma: scroll → текст ≈64px
+  text-align: center;
+}
+
+.heading {
+  margin: 0;
+  font: var(--title-h3);
+  color: var(--color-content-white);
+}
+
+.description {
+  margin: 0;
+  font: var(--text-s);
+  color: var(--color-content-white);
+}
+
+.ctaArrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-x12); // 48px
+  height: var(--spacing-x12);
+  border: 1px solid var(--color-content-white);
+  border-radius: 999px;
+  color: var(--color-content-white);
+}
+
+// ========================================
+// Декор: бейдж «UI/UX» (#2E343F, поверх гифки справа)
+// ========================================
+.badge {
+  position: absolute;
+  top: 305px; // Figma: badge y305
+  right: 0;
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.tablet {
+  .content {
+    padding: var(--spacing-x8) var(--spacing-x6);
+  }
+}
+
+@include bp.mobile {
+  .hero {
+    padding-bottom: var(--spacing-x10);
+  }
+
+  .marquee {
+    display: none;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}

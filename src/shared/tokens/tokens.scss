@@ -23,6 +23,15 @@
   --color-background-dark: #1f1f1f;
   --color-background-secondary: #e2e4e7;
 
+  // Hero background (Home page hero + skills, dark navy from Figma)
+  --color-background-hero: #060c17;
+
+  // Divider lines on hero/skills dark background (Figma #292D37)
+  --color-background-hero-line: #292d37;
+
+  // Hero badge «UI/UX» background (Figma #2E343F)
+  --color-background-hero-badge: #2e343f;
+
   // Icon colors
   --color-icon-line: #33363f;
   --color-icon-fill: #222222;
@@ -55,8 +64,10 @@
   --spacing-x12: 48px;
   --spacing-x14: 56px;
   --spacing-x15: 60px;
+  --spacing-x16: 64px;
   --spacing-x18: 72px;
   --spacing-x20: 80px;
+  --spacing-x30: 120px;
   --spacing-x40: 160px;
 
   // ========================================
@@ -82,7 +93,9 @@
   // Format: weight size/line-height family
   // ========================================
 
-  // Title Styles (8 tokens)
+  // Title Styles (10 tokens)
+  --title-marquee: 600 120px/1.3 var(--font-family-onest);
+  --title-display: 500 68px/1.3 var(--font-family-onest);
   --title-h-result: 700 56px/1.3 var(--font-family-onest);
   --title-h1-strong: 700 40px/1.3 var(--font-family-onest);
   --title-h1: 600 40px/1.3 var(--font-family-onest);

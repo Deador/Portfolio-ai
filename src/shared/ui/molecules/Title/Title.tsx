@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import styles from './Title.module.scss';
 
-type TitleSize = 'L' | 'M';
+type TitleSize = 'L' | 'M' | 'XL';
 
 interface TitleProps {
   /**
-   * Title size variant: 'L' for large (800px), 'M' for medium (720px)
+   * Title size variant: 'XL' for display (68px), 'L' for large (720px), 'M' for medium (720px)
    */
   size?: TitleSize;
 

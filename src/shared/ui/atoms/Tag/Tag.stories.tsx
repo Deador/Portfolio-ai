@@ -13,6 +13,11 @@ const meta = {
       control: 'text',
       description: 'Tag text content',
     },
+    variant: {
+      control: 'radio',
+      options: ['default', 'light', 'inverted'],
+      description: 'Tag variant',
+    },
   },
 } satisfies Meta<typeof Tag>;
 
@@ -35,6 +40,25 @@ export const ShortText: Story = {
   args: {
     text: 'Tag',
   },
+};
+
+export const Light: Story = {
+  args: {
+    variant: 'light',
+    text: '2022 – 2025',
+  },
+};
+
+export const Inverted: Story = {
+  args: {
+    variant: 'inverted',
+    text: 'UI/UX',
+  },
+  render: (args) => (
+    <div style={{ padding: '20px', background: '#060c17' }}>
+      <Tag {...args} />
+    </div>
+  ),
 };
 
 export const LongText: Story = {

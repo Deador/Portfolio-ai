@@ -125,3 +125,17 @@ export const WithClickHandler: Story = {
     </div>
   ),
 };
+
+export const Inverted: Story = {
+  args: {
+    theme: 'inverted',
+    button1Text: 'Телеграмм',
+    button2Text: 'Прочие контакты',
+    ctaText: 'Резюме',
+  },
+  render: (args) => (
+    <div style={{ padding: '20px', background: '#060c17' }}>
+      <Header {...args} />
+    </div>
+  ),
+};

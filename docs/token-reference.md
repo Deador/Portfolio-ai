@@ -103,12 +103,14 @@ Use only for composition. Prefer semantic typography tokens below.
 
 Format: `weight size/line-height family`
 
-All 15 typography tokens use the CSS `font` shorthand for efficient, clean API:
+All 22 typography tokens use the CSS `font` shorthand for efficient, clean API:
 
-#### Title Styles (8 tokens)
+#### Title Styles (10 tokens)
 
 | Token | Value | Use Case |
 |-------|-------|----------|
+| `--title-marquee` | 600 120px/1.3 Onest | Hero marquee text strip (бегущая строка, заменяет GIF) |
+| `--title-display` | 500 68px/1.3 Onest | Section display heading (Home «Опыт»/«Кейсы») |
 | `--title-h-result` | 700 56px/1.3 Onest | Large display heading |
 | `--title-h1-strong` | 700 40px/1.3 Onest | Bold heading h1 |
 | `--title-h1` | 600 40px/1.3 Onest | Semibold heading h1 |

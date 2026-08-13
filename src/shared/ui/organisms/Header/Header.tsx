@@ -2,7 +2,14 @@ import React from 'react';
 import styles from './Header.module.scss';
 import { Button } from '../../atoms/Button/Button';
 
+type HeaderTheme = 'default' | 'inverted';
+
 interface HeaderProps {
+  /**
+   * Header theme: 'default' for light surfaces, 'inverted' for dark hero
+   */
+  theme?: HeaderTheme;
+
   /**
    * Logo/branding element
    */
@@ -65,8 +72,12 @@ interface HeaderProps {
  * - Navigation container (right side)
  *   - Up to 4 link buttons (text-only)
  *   - 1 CTA button (filled)
+ *
+ * `theme="inverted"` switches navigation + CTA to a light palette
+ * for use over dark sections (e.g. the Home hero).
  */
 export const Header: React.FC<HeaderProps> = ({
+  theme = 'default',
   logo,
   button1Text = 'Телеграмм',
   button2Text = 'Прочие контакты',
@@ -78,8 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
   onCtaClick,
   className,
 }) => {
+  const inverted = theme === 'inverted';
+
   return (
-    <header className={`${styles.header} ${className || ''}`.trim()}>
+    <header className={`${styles.header} ${styles[theme]} ${className || ''}`.trim()}>
       {/* Logo Container */}
       <div className={styles.logoContainer}>
         {logo}
@@ -87,14 +100,15 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Navigation Container */}
       <div className={styles.navContainer}>
-        <Button type="link" text={button1Text} />
-        <Button type="link" text={button2Text} />
+        <Button type="link" inverted={inverted} text={button1Text} />
+        <Button type="link" inverted={inverted} text={button2Text} />
 
-        {showButton3 && <Button type="link" text={button3Text} />}
-        {showButton4 && <Button type="link" text={button4Text} />}
+        {showButton3 && <Button type="link" inverted={inverted} text={button3Text} />}
+        {showButton4 && <Button type="link" inverted={inverted} text={button4Text} />}
 
         <Button
           type="filled"
+          inverted={inverted}
           text={ctaText}
           onClick={onCtaClick}
         />

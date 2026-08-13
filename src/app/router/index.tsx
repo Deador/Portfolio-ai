@@ -1,29 +1,26 @@
-import React from 'react';
-import { createBrowserRouter, RouteObject, Outlet } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
+import HomePage from '../pages/Home/HomePage';
 import CasePage from '../pages/CasePage';
 import RootLayout from '../layouts/RootLayout';
 
-/**
- * Layout wrapper component for use in routes
- */
-const LayoutWrapper = () => (
-  <RootLayout>
-    <Outlet />
-  </RootLayout>
-);
-
 const routes: RouteObject[] = [
   {
-    element: React.createElement(LayoutWrapper),
     children: [
       {
         path: '/',
-        element: React.createElement(HomePage),
+        element: (
+          <RootLayout headerTheme="inverted">
+            <HomePage />
+          </RootLayout>
+        ),
       },
       {
         path: '/case/:slug',
-        element: React.createElement(CasePage),
+        element: (
+          <RootLayout>
+            <CasePage />
+          </RootLayout>
+        ),
       },
     ],
   },

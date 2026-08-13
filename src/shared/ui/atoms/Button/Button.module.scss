@@ -50,3 +50,60 @@
     background-color: var(--color-content-primary);
   }
 }
+
+// ========================================
+// PILL SHAPE (full radius, e.g. hero CTA)
+// ========================================
+.pill {
+  border-radius: 999px;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+// ========================================
+// OUTLINE VARIANT (Bordered, transparent)
+// ========================================
+.outline {
+  font: var(--text-s);
+  color: var(--color-content-primary);
+  border: 1px solid var(--color-content-primary);
+  background: transparent;
+  padding: var(--spacing-x3) var(--spacing-x4);
+  border-radius: var(--radius-8);
+  gap: var(--spacing-x2);
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// ========================================
+// INVERTED (light palette for dark surfaces)
+// ========================================
+.inverted {
+  &.link {
+    color: var(--color-content-white);
+  }
+
+  &.filled {
+    background-color: var(--color-content-white);
+    color: var(--color-content-primary);
+
+    &:hover {
+      background-color: var(--color-content-secondary);
+    }
+  }
+
+  &.outline {
+    color: var(--color-content-white);
+    border-color: var(--color-content-white);
+
+    &:hover {
+      background-color: var(--color-background-white);
+      color: var(--color-content-primary);
+    }
+  }
+}

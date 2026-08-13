@@ -1,0 +1,32 @@
+// HomePage Component Styles
+// Главная страница: композиция секций
+
+@use '../../../shared/styles/breakpoints' as bp;
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-background-primary);
+}
+
+// Контент «Опыт»/«Кейсы»: ограничение ширины по аналогии со страницей
+// кейса (CaseRenderer.pageContainer — --layout-page-max, по центру).
+.content {
+  width: 100%;
+  max-width: var(--layout-page-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x30);
+  padding: 0 var(--spacing-x8);
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.mobile {
+  .content {
+    gap: var(--spacing-x12);
+    padding: 0 var(--spacing-x4);
+  }
+}

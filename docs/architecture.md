@@ -98,6 +98,12 @@ src/
 ├── app/
 │   ├── router/
 │   ├── pages/
+│   │   └── Home/
+│   │       ├── data.ts               # типизированный контент главной (Figma)
+│   │       ├── hooks/
+│   │       ├── sections/             # HomeHero, HomeExperience, HomeCases,
+│   │       │                         # HomeSkills, HomeScrollTop
+│   │       └── HomePage.tsx          # композиция секций (default export)
 │   └── layouts/
 ├── shared/
 │   ├── ui/
@@ -111,9 +117,11 @@ src/
 ├── entities/
 │   └── case/
 ├── content/
-│   └── cases/
-│       ├── acquiring/
-│       └── chat/
+│   ├── cases/
+│   │   ├── acquiring/
+│   │   └── chat/
+│   └── home/
+│       └── images/                   # showreel, GIF, скрины кейсов, декор
 └── lib/
     └── content-parser/
 ```

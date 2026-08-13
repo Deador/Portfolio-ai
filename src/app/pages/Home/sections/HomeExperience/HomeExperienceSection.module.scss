@@ -1,0 +1,81 @@
+// HomeExperienceSection Component Styles
+// Секция «Опыт»: заголовок + карточки компаний
+
+@use '../../../../../shared/styles/breakpoints' as bp;
+
+// Секции главной ограничены на уровне HomePage `.content`
+// (max-width: var(--layout-page-max), по центру, гуттеры 32px).
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x8);
+  padding-top: var(--spacing-x20); // отступ секции сверху (80px)
+}
+
+.cards {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-x4);
+}
+
+.card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x4); // Figma: компания → буллеты = 16px
+  padding: var(--spacing-x6);
+  background-color: var(--color-background-white);
+  border-radius: var(--radius-24);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-x2);
+}
+
+.company {
+  margin: 0;
+  font: var(--title-h3);
+  color: var(--color-content-primary);
+}
+
+.bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x3); // Figma: буллет → буллет = 12px
+}
+
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-x2);
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background-color: var(--color-avatar-placeholder);
+}
+
+.bulletText {
+  font: var(--text-m);
+  color: var(--color-content-primary);
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.tablet {
+  .cards {
+    flex-direction: column;
+  }
+}

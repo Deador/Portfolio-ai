@@ -11,8 +11,17 @@ const meta = {
   argTypes: {
     type: {
       control: 'radio',
-      options: ['link', 'filled'],
+      options: ['link', 'filled', 'outline'],
       description: 'Button variant',
+    },
+    shape: {
+      control: 'radio',
+      options: ['rounded', 'pill'],
+      description: 'Button shape',
+    },
+    inverted: {
+      control: 'boolean',
+      description: 'Light palette for dark surfaces',
     },
     text: {
       control: 'text',
@@ -44,6 +53,53 @@ export const Filled: Story = {
     type: 'filled',
     text: 'Label',
   },
+};
+
+export const Outline: Story = {
+  args: {
+    type: 'outline',
+    text: 'Label',
+  },
+};
+
+export const OutlineInverted: Story = {
+  args: {
+    type: 'outline',
+    inverted: true,
+    text: 'Смотреть кейсы',
+  },
+  render: (args) => (
+    <div style={{ padding: '20px', background: '#060c17' }}>
+      <Button {...args} />
+    </div>
+  ),
+};
+
+export const PillInverted: Story = {
+  args: {
+    type: 'outline',
+    shape: 'pill',
+    inverted: true,
+    text: 'Смотреть кейсы',
+  },
+  render: (args) => (
+    <div style={{ padding: '20px', background: '#060c17' }}>
+      <Button {...args} />
+    </div>
+  ),
+};
+
+export const FilledInverted: Story = {
+  args: {
+    type: 'filled',
+    inverted: true,
+    text: 'Резюме',
+  },
+  render: (args) => (
+    <div style={{ padding: '20px', background: '#060c17' }}>
+      <Button {...args} />
+    </div>
+  ),
 };
 
 export const LinkExample: Story = {

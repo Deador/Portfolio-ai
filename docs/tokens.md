@@ -27,6 +27,8 @@ Extracted: 2026-07-25
 | background/primary | background | #f6f7f8 | Page background |
 | background/dark | background | #1f1f1f | Dark background |
 | background/secondary | background | #e2e4e7 | Secondary background (light gray) |
+| background/hero | background | #060c17 | Home hero + skills background (dark navy, из Figma `#060C17`) |
+| background/hero-line | background | #292d37 | Divider lines на hero/skills (Figma `#292D37`) |
 
 ## Badge (MetricCard)
 
@@ -77,19 +79,19 @@ All spacing tokens follow a 4px scale base.
 | padding/x12 | 48 | 12x | |
 | padding/x14 | 56 | 14x | |
 | padding/x15 | 60 | 15x | GrowthSection: title → rows (Figma 60px, добавлен вручную) |
+| padding/x16 | 64 | 16x | Home case cards: top padding 64px (Figma, добавлен вручную) |
 | padding/x18 | 72 | 18x | |
 | padding/x20 | 80 | 20x | |
+| padding/x30 | 120 | 30x | Home: gap между блоками «Опыт» и «Кейсы» (Figma, добавлен вручную) |
 | padding/x40 | 160 | 40x | Section gap (assembled case-study page) |
 
-**Total Spacing tokens: 13**
+**Total Spacing tokens: 15**
 
 **Missing tokens (gaps in scale):**
 - padding/x7 (28px) — not found in variables
 - padding/x9 (36px) — not found in variables
 - padding/x11 (44px) — not found in variables
 - padding/x13 (52px) — not found in variables
-- padding/x15 (60px) — not found in variables
-- padding/x16 (64px) — not found in variables
 - padding/x17 (68px) — not found in variables
 - padding/x19 (76px) — not found in variables
 
@@ -120,6 +122,8 @@ All spacing tokens follow a 4px scale base.
 
 | Name | Font Family | Size | Weight | Weight Value | Line Height (ratio) | Line Height (px) | Letter Spacing |
 |------|------------|------|--------|--------------|-------------------|------------------|-----------------|
+| Title/Marquee | Onest | 120px | SemiBold | 600 | 1.3x | 156px | 0 |
+| Title/Display | Onest | 68px | Medium | 500 | 1.3x | 88.4px | 0 |
 | Title/H_Result | Onest | 56px | Bold | 700 | 1.3x | 72.8px | 0 |
 | Title/H1_strong | Onest | 40px | Bold | 700 | 1.3x | 52px | 0 |
 | Title/H1 | Onest | 40px | SemiBold | 600 | 1.3x | 52px | 0 |
@@ -150,7 +154,7 @@ All spacing tokens follow a 4px scale base.
 | Text/XS | Inter | 12px | Regular | 400 | 1.3x | 15.6px | 0 |
 | Text | Inter | 18px | Regular | 400 | 1.3x | 23.4px | 0 |
 
-**Total Typography tokens: 20**
+**Total Typography tokens: 22**
 
 **Notes:**
 - Most typography uses "Onest" font family
@@ -158,6 +162,8 @@ All spacing tokens follow a 4px scale base.
 - All letter-spacing values are 0
 - Text transform: not specified
 - Text decoration: not specified
+- `Title/Display` — добавлен вручную (Home «Опыт»/«Кейсы», Figma local `Title/H2` 68px Medium); `Title/H2` в DS = 32px SemiBold, поэтому для 68px используется отдельный токен
+- `Title/Marquee` — добавлен вручную (hero текст-полоса, Figma GIF `text 3`); Onest SemiBold 120px, line-height 1.3
 
 ---
 
@@ -206,6 +212,7 @@ The following values are **NOT** found in extracted Figma Variables:
 ## Colors
 - `background/primary`, `badge/*`, `avatar/*`, `quote-card/*` — **added to code manually** (page background, MetricCard badge, PersonaCard/Citate avatar, QuoteCard panel); not yet in Figma Variables — need to be added
 - `content/accent` (#276ef1) — extracted from Figma (variable `accent_f043fd95`, used in Citate quote accent, TimelineStep status icons, RolesTable status) and added to code
+- `background/hero` (#060c17) — **added to code manually** (Home hero + skills); not yet in Figma Variables — need to be added
 
 ## Spacing
 - padding/x7 (28px), padding/x9 (36px), and 6 other gaps — mentioned in design-system.md but NOT in Figma
@@ -218,20 +225,22 @@ The following values are **NOT** found in extracted Figma Variables:
 
 # Summary
 
-**Total tokens extracted from Figma:**
-- Colors: 17
-- Spacing: 13
+**Total tokens:**
+- Colors: 19
+- Spacing: 15
 - Radius: 5
-- Typography: 20
+- Typography: 22
 - Effects: 1
-- **TOTAL: 56 tokens**
+- Layout: 2
+- **TOTAL: 64 tokens**
 
 **Inconsistencies with docs/design-system.md:**
-1. Spacing scale has gaps (missing x7, x9, x11, x13, x15, x16, x17, x19)
+1. Spacing scale has gaps (missing x7, x9, x11, x13, x17, x19)
 2. Radius scale has gaps (missing x4, x32) — radius-12 is used in code but not yet added to Figma Variables
 3. Typography: Some use "Inter", some use "Onest" (inconsistent font family)
+4. `Title/Display` (68px Medium) — добавлен для Home; не совпадает с DS `Title/H2` (32px SemiBold)
 
-**Note:** Tokens `background/primary`, `badge/*`, `avatar/*`, `quote-card/*`, `radius/radius-12` are implemented in code and documented here, but are NOT yet present in Figma Variables. Add them to the Design System before the next export.
+**Note:** Tokens `background/primary`, `badge/*`, `avatar/*`, `quote-card/*`, `background/hero`, `padding/x16`, `padding/x30`, `radius/radius-12`, `Title/Display` are implemented in code and documented here, but are NOT yet present in Figma Variables. Add them to the Design System before the next export.
 
 **Data extraction method:**
 - figma_get_variable_defs with nodeId=1727:15731 (canvas level)

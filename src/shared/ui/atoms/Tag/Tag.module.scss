@@ -1,5 +1,6 @@
 // Tag Component Styles
-// Dark badge for categorization and labeling
+// Pill for categorization and labeling
+// Variants: default (dark), light (RolesTable role pill), inverted (hero)
 
 .tag {
   display: inline-flex;
@@ -12,4 +13,18 @@
   color: var(--color-content-white);
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+// Light pill (RolesTable role pill): light bg, primary text, full radius
+.light {
+  background-color: var(--color-avatar-background);
+  color: var(--color-content-primary);
+  border-radius: 999px;
+}
+
+// Inverted (on dark hero): hero-badge bg, white text, full radius
+.inverted {
+  background-color: var(--color-background-hero-badge);
+  color: var(--color-content-white);
+  border-radius: 999px;
 }

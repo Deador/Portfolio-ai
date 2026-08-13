@@ -1,0 +1,140 @@
+// HomeSkillsSection Component Styles
+// Секция «Навыки»: светлая зона перехода (256px), «sheet» на границе
+// светлого и тёмного, тёмная зона с контентом и кнопкой «Наверх».
+// Геометрия из Figma 33291:4337 / 4367.
+// Отступ 80px сверху: между карточками кейсов и листом.
+// Лист 532×366 пересекает границу: нижние ~30% (110px) — на тёмной зоне,
+// верхние ~70% (256px) — на блоке кейсов.
+
+@use '../../../../../shared/styles/breakpoints' as bp;
+
+.section {
+  position: relative;
+  width: 100%;
+  margin-top: var(--spacing-x20); // 80px до листа от кейсов
+}
+
+// Тёмная зона: Figma 4338 — dark frame 1440×1024, начинается на y256
+// секции (выше — светлая зона, продолжение фона страницы).
+// y256 = 366 − 110: нижние 30% листа ложатся на тёмную зону.
+.darkZone {
+  min-height: 1024px;
+  margin-top: 256px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-hero);
+}
+
+.inner {
+  width: 100%;
+  max-width: 648px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x20);
+  padding: 168px var(--spacing-x8) 0;
+}
+
+.header {
+  width: 540px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-x6);
+}
+
+.heading {
+  margin: 0;
+  font: var(--title-h3);
+  color: var(--color-content-white);
+  text-align: center;
+}
+
+.description {
+  margin: 0;
+  font: var(--text-s);
+  color: var(--color-content-white);
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x6);
+}
+
+.skillRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-x4);
+}
+
+// Figma: колонки заголовка и описания ряда — fill (≈50/50).
+.skillTitle {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font: var(--text-s);
+  color: var(--color-content-tertiary);
+}
+
+.skillDescription {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font: var(--text-s);
+  color: var(--color-content-white);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--color-background-hero-line);
+}
+
+// Кнопка «Наверх» на дне тёмной зоны (Figma y1174).
+.scrollTop {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-x10) 0 var(--spacing-x2);
+}
+
+// «Sheet» — декоративный коллаж 532×366 (Figma 33291:4367),
+// единый PNG с прозрачностью; пересекает границу светлой/тёмной зон.
+.sheet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 532px;
+  height: 366px;
+  max-width: 100%;
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.mobile {
+  .darkZone {
+    min-height: 0;
+    margin-top: 0;
+  }
+
+  .inner {
+    padding-top: var(--spacing-x10);
+  }
+
+  .scrollTop {
+    padding-top: var(--spacing-x10);
+  }
+
+  .sheet {
+    display: none;
+  }
+
+  .skillRow {
+    flex-direction: column;
+    gap: var(--spacing-x2);
+  }
+}

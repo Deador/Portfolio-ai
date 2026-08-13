@@ -1,0 +1,28 @@
+// HomeCasesSection Component Styles
+// Секция «Кейсы»: заголовок + ряд карточек
+
+@use '../../../../../shared/styles/breakpoints' as bp;
+
+// Секции главной ограничены на уровне HomePage `.content`
+// (max-width: var(--layout-page-max), по центру, гуттеры 32px).
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x10); // Figma: заголовок → карточки ≈40px
+}
+
+.cards {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-x4);
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+@include bp.tablet {
+  .cards {
+    flex-direction: column;
+  }
+}
