@@ -13,7 +13,7 @@
 .section {
   position: relative;
   width: 100%;
-  margin-top: var(--spacing-x20); // 80px до листа от кейсов
+  margin-top: var(--spacing-x40); // 160px до листа от кейсов (было 80px, решение владельца)
   padding-top: 278px; // светлая зона до тёмного фона (Figma 4338 @ y278)
 }
 
