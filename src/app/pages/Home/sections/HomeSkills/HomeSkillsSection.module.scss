@@ -1,10 +1,12 @@
 // HomeSkillsSection Component Styles
-// Секция «Навыки»: светлая зона перехода (256px), «sheet» на границе
-// светлого и тёмного, тёмная зона с контентом и кнопкой «Наверх».
-// Геометрия из Figma 33291:4337 / 4367.
+// Секция «Навыки»: светлая зона перехода реализована как padding-top
+// секции (НЕ margin первого ребёнка: между .section и .darkZone отступы
+// схлопнулись бы, и absolute-ExpertCard якорился к началу тёмной зоны).
+// Тёмная зона с контентом и кнопкой «Наверх», ExpertCard на границе.
+// Геометрия из Figma 33291:4337 / 4338 / 4367.
 // Отступ 80px сверху: между карточками кейсов и листом.
-// Лист 532×366 пересекает границу: нижние ~30% (110px) — на тёмной зоне,
-// верхние ~70% (256px) — на блоке кейсов.
+// Лист 532×366 пересекает границу: тёмная зона начинается на y278,
+// нижние 88px (24%) листа — на тёмном фоне, верхние 278px — на светлом.
 
 @use '../../../../../shared/styles/breakpoints' as bp;
 
@@ -12,14 +14,14 @@
   position: relative;
   width: 100%;
   margin-top: var(--spacing-x20); // 80px до листа от кейсов
+  padding-top: 278px; // светлая зона до тёмного фона (Figma 4338 @ y278)
 }
 
-// Тёмная зона: Figma 4338 — dark frame 1440×1024, начинается на y256
+// Тёмная зона: Figma 4338 — dark frame 1440×1024, начинается на y278
 // секции (выше — светлая зона, продолжение фона страницы).
-// y256 = 366 − 110: нижние 30% листа ложатся на тёмную зону.
+// y278 = 366 − 88: нижние 88px (24%) ExpertCard ложатся на тёмную зону.
 .darkZone {
   min-height: 1024px;
-  margin-top: 256px;
   display: flex;
   flex-direction: column;
   background-color: var(--color-background-hero);
@@ -100,8 +102,17 @@
   padding: var(--spacing-x10) 0 var(--spacing-x2);
 }
 
-// «Sheet» — декоративный коллаж 532×366 (Figma 33291:4367),
-// единый PNG с прозрачностью; пересекает границу светлой/тёмной зон.
+// ========================================
+// «Sheet» — декоративный коллаж на границе светлой зоны и тёмного фона.
+// Обёртка 532×366 (absolute в .section, по центру) содержит два слоя:
+// 1) лист — единый PNG из Figma group 33306:1132 (532×320, розовая
+//    карточка + фото + EXPERT UX), контент занимает y46…y366 секции:
+//    перекрытие тёмной зоны 88px (24%), зазор до заголовка 80px;
+// 2) круг circle2 (узел 33291:4379, x24/y0, верхний слой) с медленным
+//    вращением по часовой стрелке (12s/оборот, linear infinite).
+// Обёртка идёт в DOM после .darkZone → рисуется поверх обоих фонов
+// без z-index и отрицательных margin. На mobile скрывается целиком.
+// ========================================
 .sheet {
   position: absolute;
   top: 0;
@@ -109,16 +120,55 @@
   transform: translateX(-50%);
   width: 532px;
   height: 366px;
-  max-width: 100%;
+}
+
+.sheetImage {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 532px;
+  height: 320px;
+}
+
+// Вращение только через transform (GPU-friendly); период 12s —
+// решение владельца (в Figma-прототипе тайминг недоступен).
+.sheetCircle {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 167px;
+  height: 165px;
+  animation: sheetSpin 12s linear infinite;
+}
+
+@keyframes sheetSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheetCircle {
+    animation: none;
+  }
 }
 
 // ========================================
 // RESPONSIVE
 // ========================================
 @include bp.mobile {
+  // Светлая зона и ExpertCard на mobile убираются: тёмный блок
+  // начинается сразу после кейсов (прежнее согласованное решение).
+  .section {
+    padding-top: 0;
+  }
+
   .darkZone {
     min-height: 0;
-    margin-top: 0;
   }
 
   .inner {

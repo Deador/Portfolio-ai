@@ -122,7 +122,7 @@ All spacing tokens follow a 4px scale base.
 
 | Name | Font Family | Size | Weight | Weight Value | Line Height (ratio) | Line Height (px) | Letter Spacing |
 |------|------------|------|--------|--------------|-------------------|------------------|-----------------|
-| Title/Marquee | Onest | 120px | SemiBold | 600 | 1.3x | 156px | 0 |
+| Title/Marquee | Onest | 120px | Medium | 500 | 1.3x | 156px | 0 |
 | Title/Display | Onest | 68px | Medium | 500 | 1.3x | 88.4px | 0 |
 | Title/H_Result | Onest | 56px | Bold | 700 | 1.3x | 72.8px | 0 |
 | Title/H1_strong | Onest | 40px | Bold | 700 | 1.3x | 52px | 0 |
@@ -163,7 +163,7 @@ All spacing tokens follow a 4px scale base.
 - Text transform: not specified
 - Text decoration: not specified
 - `Title/Display` — добавлен вручную (Home «Опыт»/«Кейсы», Figma local `Title/H2` 68px Medium); `Title/H2` в DS = 32px SemiBold, поэтому для 68px используется отдельный токен
-- `Title/Marquee` — добавлен вручную (hero текст-полоса, Figma GIF `text 3`); Onest SemiBold 120px, line-height 1.3
+- `Title/Marquee` — добавлен вручную (hero текст-полоса, Figma GIF `text 3`); Onest Medium 120px, line-height 1.3 (жирность 500 — решение владельца)
 
 ---
 

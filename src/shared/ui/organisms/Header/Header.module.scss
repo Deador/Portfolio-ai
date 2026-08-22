@@ -34,8 +34,13 @@
   align-items: flex-start;
   min-width: 0;
 
+  // Логотип красится через currentColor от темы шапки (.inverted →
+  // content-white на тёмном hero). Глобальное правило `a` (_global.scss)
+  // перебивает наследование прямым цветом, поэтому ссылке возвращаем
+  // наследование: default → content-primary (как раньше), inverted → white.
   a {
     display: flex;
+    color: inherit;
   }
 }
 

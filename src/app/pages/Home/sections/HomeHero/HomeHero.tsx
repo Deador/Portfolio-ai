@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './HomeHero.module.scss';
 import { Button } from '../../../../../shared/ui/atoms/Button/Button';
-import { Tag } from '../../../../../shared/ui/atoms/Tag/Tag';
+import { ArrowDownRight } from '../../../../../shared/assets/ArrowDownRight/ArrowDownRight';
 import { useShowreel } from '../../hooks/useShowreel';
 import { HomeHeroData } from '../../data';
 
@@ -16,25 +16,6 @@ interface HomeHeroProps {
    */
   onCtaClick?: () => void;
 }
-
-const ArrowIcon: React.FC = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M5 12h14M13 6l6 6-6 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 /**
  * ScrollIndicator
@@ -110,6 +91,13 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
     count: data.showreelFrames.length,
   });
 
+  // Индекс предыдущего кадра: он «уходит» поверх нового с затуханием.
+  const prevIndexRef = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    prevIndexRef.current = activeIndex;
+  }, [activeIndex]);
+  const prevIndex = prevIndexRef.current;
+
   return (
     <section className={styles.hero}>
       <Marquee text={data.marqueeText} />
@@ -120,14 +108,25 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
           onMouseEnter={pause}
           onMouseLeave={resume}
         >
-          {data.showreelFrames.map((frame, index) => (
-            <img
-              key={index}
-              src={frame.src}
-              alt={frame.alt}
-              className={`${styles.showreelFrame} ${index === activeIndex ? styles.active : ''}`}
-            />
-          ))}
+          {/* Активный кадр в потоке задаёт пропорции слота (без кропа),
+              предыдущий — абсолютным слоем гаснет поверх (кроссфейд). */}
+          {data.showreelFrames.map((frame, index) => {
+            const isActive = index === activeIndex;
+            const isLeaving = index === prevIndex && !isActive;
+            const frameClass = isActive
+              ? `${styles.showreelFrame} ${styles.frameActive}`
+              : isLeaving
+                ? `${styles.showreelFrame} ${styles.frameLeaving}`
+                : styles.showreelFrameHidden;
+            return (
+              <img
+                key={index}
+                src={frame.src}
+                alt={frame.alt}
+                className={frameClass}
+              />
+            );
+          })}
         </div>
 
         <ScrollIndicator />
@@ -137,21 +136,17 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
           <p className={styles.description}>{data.description}</p>
           <Button
             type="outline"
-            shape="pill"
+            className={styles.cta}
             inverted
             text={data.ctaText}
             icon={
               <span className={styles.ctaArrow}>
-                <ArrowIcon />
+                <ArrowDownRight />
               </span>
             }
             onClick={onCtaClick}
           />
         </div>
-      </div>
-
-      <div className={styles.badge}>
-        <Tag variant="inverted" text={data.badge} />
       </div>
     </section>
   );

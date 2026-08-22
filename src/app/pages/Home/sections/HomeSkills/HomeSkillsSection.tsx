@@ -3,6 +3,7 @@ import styles from './HomeSkillsSection.module.scss';
 import { HomeSkill } from '../../data';
 import { HomeScrollTopButton } from '../HomeScrollTop/HomeScrollTopButton';
 import skillsSheet from '../../../../../content/home/images/skills-sheet.png';
+import circle2 from '../../../../../content/home/images/circle2.svg';
 
 interface HomeSkillsSectionProps {
   /**
@@ -30,9 +31,9 @@ interface HomeSkillsSectionProps {
  * HomeSkillsSection
  *
  * Секция «Навыки» на тёмном фоне (hero):
- * светлая зона 278px (переход из «Кейсов»), декоративный «sheet»
- * (Figma 33291:4367, единый PNG), тёмная зона с заголовком,
- * рядами навыков и кнопкой «Наверх».
+ * светлая зона перехода (Figma y278), декоративный «sheet»
+ * (Figma group 33306:1132, единое изображение) на границе,
+ * тёмная зона с заголовком, рядами навыков и кнопкой «Наверх».
  */
 export const HomeSkillsSection: React.FC<HomeSkillsSectionProps> = ({
   heading,
@@ -69,12 +70,15 @@ export const HomeSkillsSection: React.FC<HomeSkillsSectionProps> = ({
         </div>
       </div>
 
-      <img
-        src={skillsSheet}
-        alt=""
-        className={styles.sheet}
-        aria-hidden="true"
-      />
+      <div className={styles.sheet} aria-hidden="true">
+        <img
+          src={skillsSheet}
+          alt=""
+          className={styles.sheetImage}
+          loading="lazy"
+        />
+        <img src={circle2} alt="" className={styles.sheetCircle} />
+      </div>
     </section>
   );
 };

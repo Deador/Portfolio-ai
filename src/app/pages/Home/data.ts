@@ -3,6 +3,8 @@
 // Значения — из Figma (канвас «Главная» 33291:4230).
 
 import showreel1 from '../../../content/home/images/showreel-1.png';
+import showreel2 from '../../../content/home/images/showreel-2.png';
+import showreel3 from '../../../content/home/images/showreel-3.png';
 import caseEkvairing from '../../../content/home/images/case-ekvairing.png';
 import caseChatPlatform from '../../../content/home/images/case-chat-platform.png';
 
@@ -14,6 +16,12 @@ export interface ShowreelFrame {
 export interface HomeExperienceItem {
   company: string;
   badge: string;
+  /**
+   * Тег в строке с названием компании (тёмный Tag default — статус,
+   * напр. «текущее место»). Без флага — период: тег под названием
+   * отдельной строкой (Tag light), как в Figma 33291:4250 (карты 2–3).
+   */
+  badgeInline?: boolean;
   bullets: string[];
 }
 
@@ -35,7 +43,6 @@ export interface HomeHeroData {
   heading: string;
   description: string;
   ctaText: string;
-  badge: string;
   showreelFrames: ShowreelFrame[];
   marqueeText: string;
 }
@@ -53,12 +60,12 @@ export const homeContent: HomeContent = {
     description:
       'Запустил с нуля эквайринг, масштабировал чат-платформу на 300+ сотрудников и провёл редизайн мобильного приложения. Работал с командами разработки, аналитиками и бизнесом.',
     ctaText: 'Смотреть кейсы',
-    badge: 'UI/UX',
     showreelFrames: [
-      {
-        src: showreel1,
-        alt: 'Showreel — работы',
-      },
+      // Порядок показа = порядок в массиве (Figma «Ассеты» 33313:3555,
+      // узлы showreel01 → showreel02 → showreel03).
+      { src: showreel1, alt: 'Showreel — работы' },
+      { src: showreel2, alt: 'Showreel — работы' },
+      { src: showreel3, alt: 'Showreel — работы' },
     ],
     marqueeText: 'Проектирую дизайн мобильных и веб интерфейсов',
   },
@@ -66,6 +73,7 @@ export const homeContent: HomeContent = {
     {
       company: 'БКС банк',
       badge: 'текущее место',
+      badgeInline: true,
       bullets: [
         '~1,5 млн ₽ экономии в год (отключение подписок брокеров)',
         'Масштабирование чат-платформы на брокеров и контакт-центр',

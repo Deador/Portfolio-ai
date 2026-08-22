@@ -64,6 +64,10 @@
   .marqueeTrack {
     animation: none;
   }
+
+  .frameLeaving {
+    animation-duration: 0.01s;
+  }
 }
 
 // ========================================
@@ -78,23 +82,44 @@
 }
 
 .showreel {
+  // Адаптивный слот: активный кадр в потоке задаёт высоту своей натуральной
+  // пропорцией — ни один кадр не обрезается и не получает полей.
   position: relative;
   width: 577px;
   max-width: 100%;
-  aspect-ratio: 577 / 400;
 }
 
 .showreelFrame {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+// Неактивные кадры исключены из потока и не участвуют в рендере.
+.showreelFrameHidden {
+  display: none;
+}
+
+.frameActive {
+  opacity: 1;
+}
+
+// Уходящий кадр: лёг поверх нового и плавно гаснет (кроссфейд между
+// разными пропорциями; cover только на время затухания — против растяжения).
+.frameLeaving {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
+  opacity: 1;
+  animation: showreelFadeOut 0.6s ease forwards;
+}
 
-  &.active {
-    opacity: 1;
+@keyframes showreelFadeOut {
+  to {
+    opacity: 0;
   }
 }
 
@@ -161,24 +186,35 @@
   color: var(--color-content-white);
 }
 
+// Радиус CTA главной: решение владельца — 16px (--radius-16) вместо
+// базовых 8px outline (пилл 999px из Figma сочтён избыточным).
+// Двухклассовый селектор гарантирует приоритет над одноклассовыми
+// правилами модуля Button независимо от порядка сборки CSS.
+.textBlock .cta {
+  border-radius: var(--radius-16);
+}
+
+// Иконка CTA (ArrowDownRight): залитый круг + стрелка, как в Figma
+// (инстанс I33291:4236;228:624). Заливки поверхностей в кнопках —
+// только background-* токены (правило владельца): круг = background-white,
+// на hover темнеет до content-primary; глиф контрастен кругу.
+.textBlock .cta .ctaArrow {
+  --arrow-circle-color: var(--color-background-white);
+  --arrow-glyph-color: var(--color-background-hero);
+}
+
+// Hover кнопки: фон белый, текст primary → круг тёмный, глиф светлый.
+.textBlock .cta:hover .ctaArrow {
+  --arrow-circle-color: var(--color-content-primary);
+  --arrow-glyph-color: var(--color-background-white);
+}
+
 .ctaArrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: var(--spacing-x12); // 48px
   height: var(--spacing-x12);
-  border: 1px solid var(--color-content-white);
-  border-radius: 999px;
-  color: var(--color-content-white);
-}
-
-// ========================================
-// Декор: бейдж «UI/UX» (#2E343F, поверх гифки справа)
-// ========================================
-.badge {
-  position: absolute;
-  top: 305px; // Figma: badge y305
-  right: 0;
 }
 
 // ========================================
@@ -196,10 +232,6 @@
   }
 
   .marquee {
-    display: none;
-  }
-
-  .badge {
     display: none;
   }
 
