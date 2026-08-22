@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './RootLayout.module.scss';
 import { Header } from '../../shared/ui/organisms/Header/Header';
 import { Logo } from '../../shared/assets/Logo/Logo';
+import { ScrollToTop } from '../router/ScrollToTop';
 
 interface RootLayoutProps {
   /**
@@ -26,6 +27,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, headerTheme = 'defaul
 
   return (
     <div className={styles.root}>
+      <ScrollToTop />
       <header className={styles.headerWrapper}>
         <Header
           theme={headerTheme}

@@ -2,6 +2,16 @@
 
 ## What was completed
 
+### Скролл-реставрация при навигации (вариант B, 22.08.2026)
+
+Проблема: SPA-роутинг не сбрасывает позицию окна — «проскролленная главная → кейс» открывался
+с той же высоты. Решение: компонент `src/app/router/ScrollToTop.tsx` (useEffect по pathname →
+window.scrollTo top 0, behavior 'instant' — перекрывает глобальный CSS scroll-behavior: smooth),
+смонтирован в RootLayout. Кнопки назад/вперёд тоже ведут в топ (реставрацию позиций можно
+добавить позже через <ScrollRestoration />). Проверки: type-check/lint/build ✅.
+
+**Файлы:** `src/app/router/ScrollToTop.tsx` (новый), `src/app/layouts/RootLayout.tsx`.
+
 ### Showreel: адаптивный слот без кропа (вариант 2, 22.08.2026)
 
 Чтобы не резалось ничего при разных пропорциях кадров (1.533/1.531/1.444), слот перестал быть
