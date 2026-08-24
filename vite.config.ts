@@ -3,20 +3,24 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  base: '/Portfolio-ai/',
+
   plugins: [react()],
+
   resolve: {
     alias: {
       src: path.resolve(__dirname, './src'),
     },
   },
+
   server: {
     port: 5173,
     open: true,
   },
+
   build: {
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
   },
-  base:'./'
 });
