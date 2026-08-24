@@ -30,17 +30,24 @@
   border-radius: var(--radius-24);
 }
 
+// Колонка: строка компании(+статус) и, при наличии, строка периода(+роль)
+// ниже — тот же зазор x2 (8px), что и внутри строк (Figma 33291:4285).
 .cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-x2);
+}
+
+.cardHeaderRow {
   display: flex;
   align-items: center;
   gap: var(--spacing-x2);
 }
 
-// Периоды (Figma 33291:4285): тег под названием, отдельной строкой;
-// зазор тот же x2 (8px), что и в строчном варианте.
-.cardHeaderStacked {
-  flex-direction: column;
-  align-items: flex-start;
+.roleNote {
+  font: var(--text-s);
+  color: var(--color-content-secondary);
 }
 
 .company {

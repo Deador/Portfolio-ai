@@ -35,15 +35,19 @@ export const HomeExperienceSection: React.FC<HomeExperienceSectionProps> = ({
           <article key={index} className={styles.card}>
             {/* Figma 33291:4250: статусный тег — в строке с названием
                 (тёмный default), теги периодов — под названием (light). */}
-            <div
-              className={
-                item.badgeInline
-                  ? styles.cardHeader
-                  : `${styles.cardHeader} ${styles.cardHeaderStacked}`
-              }
-            >
-              <h3 className={styles.company}>{item.company}</h3>
-              <Tag variant={item.badgeInline ? 'default' : 'light'} text={item.badge} />
+            <div className={styles.cardHeader}>
+              <div className={styles.cardHeaderRow}>
+                <h3 className={styles.company}>{item.company}</h3>
+                {item.statusBadge && <Tag variant="default" text={item.statusBadge} />}
+              </div>
+
+              {item.periodBadge && (
+                <div className={styles.cardHeaderRow}>
+                  <Tag variant="light" text={item.periodBadge} />
+                </div>
+              )}
+
+              {item.roleNote && <span className={styles.roleNote}>{item.roleNote}</span>}
             </div>
 
             <ul className={styles.bullets}>

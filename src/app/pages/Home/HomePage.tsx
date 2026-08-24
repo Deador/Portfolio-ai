@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
       </div>
 
       <HomeSkillsSection
-        heading="Чем могу помочь вашему бизнесу?"
+        heading="Что я умею"
         description="Работал в продуктовых командах двух банков. Развивал дизайн-систему для веба и Android, адаптировал её под сложные B2B-продукты (чат-платформа, эквайринг). Защищал решения перед бизнесом и стейкхолдерами."
         items={homeContent.skills}
         onScrollTop={handleScrollTop}
