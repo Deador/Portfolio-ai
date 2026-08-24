@@ -33,6 +33,17 @@ gap `--spacing-x4` = 16px — как в Figma `EL-d8a3e5e9`, пункт Итер
 **Файлы:** `src/content/home/images/preview-mobile-bank.png` (новый),
 `pages/Home/data.ts`, `sections/HomeCases/HomeCaseCard.tsx|.module.scss|.stories.tsx`.
 
+### Нижний отступ страниц кейсов: 80px (вариант A, 24.08.2026)
+
+Текст последней секции кейса упирался в край экрана: `.pageContainer` (CaseRenderer) имел
+padding-bottom **0** (desktop + mobile; tablet наследует desktop). По выбору владельца (вариант A
+из отчёта: padding у колонки контента, а не у внешнего main / last-child / футера) нижний паддинг
+заменён на `--spacing-x20` (**80px**) в обоих медиа-правилах — действует на все кейсы сразу,
+включая будущие из JSON. Ритм совпадает с мобильным межсекционным gap x20; после появления футера
+останется зазором контент→футер. Проверки: `type-check`/`lint`/`build` ✅.
+
+**Файл:** `src/entities/case/CaseRenderer.module.scss`.
+
 ### Скролл-реставрация при навигации (вариант B, 22.08.2026)
 
 Проблема: SPA-роутинг не сбрасывает позицию окна — «проскролленная главная → кейс» открывался

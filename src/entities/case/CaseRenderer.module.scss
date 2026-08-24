@@ -13,7 +13,9 @@
   flex-direction: column;
   gap: var(--spacing-x40);
   margin: 0 auto;
-  padding: calc(var(--spacing-x5) + var(--spacing-x12) + var(--spacing-x10)) var(--spacing-x8) 0;
+  // Нижний отступ x20 (80px) — воздух в конце страницы кейса
+// до края экрана (позже — зазор до футера).
+padding: calc(var(--spacing-x5) + var(--spacing-x12) + var(--spacing-x10)) var(--spacing-x8) var(--spacing-x20);
 
   @include bp.tablet {
     padding-right: var(--spacing-x6);
@@ -22,7 +24,7 @@
 
   @include bp.mobile {
     gap: var(--spacing-x20);
-    padding: calc(var(--spacing-x5) + var(--spacing-x12) + var(--spacing-x10) + var(--spacing-x8)) var(--spacing-x4) 0;
+    padding: calc(var(--spacing-x5) + var(--spacing-x12) + var(--spacing-x10) + var(--spacing-x8)) var(--spacing-x4) var(--spacing-x20);
   }
 }
 
