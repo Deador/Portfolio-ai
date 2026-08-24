@@ -20,7 +20,7 @@ export const WithLink: Story = {
   },
 };
 
-export const ComingSoon: Story = {
+export const ExternalLink: Story = {
   args: {
     item: homeContent.cases[2],
   },

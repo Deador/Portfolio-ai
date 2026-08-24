@@ -7,6 +7,7 @@ import showreel2 from '../../../content/home/images/showreel-2.png';
 import showreel3 from '../../../content/home/images/showreel-3.png';
 import caseEkvairing from '../../../content/home/images/case-ekvairing.png';
 import caseChatPlatform from '../../../content/home/images/case-chat-platform.png';
+import caseMobileBank from '../../../content/home/images/preview-mobile-bank.png';
 
 export interface ShowreelFrame {
   src: string;
@@ -30,8 +31,11 @@ export interface HomeCaseItem {
   subtitle: string;
   image: string;
   imageAlt: string;
+  /**
+   * Внутренний маршрут (`/case/*`) или внешний URL (`https://*`,
+   * открывается в новой вкладке). Без `href` карточка не ссылочная.
+   */
   href?: string;
-  comingSoon?: boolean;
 }
 
 export interface HomeSkill {
@@ -117,9 +121,10 @@ export const homeContent: HomeContent = {
     {
       title: 'Редизайн онлайн банка',
       subtitle: 'Финтех, мобильное приложение, UX исследования, гипотезы',
-      image: caseChatPlatform,
+      image: caseMobileBank,
       imageAlt: 'Редизайн онлайн банка — мобильное приложение',
-      comingSoon: true,
+      // Кейс в редизайне — ведёт на версию старого сайта (новая вкладка).
+      href: 'https://trifonovilyades.tilda.ws/case01',
     },
   ],
   skills: [

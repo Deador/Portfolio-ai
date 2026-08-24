@@ -22,11 +22,10 @@
   }
 }
 
-.cardHeader {
+.textBlock {
   display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: var(--spacing-x2);
+  flex-direction: column;
+  gap: var(--spacing-x4); // Figma: заголовок → описание = 16px
 }
 
 .title {
@@ -44,6 +43,10 @@
 .imageSlot {
   position: relative;
   width: 100%;
+  // Прибито к низу карточки (margin-top: auto): все превью в ряду
+  // выровнены по нижней границе независимо от высоты текста.
+  // Отступ от изображения до края карточки = нижний padding .card (x6 = 24px).
+  margin-top: auto;
   aspect-ratio: 464 / 384; // Figma: композит превью кейса (тинт + девайс)
   border-radius: var(--radius-16);
   overflow: hidden;

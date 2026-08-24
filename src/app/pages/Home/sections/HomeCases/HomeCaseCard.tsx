@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomeCaseCard.module.scss';
-import { Tag } from '../../../../../shared/ui/atoms/Tag/Tag';
 import { HomeCaseItem } from '../../data';
 
 interface HomeCaseCardProps {
@@ -11,38 +10,48 @@ interface HomeCaseCardProps {
   item: HomeCaseItem;
 }
 
+const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
+
 /**
  * HomeCaseCard
  *
  * Карточка кейса: заголовок + описание + изображение.
- * Если передан `href` — оборачивается в RouterLink,
- * иначе рендерится как `<article>` (заглушка «Скоро»).
+ * `href` — внутренний маршрут (`/case/*` → RouterLink) или внешний URL
+ * (`http(s)://` → `<a>` в новой вкладке), иначе `<article>` без ссылки.
  */
 export const HomeCaseCard: React.FC<HomeCaseCardProps> = ({ item }) => {
   const content = (
     <>
-      <div className={styles.cardHeader}>
+      <div className={styles.textBlock}>
         <h3 className={styles.title}>{item.title}</h3>
-        {item.comingSoon && <Tag text="Скоро" />}
+        <p className={styles.subtitle}>{item.subtitle}</p>
       </div>
-      <p className={styles.subtitle}>{item.subtitle}</p>
       <div className={styles.imageSlot}>
         <img src={item.image} alt={item.imageAlt} className={styles.image} />
       </div>
     </>
   );
 
-  if (item.href) {
+  if (!item.href) {
+    return <article className={styles.card}>{content}</article>;
+  }
+
+  if (isExternalHref(item.href)) {
     return (
-      <Link to={item.href} className={styles.card}>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.card}
+      >
         {content}
-      </Link>
+      </a>
     );
   }
 
   return (
-    <article className={styles.card}>
+    <Link to={item.href} className={styles.card}>
       {content}
-    </article>
+    </Link>
   );
 };
