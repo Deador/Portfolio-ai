@@ -27,5 +27,5 @@ const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter(routes, {
-  basename: '/Portfolio-ai',
+  basename: import.meta.env.BASE_URL,
 });
