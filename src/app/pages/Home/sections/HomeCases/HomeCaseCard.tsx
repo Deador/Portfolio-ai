@@ -17,7 +17,7 @@ const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
  *
  * Карточка кейса: заголовок + описание + изображение.
  * `href` — внутренний маршрут (`/case/*` → RouterLink) или внешний URL
- * (`http(s)://` → `<a>` в новой вкладке), иначе `<article>` без ссылки.
+ * (`http(s)://` → `<a>` в текущей вкладке), иначе `<article>` без ссылки.
  */
 export const HomeCaseCard: React.FC<HomeCaseCardProps> = ({ item }) => {
   const content = (
@@ -38,12 +38,7 @@ export const HomeCaseCard: React.FC<HomeCaseCardProps> = ({ item }) => {
 
   if (isExternalHref(item.href)) {
     return (
-      <a
-        href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.card}
-      >
+      <a href={item.href} className={styles.card}>
         {content}
       </a>
     );

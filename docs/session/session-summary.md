@@ -2,6 +2,17 @@
 
 ## What was completed
 
+### Карточка «Редизайн онлайн банка»: внешняя ссылка открывается в текущей вкладке (27.08.2026)
+
+По запросу владельца внешняя ссылка карточки (`href: https://trifonovilyades.tilda.ws/case01`,
+`HomeCaseCard.tsx`) переведена с открытия в новой вкладке на открытие в текущей: у `<a>` убраны
+`target="_blank"` и `rel="noopener noreferrer"`. Комментарий над компонентом обновлён. Остальная
+логика (различение внутреннего/внешнего `href` через `isExternalHref`) не менялась.
+
+Проверки: `type-check` ✅, `lint` ✅.
+
+**Файл:** `src/app/pages/Home/sections/HomeCases/HomeCaseCard.tsx`.
+
 ### ResultsSection: попытка сетки 2×2, откат по решению владельца (24.08.2026)
 
 Владелец заказал переверстать `ResultsSection` (используется в обоих кейсах, `results`/results-секция)
