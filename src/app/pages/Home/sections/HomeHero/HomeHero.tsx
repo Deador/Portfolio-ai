@@ -108,8 +108,9 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
           onMouseEnter={pause}
           onMouseLeave={resume}
         >
-          {/* Активный кадр в потоке задаёт пропорции слота (без кропа),
-              предыдущий — абсолютным слоем гаснет поверх (кроссфейд). */}
+          {/* Коробка слота фиксирована (см. .showreel) — кадры вписываются
+              через object-fit: contain, ротация не сдвигает layout.
+              Предыдущий кадр гаснет поверх нового (кроссфейд). */}
           {data.showreelFrames.map((frame, index) => {
             const isActive = index === activeIndex;
             const isLeaving = index === prevIndex && !isActive;
