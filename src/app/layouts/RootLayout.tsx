@@ -33,8 +33,12 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, headerTheme = 'defaul
           theme={headerTheme}
           logo={<Link to="/" aria-label="На главную"><Logo /></Link>}
           button1Text="Телеграмм"
-          button2Text="Прочие контакты"
+          button1Href="https://t.me/HoverGod"
+          button1Target="_blank"
+          button2Text="+7 (906) 223-66-34"
           ctaText="Резюме"
+          ctaHref="https://drive.google.com/file/d/1xjcWK2DL6VyBrXz1AkAH3rLRFGMT6L3P/view?usp=sharing"
+          ctaTarget="_blank"
         />
       </header>
       <main className={styles.mainContent}>

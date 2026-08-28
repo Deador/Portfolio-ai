@@ -43,6 +43,16 @@ interface ButtonProps {
   onClick?: () => void;
 
   /**
+   * Renders as an `<a>` instead of `<button>` when set (e.g. external links)
+   */
+  href?: string;
+
+  /**
+   * Anchor target, e.g. '_blank' to open in a new tab (adds rel="noopener noreferrer")
+   */
+  target?: string;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -69,6 +79,8 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   htmlType = 'button',
   onClick,
+  href,
+  target,
   className,
 }) => {
   const buttonClasses = [
@@ -78,6 +90,20 @@ export const Button: React.FC<ButtonProps> = ({
     inverted ? styles.inverted : '',
     className || '',
   ].filter(Boolean).join(' ');
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        className={buttonClasses}
+      >
+        {text}
+        {icon && <span className={styles.icon}>{icon}</span>}
+      </a>
+    );
+  }
 
   return (
     <button

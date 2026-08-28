@@ -21,6 +21,16 @@ interface HeaderProps {
   button1Text?: string;
 
   /**
+   * First navigation button link (renders it as `<a>` when set)
+   */
+  button1Href?: string;
+
+  /**
+   * First navigation button anchor target, e.g. '_blank' to open in a new tab
+   */
+  button1Target?: string;
+
+  /**
    * Second navigation button text
    */
   button2Text?: string;
@@ -56,6 +66,16 @@ interface HeaderProps {
   onCtaClick?: () => void;
 
   /**
+   * CTA link target (renders CTA as `<a>` instead of `<button>` when set)
+   */
+  ctaHref?: string;
+
+  /**
+   * CTA anchor target, e.g. '_blank' to open in a new tab
+   */
+  ctaTarget?: string;
+
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -80,6 +100,8 @@ export const Header: React.FC<HeaderProps> = ({
   theme = 'default',
   logo,
   button1Text = 'Телеграмм',
+  button1Href,
+  button1Target,
   button2Text = 'Прочие контакты',
   button3Text = 'Label',
   showButton3 = false,
@@ -87,6 +109,8 @@ export const Header: React.FC<HeaderProps> = ({
   showButton4 = false,
   ctaText = 'Резюме',
   onCtaClick,
+  ctaHref,
+  ctaTarget,
   className,
 }) => {
   const inverted = theme === 'inverted';
@@ -100,7 +124,13 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Navigation Container */}
       <div className={styles.navContainer}>
-        <Button type="link" inverted={inverted} text={button1Text} />
+        <Button
+          type="link"
+          inverted={inverted}
+          text={button1Text}
+          href={button1Href}
+          target={button1Target}
+        />
         <Button type="link" inverted={inverted} text={button2Text} />
 
         {showButton3 && <Button type="link" inverted={inverted} text={button3Text} />}
@@ -111,6 +141,8 @@ export const Header: React.FC<HeaderProps> = ({
           inverted={inverted}
           text={ctaText}
           onClick={onCtaClick}
+          href={ctaHref}
+          target={ctaTarget}
         />
       </div>
     </header>
