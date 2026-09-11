@@ -87,7 +87,7 @@ const Marquee: React.FC<{ text: string }> = ({ text }) => (
  * бейдж «UI/UX» (#2E343F).
  */
 export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
-  const { activeIndex, pause, resume } = useShowreel({
+  const { activeIndex, loadedIndices, pause, resume } = useShowreel({
     count: data.showreelFrames.length,
   });
 
@@ -110,8 +110,15 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ data, onCtaClick }) => {
         >
           {/* Коробка слота фиксирована (см. .showreel) — кадры вписываются
               через object-fit: contain, ротация не сдвигает layout.
-              Предыдущий кадр гаснет поверх нового (кроссфейд). */}
+              Предыдущий кадр гаснет поверх нового (кроссфейд).
+              Кадр, который ещё не был открыт useShowreel для загрузки
+              (loadedIndices), вообще не рендерится — иначе браузер скачал бы
+              все кадры сразу при монтировании независимо от того, какой
+              из них показывается. */}
           {data.showreelFrames.map((frame, index) => {
+            if (!loadedIndices.has(index)) {
+              return null;
+            }
             const isActive = index === activeIndex;
             const isLeaving = index === prevIndex && !isActive;
             const frameClass = isActive
