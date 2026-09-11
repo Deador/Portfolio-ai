@@ -36,6 +36,16 @@ interface HeaderProps {
   button2Text?: string;
 
   /**
+   * Second navigation button link (renders it as `<a>` when set, e.g. `tel:`)
+   */
+  button2Href?: string;
+
+  /**
+   * Second navigation button anchor target, e.g. '_blank' to open in a new tab
+   */
+  button2Target?: string;
+
+  /**
    * Third navigation button text (hidden by default)
    */
   button3Text?: string;
@@ -103,6 +113,8 @@ export const Header: React.FC<HeaderProps> = ({
   button1Href,
   button1Target,
   button2Text = 'Прочие контакты',
+  button2Href,
+  button2Target,
   button3Text = 'Label',
   showButton3 = false,
   button4Text = 'Label',
@@ -131,7 +143,13 @@ export const Header: React.FC<HeaderProps> = ({
           href={button1Href}
           target={button1Target}
         />
-        <Button type="link" inverted={inverted} text={button2Text} />
+        <Button
+          type="link"
+          inverted={inverted}
+          text={button2Text}
+          href={button2Href}
+          target={button2Target}
+        />
 
         {showButton3 && <Button type="link" inverted={inverted} text={button3Text} />}
         {showButton4 && <Button type="link" inverted={inverted} text={button4Text} />}
