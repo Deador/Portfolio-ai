@@ -77,8 +77,9 @@ throttling-профили) — медиана 5 прогонов на услов
 Проверки: `type-check` ✅, `lint` ✅, `build` ✅, `build-storybook` ✅ на каждый коммит и на финальном
 состоянии ветки.
 
-**Ветка `fix/perf-tech-review`**: 3 коммита (`9798f4c` P1-2 showreel, `3123aa2` P2-2 Inter, `797d2c0`
-P1-4 noscript) — **не запушена и не смёржена**, ждёт решения владельца.
+**Ветка `fix/perf-tech-review`**: 4 коммита (`9798f4c` P1-2 showreel, `3123aa2` P2-2 Inter, `797d2c0`
+P1-4 noscript, `f15c931` это резюме) — смёржена в `main` merge-коммитом `0fe461a`, запушено в
+`origin/main`.
 
 **Файлы:** `src/app/pages/Home/hooks/useShowreel.ts`, `src/app/pages/Home/sections/HomeHero/HomeHero.tsx`,
 `index.html`.
