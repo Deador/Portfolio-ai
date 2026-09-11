@@ -36,6 +36,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, headerTheme = 'defaul
           button1Href="https://t.me/HoverGod"
           button1Target="_blank"
           button2Text="+7 (906) 223-66-34"
+          button2Href="tel:+79062236634"
           ctaText="Резюме"
           ctaHref="https://drive.google.com/file/d/1xjcWK2DL6VyBrXz1AkAH3rLRFGMT6L3P/view?usp=sharing"
           ctaTarget="_blank"
