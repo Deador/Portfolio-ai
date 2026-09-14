@@ -2,6 +2,74 @@
 
 ## What was completed
 
+### Яндекс.Метрика (счётчик 112575188) (14.09.2026)
+
+Подключена по детальному ТЗ владельца (SPA-специфика: `defer:true` + ручные hit вместо автоматических,
+цели с дедупом под React.StrictMode). Коммит `6f199db`, запушен в `main` напрямую (без отдельной ветки).
+
+- **`index.html`**: официальный сниппет счётчика в `<head>` первым скриптом, `defer:true` добавлен
+  (обязателен для SPA — без него автоматический hit на загрузке задвоился бы с ручным), `ecommerce`/
+  `referrer`/`url` убраны (не нужны/не применяются при `defer:true`). Обёрнут проверкой хоста —
+  `localhost`/`127.0.0.1`/`[::1]` не пишутся в статистику. `window.__ymInitialReferrer` снимается до
+  инициализации счётчика — нужен первому hit.
+  **Отступление от буквы ТЗ**: `<noscript><div><img.../></div></noscript>` пришлось перенести в
+  `<body>` — HTML5 запрещает блочный контент внутри `<noscript>`, лежащего в `<head>` («in head
+  noscript» insertion mode), сборка падала (`parse5: disallowed-content-in-noscript-in-head`). Это
+  ограничение спецификации (реальные браузеры повели бы себя так же), не только Vite. Сам `<script>`
+  со счётчиком остался в `<head>`.
+- **`src/analytics/ym.ts`**: `ymHit`/`ymGoal` — строго no-op без `window.ym`, try/catch вокруг вызова,
+  dev-логи в `console.debug`, без `any` в публичном API.
+- **`src/analytics/usePageviews.ts`**: ручной pageview на каждый `pathname+search` (подключён в
+  `RootLayout` — родитель `CasePage`/`HomePage`, не размонтируется между роутами, как и уже
+  существующий `ScrollToTop`). Первый hit берёт referer из `window.__ymInitialReferrer`, остальные —
+  из предыдущего href (`useRef`). `document.title` в hit всегда актуален без явной прокидки через
+  конфиг роута — React вызывает эффекты дочерних компонентов (в т.ч. эффект `CasePage`, выставляющий
+  title) раньше родительских в одном коммите. Дедуп через `lastProcessedKeyRef` защищает от двойного
+  invoke в React.StrictMode, не блокируя настоящий повторный заход на тот же путь позже.
+- **`src/analytics/useCaseReadEnd.ts`**: `IntersectionObserver` на сентинел в конце `CaseRenderer`,
+  дедуп через module-level `Set` (не чаще раза на кейс за сессию).
+- **Цели**: `case_open` (`CasePage`, монтирование/смена slug, тот же StrictMode-дедуп через `useRef`
+  — изначально дублировался в dev, поправлено), `case_read_end` (сентинел), `contact_click`
+  (`channel: 'telegram' | 'phone'`) / `resume_download` — один `onClick` на `Button`, добавленный в
+  `RootLayout` к уже существующим ссылкам.
+- **Найденный по ходу пробел**: у `Button.tsx` `onClick` вообще не передавался в ветку `<a>` (только
+  `<button>`) — без этого цели `contact_click`/`resume_download` было не на что вешать. Поправлено
+  (`onClick={onClick}` в JSX `<a>`), ничего не ломает — раньше проп там просто игнорировался.
+
+Проверено Playwright (build+preview и dev, скрипты вне репозитория): ровно 1 hit на переход включая
+первый (StrictMode-задвоение подтверждённо не происходит в реальном браузере), referer верно цепляется
+от предыдущего URL, в dev `window.ym` не грузится и запросов к `*.yandex.ru` нет, `[ym]`-логи есть,
+блокировка `mc.yandex.ru`/`yastatic.net` не роняет клики/навигацию/консоль.
+
+**Не проверено буквально** (нужен не-`localhost` хост, сниппет намеренно исключает `localhost` по
+самому ТЗ): реальный запрос к `tag.js` в Network и реальный внешний referer в первом hit — логика
+проверена подстановкой `window.ym` в обход хостовой проверки, но настоящую сетевую отправку можно
+увидеть только на `trifonovprod.ru` или через `vite preview --host <LAN-IP>`.
+
+**Побочное наблюдение** (не баг): клик по `tel:`-ссылке в автоматизации Playwright на десктопном
+Chrome на короткое время «перехватывает» следующий клик по координатам (нативный UI браузера для
+внешнего протокола) — воспроизводится только в этом сценарии тестирования, программный клик сразу
+после работает нормально. На реальном телефоне не проявится.
+
+Проверки: `type-check` ✅, `lint` ✅, `build` ✅, `build-storybook` ✅.
+
+**Файлы:** `index.html`, `src/analytics/ym.ts` (новый), `src/analytics/usePageviews.ts` (новый),
+`src/analytics/useCaseReadEnd.ts` (новый), `src/app/layouts/RootLayout.tsx`, `src/app/pages/CasePage.tsx`,
+`src/entities/case/CaseRenderer.tsx`, `src/shared/ui/atoms/Button/Button.tsx`,
+`src/shared/ui/organisms/Header/Header.tsx`.
+
+### Фикс: кнопка «Назад» не сбрасывала скролл (11.09.2026, коммит `e5de1c1`)
+
+Точечный багфикс, задокументирован постфактум (был пропущен в конце прошлой сессии). Причина:
+`history.scrollRestoration` нигде не был выставлен (дефолт браузера `'auto'`), поэтому при переходе
+назад браузер сам восстанавливал сохранённую позицию скролла главной (например, у блока «Кейсы») —
+восстановление срабатывает независимо от React и позже эффекта `ScrollToTop`, поэтому перебивало его
+`scrollTo(0,0)`. Исправлено явным переводом `history.scrollRestoration = 'manual'` при монтировании
+`ScrollToTop`. Проверено Playwright: без фикса скролл после «Назад» оставался на прежнем месте, с
+фиксом — 0. Закоммичено и запушено напрямую в `main`.
+
+**Файл:** `src/app/router/ScrollToTop.tsx`.
+
 ### Аудит производительности/тех-качества + 3 фикса (28.08.2026, ветка fix/perf-tech-review)
 
 По ТЗ владельца (senior frontend-инженер, независимый тех-аудит: скорость, сборка, сервер/доставка,
