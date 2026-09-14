@@ -97,6 +97,7 @@ export const Button: React.FC<ButtonProps> = ({
         href={href}
         target={target}
         rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        onClick={onClick}
         className={buttonClasses}
       >
         {text}

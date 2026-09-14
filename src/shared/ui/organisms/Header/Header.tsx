@@ -31,6 +31,11 @@ interface HeaderProps {
   button1Target?: string;
 
   /**
+   * First navigation button click handler (fires alongside navigation, e.g. analytics)
+   */
+  onButton1Click?: () => void;
+
+  /**
    * Second navigation button text
    */
   button2Text?: string;
@@ -44,6 +49,11 @@ interface HeaderProps {
    * Second navigation button anchor target, e.g. '_blank' to open in a new tab
    */
   button2Target?: string;
+
+  /**
+   * Second navigation button click handler (fires alongside navigation, e.g. analytics)
+   */
+  onButton2Click?: () => void;
 
   /**
    * Third navigation button text (hidden by default)
@@ -112,9 +122,11 @@ export const Header: React.FC<HeaderProps> = ({
   button1Text = 'Телеграмм',
   button1Href,
   button1Target,
+  onButton1Click,
   button2Text = 'Прочие контакты',
   button2Href,
   button2Target,
+  onButton2Click,
   button3Text = 'Label',
   showButton3 = false,
   button4Text = 'Label',
@@ -142,6 +154,7 @@ export const Header: React.FC<HeaderProps> = ({
           text={button1Text}
           href={button1Href}
           target={button1Target}
+          onClick={onButton1Click}
         />
         <Button
           type="link"
@@ -149,6 +162,7 @@ export const Header: React.FC<HeaderProps> = ({
           text={button2Text}
           href={button2Href}
           target={button2Target}
+          onClick={onButton2Click}
         />
 
         {showButton3 && <Button type="link" inverted={inverted} text={button3Text} />}

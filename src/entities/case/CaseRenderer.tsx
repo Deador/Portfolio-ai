@@ -19,6 +19,7 @@ import { CommonCard } from '../../shared/ui/molecules/CommonCard/CommonCard';
 import { MVPGrowthSection } from './MVPGrowthSection';
 import { PersonaRolesSection } from './PersonaRolesSection/PersonaRolesSection';
 import { resolveContentAssets } from '../../lib/content-parser/resolveContent';
+import { useCaseReadEnd } from '../../analytics/useCaseReadEnd';
 import { CaseDocument, CaseSection } from './types';
 
 type SectionProps = Record<string, unknown>;
@@ -73,6 +74,7 @@ function renderSection(section: CaseSection, slug: string, key: string | number)
 
 export const CaseRenderer: React.FC<{ caseData: CaseDocument }> = ({ caseData }) => {
   const { schemaVersion, slug, sections } = caseData;
+  const readEndSentinelRef = useCaseReadEnd(slug);
 
   if (schemaVersion !== SUPPORTED_SCHEMA_VERSION) {
     console.warn(
@@ -84,6 +86,9 @@ export const CaseRenderer: React.FC<{ caseData: CaseDocument }> = ({ caseData })
     <main className={styles.caseStudyPage}>
       <div className={styles.pageContainer}>
         {sections.map((section, index) => renderSection(section, slug, index))}
+        {/* Аналитический сентинел: попадание во вьюпорт = цель case_read_end.
+            Не видим, не занимает места в раскладке. */}
+        <div ref={readEndSentinelRef} aria-hidden="true" style={{ height: 0 }} />
       </div>
     </main>
   );

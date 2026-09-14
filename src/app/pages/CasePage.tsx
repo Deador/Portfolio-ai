@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './CasePage.module.scss';
 import { CaseRenderer } from '../../entities/case/CaseRenderer';
+import { ymGoal } from '../../analytics/ym';
 import acquiringCase from '../../content/cases/acquiring/case.json';
 import chatCase from '../../content/cases/chat/case.json';
 
@@ -90,6 +91,7 @@ const CasePage: React.FC = () => {
 
   const caseData = caseDocuments[slug ?? ''];
   const seo = CASE_SEO[slug ?? ''];
+  const lastOpenedSlugRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!seo) {
@@ -102,6 +104,24 @@ const CasePage: React.FC = () => {
       applySeo(DEFAULT_SEO);
     };
   }, [seo]);
+
+  useEffect(() => {
+    if (!caseData || !slug) {
+      return;
+    }
+
+    if (lastOpenedSlugRef.current === slug) {
+      // React.StrictMode вызывает этот эффект дважды подряд с тем же slug
+      // на монтировании (effect → cleanup → effect) — цель уже отправлена
+      // первым вызовом. Сбрасываем ключ, чтобы не заблокировать настоящее
+      // повторное открытие этого же кейса позже (после ухода на другой).
+      lastOpenedSlugRef.current = null;
+      return;
+    }
+
+    lastOpenedSlugRef.current = slug;
+    ymGoal('case_open', { case: slug });
+  }, [caseData, slug]);
 
   if (caseData) {
     return <CaseRenderer caseData={caseData as Parameters<typeof CaseRenderer>[0]['caseData']} />;
