@@ -2,6 +2,41 @@
 
 ## What was completed
 
+### Резюме PDF на сайте (15.10.2026)
+
+По ТЗ владельца (анализ → отчёт → подтверждение → реализация → проверка → документация) размещено
+резюме по прямому стабильному URL.
+
+- **`public/trifonov-cv.pdf`** (новый, 1 962 094 байт, скопирован из `Downloads/Резюме Трифонов
+  Илья.pdf`, оригинал не тронут) → доступен на `https://trifonovprod.ru/trifonov-cv.pdf` (корень
+  домена, `vite.config.ts` → `base: '/'`). GitHub Pages отдаёт реально существующий статический файл
+  напрямую, минуя SPA/`404.html`-фолбэк — клиентский роутер (`createBrowserRouter`, только `/` и
+  `/case/:slug`) в этот запрос вообще не попадает, так как это top-level HTTP-навигация, а не
+  client-side переход.
+- **`src/app/layouts/RootLayout.tsx`**: существующий CTA «Резюме» в шапке (`Header`) — `ctaHref`
+  заменён с Google Drive-ссылки на `/trifonov-cv.pdf`. По решению владельца — замена, а не
+  добавление второй ссылки (в шапке уже был ровно один «слот» под резюме). `ctaTarget="_blank"` и
+  `onCtaClick` (цель Метрики `resume_download`) не трогали — только обычная `<a href>` через Button
+  (не `react-router-dom`'s `<Link>`, иначе роутер перехватил бы клик). `download` не ставили — файл
+  сначала открывается в браузере.
+- **`docs/architecture.md`**: закрыт давний пробел — добавлен раздел 4.1 «Static Assets (`public/`)»,
+  описывающий назначение папки и все текущие файлы в ней (`CNAME`, `favicon.svg`, `og-acquiring.png`,
+  `og-chat.png`, `trifonov-cv.pdf`) + инструкция по обновлению резюме и предупреждение про кеш
+  GitHub Pages (`Cache-Control: max-age=600` — после замены файла старая версия может отдаваться ещё
+  некоторое время).
+
+Проверено (Playwright, `vite preview`, вне репозитория): `/trifonov-cv.pdf` отдаёт `200`,
+`Content-Type: application/pdf`, байты совпадают, начинается с `%PDF-1.7` (не fallback на
+`index.html`); ссылка «Резюме» на 1280/375/320px — текст не изменился, `target="_blank"`,
+`rel="noopener noreferrer"`, `download` отсутствует, горизонтального скролла нет ни на одной ширине;
+клик реально открывает PDF в новой вкладке; страница кейса (`/case/acquiring`) рендерится как прежде,
+ссылка видна и там (общий `Header`). `type-check`/`lint`/`build`/`build-storybook` ✅ (без новых
+предупреждений — только уже существующие Sass `legacy-js-api` deprecation).
+
+**Не задеплоено** — по прямому указанию владельца, деплой делает сам.
+
+**Файлы:** `public/trifonov-cv.pdf` (новый), `src/app/layouts/RootLayout.tsx`, `docs/architecture.md`.
+
 ### Яндекс.Метрика (счётчик 112575188) (14.09.2026)
 
 Подключена по детальному ТЗ владельца (SPA-специфика: `defer:true` + ручные hit вместо автоматических,

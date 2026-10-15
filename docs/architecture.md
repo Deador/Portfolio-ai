@@ -128,6 +128,43 @@ src/
 
 ------------------------------------------------------------------------
 
+## 4.1 Static Assets (`public/`)
+
+Files in `public/` are copied verbatim into the root of `dist/` at build time (Vite convention) —
+served directly by the hosting at `https://trifonovprod.ru/<filename>`, with no processing, no
+bundling, no content hashing. Use this folder only for files that need a **stable, predictable URL**
+that must not change between builds — everything else (images actually used by components, icons,
+etc.) belongs under `src/content/` or `src/shared/assets/`, where Vite can hash and optimize it.
+
+Current contents:
+
+``` text
+public/
+├── CNAME                  # кастомный домен для GitHub Pages: trifonovprod.ru
+├── favicon.svg             # SVG-иконка сайта (растровые favicon.ico/apple-touch-icon.png — open item)
+├── og-acquiring.png        # Open Graph превью кейса acquiring (стабильный URL для соцсетей/мессенджеров)
+├── og-chat.png             # Open Graph превью кейса chat
+└── trifonov-cv.pdf         # резюме PDF, https://trifonovprod.ru/trifonov-cv.pdf
+```
+
+### Резюме (`trifonov-cv.pdf`)
+
+- **URL**: `https://trifonovprod.ru/trifonov-cv.pdf` (корень домена — `vite.config.ts` использует
+  `base: '/'`, сайт раздаётся не из подпапки).
+- **Ссылка на сайте**: CTA «Резюме» в шапке (`Header`, собирается в `src/app/layouts/RootLayout.tsx`,
+  пропс `ctaHref`), видна на всех страницах. Обычная `<a href target="_blank" rel="noopener
+  noreferrer">` — не `react-router-dom`'s `<Link>`, иначе клиентский роутер перехватил бы клик и не
+  нашёл такой route вместо открытия файла. Без атрибута `download` — файл сначала открывается в
+  браузере, а не сразу скачивается.
+- **Как обновить**: заменить `public/trifonov-cv.pdf` новым файлом с тем же именем и задеплоить —
+  имя менять нельзя, ссылка на него уже разошлась (hh.ru, письма). Путь/код трогать не нужно.
+- **Кеширование**: GitHub Pages отдаёт статические файлы с `Cache-Control: max-age=600` (10 минут) —
+  после обновления файла хостинг/CDN и браузеры пользователей какое-то время (до ~10 минут, возможно
+  дольше из-за кеша самого браузера) могут продолжать отдавать старую версию. Это нормально, ждать
+  не нужно — просто не мгновенно.
+
+------------------------------------------------------------------------
+
 ## 5. Component Architecture
 
 ### Atoms

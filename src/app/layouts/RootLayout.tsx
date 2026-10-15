@@ -43,7 +43,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, headerTheme = 'defaul
           button2Href="tel:+79062236634"
           onButton2Click={() => ymGoal('contact_click', { channel: 'phone' })}
           ctaText="Резюме"
-          ctaHref="https://drive.google.com/file/d/1xjcWK2DL6VyBrXz1AkAH3rLRFGMT6L3P/view?usp=sharing"
+          ctaHref="/trifonov-cv.pdf"
           ctaTarget="_blank"
           onCtaClick={() => ymGoal('resume_download')}
         />
