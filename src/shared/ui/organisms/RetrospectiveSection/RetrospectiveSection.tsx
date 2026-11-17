@@ -24,7 +24,14 @@ export const RetrospectiveSection: React.FC<RetrospectiveSectionProps> = ({
         <Title {...titleProps} />
         <div className={styles.cardsBlock}>
           {cards.map((c, i) => (
-            <CommonCard key={i} variant={c.variant} title={c.title} description={c.description} number={c.number} />
+            <CommonCard
+              key={i}
+              className={styles.card}
+              variant={c.variant}
+              title={c.title}
+              description={c.description}
+              number={c.number}
+            />
           ))}
         </div>
       </div>
